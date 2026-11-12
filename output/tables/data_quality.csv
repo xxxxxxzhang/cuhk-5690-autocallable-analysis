@@ -1,0 +1,4 @@
+symbol,first,last,sessions,missing_sessions,duplicate_dates,missing_prices,splits,dividends,initial_close,contract_initial
+AMZN,2025-01-02,2026-11-06,464,0,0,0,0,0,227.35,227.35
+NVDA,2025-01-02,2026-11-06,464,0,0,0,0,7,180.99,180.99
+PLTR,2025-01-02,2026-11-06,464,0,0,0,0,0,193.38,193.38

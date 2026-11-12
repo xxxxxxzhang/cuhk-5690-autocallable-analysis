@@ -1,0 +1,20 @@
+{
+  "provider": "Yahoo Finance Chart",
+  "retrieved_date": "2026-11-09",
+  "requested_start": "2025-01-01",
+  "last_session": "2026-11-06",
+  "files": {
+    "AMZN": {
+      "request_url": "https://query1.finance.yahoo.com/v8/finance/chart/AMZN?period1=1735689600&period2=1794009600&interval=1d&events=div%2Csplits",
+      "sha256": "d7ab532a312f5cdb1308fc8c041af18dda89c9b20a5c8e30a1cc869b13ce5de5"
+    },
+    "NVDA": {
+      "request_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?period1=1735689600&period2=1794009600&interval=1d&events=div%2Csplits",
+      "sha256": "be8e21f36e5440e0a0cf0d92225916991770c52023b230115670678b59e7bbc2"
+    },
+    "PLTR": {
+      "request_url": "https://query1.finance.yahoo.com/v8/finance/chart/PLTR?period1=1735689600&period2=1794009600&interval=1d&events=div%2Csplits",
+      "sha256": "157b3cf142a73008fa94db02e530f71a65608791389b857c3f34ee639f8f4a56"
+    }
+  }
+}

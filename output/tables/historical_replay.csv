@@ -1,0 +1,4 @@
+period,observation_date,payment_date,AMZN,NVDA,PLTR,coupon,pending_periods,expired_periods,principal,cashflow,status
+1,2026-03-19,2026-03-24,208.76,178.56,155.68,39.1250,0,0,0,39.1250,outstanding
+2,2026-06-22,2026-06-25,232.79,208.65,119.50,39.1250,0,0,0,39.1250,outstanding
+3,2026-09-21,2026-09-24,258.45,227.38,183.09,39.1250,0,0,0,39.1250,outstanding
