@@ -1,6 +1,7 @@
-"""Render comparable historical and scenario price charts as standalone SVG files."""
+"""Render historical, scenario and Monte Carlo charts as standalone SVG files."""
 from datetime import date
 from math import ceil
+from statistics import median
 
 from reportlab.graphics import renderSVG
 from reportlab.graphics.charts.lineplots import LinePlot
@@ -193,6 +194,137 @@ def plot_prices(close, terms, *, filename="normalized_prices.svg",
         footer += "  |  post-autocall prices do not affect note cash flows"
     fig.add(String(60, 40, footer, fontSize=9))
 
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_simulated_paths(paths, terms, *, filename="monte_carlo_paths.svg", max_paths=40):
+    """Plot a representative subset and the median of simulated normalized paths."""
+    if not paths:
+        raise ValueError("At least one simulated path is required")
+    symbols = list(terms["underlyings"])
+    observations = [row[0] for row in terms["schedule"]]
+    step = max(1, len(paths) // max_paths)
+    selected = paths[::step][:max_paths]
+    fig = Drawing(900, 650)
+    fig.add(Rect(0, 0, 900, 650, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 615, "Correlated-GBM simulated underlying paths",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 592,
+                   f"{len(paths):,} paths generated; {len(selected)} displayed; pricing date = 100",
+                   fontSize=11))
+
+    palette = ["#1856a3", "#007657", "#ad4918"]
+    for panel, symbol in enumerate(symbols):
+        base = float(terms["underlyings"][symbol]["initial"])
+        series = []
+        all_values = []
+        for path in selected:
+            values = [100.0] + [100.0 * float(path[day][symbol]) / base for day in observations]
+            all_values.append(values)
+            series.append(list(enumerate(values)))
+        median_values = [median(values[index] for values in all_values)
+                         for index in range(len(observations) + 1)]
+        series.append(list(enumerate(median_values)))
+
+        autocall = 100.0 * float(terms["autocall"]["level_as_fraction_of_initial"])
+        barrier = 100.0 * float(terms["underlyings"][symbol]["coupon_barrier"]) / base
+        series.extend(([(0, autocall), (len(observations), autocall)],
+                       [(0, barrier), (len(observations), barrier)]))
+        values_flat = [value for values in all_values for value in values]
+        y_min = max(0, 25 * int(min([*values_flat, barrier]) / 25))
+        y_max = max(125, 25 * ceil(max([*values_flat, autocall]) / 25))
+
+        chart = LinePlot()
+        chart.x, chart.y = 60, 415 - panel * 175
+        chart.width, chart.height = 790, 120
+        chart.xValueAxis.valueMin, chart.xValueAxis.valueMax = 0, len(observations)
+        chart.xValueAxis.valueSteps = list(range(0, len(observations) + 1, 2))
+        chart.xValueAxis.labelTextFormat = lambda value: "P" if value == 0 else f"O{int(value)}"
+        chart.yValueAxis.valueMin, chart.yValueAxis.valueMax = y_min, y_max
+        chart.yValueAxis.valueStep = max(25, 25 * ceil((y_max - y_min) / 125))
+        chart.yValueAxis.visibleGrid = True
+        chart.yValueAxis.gridStrokeColor = colors.HexColor("#e5e7eb")
+        chart.data = series
+        for index in range(len(selected)):
+            chart.lines[index].strokeColor = colors.HexColor("#cbd5e1")
+            chart.lines[index].strokeWidth = 0.55
+        median_index = len(selected)
+        chart.lines[median_index].strokeColor = colors.HexColor(palette[panel])
+        chart.lines[median_index].strokeWidth = 2.2
+        chart.lines[median_index + 1].strokeColor = colors.HexColor("#555d68")
+        chart.lines[median_index + 1].strokeDashArray = [5, 3]
+        chart.lines[median_index + 2].strokeColor = colors.HexColor("#b42318")
+        chart.lines[median_index + 2].strokeDashArray = [5, 3]
+        fig.add(chart)
+        fig.add(String(60, chart.y + chart.height + 12, symbol,
+                       fontName="Helvetica-Bold", fontSize=12,
+                       fillColor=colors.HexColor(palette[panel])))
+
+    fig.add(String(60, 25,
+                   "Grey paths  |  Coloured median  |  Dashed autocall and coupon barriers",
+                   fontSize=9))
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_value_distribution(present_values, estimated_value, principal, *,
+                            filename="monte_carlo_value_distribution.svg", bins=30):
+    """Render a compact histogram of discounted path values."""
+    if not present_values:
+        raise ValueError("At least one present value is required")
+    low, high = min(present_values), max(present_values)
+    if high <= low:
+        low, high = low - 1.0, high + 1.0
+    width = (high - low) / bins
+    counts = [0] * bins
+    for value in present_values:
+        index = min(int((value - low) / width), bins - 1)
+        counts[index] += 1
+
+    fig = Drawing(900, 455)
+    fig.add(Rect(0, 0, 900, 455, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 418, "Monte Carlo discounted payoff distribution",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 394,
+                   f"{len(present_values):,} simulated paths   |   value per USD {principal:,.0f} note",
+                   fontSize=11))
+    left, bottom, plot_width, plot_height = 65, 85, 780, 255
+    maximum = max(counts)
+    bar_width = plot_width / bins
+    for index, count in enumerate(counts):
+        height = 0 if maximum == 0 else plot_height * count / maximum
+        fig.add(Rect(left + index * bar_width, bottom, max(1, bar_width - 1), height,
+                     fillColor=colors.HexColor("#7aa5d8"), strokeColor=None))
+    fig.add(Line(left, bottom, left + plot_width, bottom, strokeColor=colors.black))
+    fig.add(Line(left, bottom, left, bottom + plot_height, strokeColor=colors.black))
+
+    def x_position(value):
+        return left + plot_width * (value - low) / (high - low)
+
+    for tick in range(5):
+        value = low + (high - low) * tick / 4
+        x = x_position(value)
+        fig.add(Line(x, bottom - 4, x, bottom, strokeColor=colors.black))
+        fig.add(String(x - 18, bottom - 20, f"{value:,.0f}", fontSize=8))
+    markers = ((estimated_value, "Monte Carlo value", "#0b5cab", -112, -13),
+               (principal, "Principal", "#b42318", 7, -31))
+    for value, label, colour, label_dx, label_dy in markers:
+        if low <= value <= high:
+            x = x_position(value)
+            fig.add(Line(x, bottom, x, bottom + plot_height,
+                         strokeColor=colors.HexColor(colour), strokeWidth=1.8,
+                         strokeDashArray=[5, 3]))
+            fig.add(String(x + label_dx, bottom + plot_height + label_dy,
+                           f"{label}: {value:,.2f}",
+                           fillColor=colors.HexColor(colour), fontSize=9))
+    fig.add(String(60, 38,
+                   "Illustrative correlated-GBM assumptions; model inputs require team review before final valuation.",
+                   fontSize=9))
     target = ROOT / "output/figures" / filename
     target.parent.mkdir(parents=True, exist_ok=True)
     renderSVG.drawToFile(fig, str(target))

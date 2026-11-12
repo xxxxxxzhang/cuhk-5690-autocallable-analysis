@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="900" height="650" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 650" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="900" height="650"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-650)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="900" height="650" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="60" y="615" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1230) scale(1,-1)">Correlated-GBM simulated underlying paths</text>
+			<text x="60" y="592" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1184) scale(1,-1)">10,000 paths generated; 40 displayed; pricing date = 100</text>
+			<g transform="">
+				<g transform="">
+					<g transform="">
+						<path d="M 60,415 L 850,415 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<path d="M 60,415 L 60,410 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 191.666667,415 L 191.666667,410 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 323.333333,415 L 323.333333,410 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 455,415 L 455,410 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 586.666667,415 L 586.666667,410 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 718.333333,415 L 718.333333,410 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 850,415 L 850,410 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,60,410)">
+							<text x="-2.7800000000000002" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">P</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,191.666667,410)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O2</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,323.333333,410)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O4</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,455,410)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O6</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,586.666667,410)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O8</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,718.333333,410)">
+							<text x="-8.61" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O10</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,850,410)">
+							<text x="-8.61" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O12</text>
+						</g>
+					</g>
+				</g>
+				<g transform="">
+					<g transform="">
+						<path d="M 60,415 L 60,535 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<path d="M 60,415 L 55,415 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,440.714286 L 55,440.714286 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,466.428571 L 55,466.428571 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,492.142857 L 55,492.142857 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,517.857143 L 55,517.857143 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,55,415)">
+							<text x="-5.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">0</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,440.714286)">
+							<text x="-10.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">75</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,466.428571)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">150</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,492.142857)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">225</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,517.857143)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">300</text>
+						</g>
+					</g>
+				</g>
+				<path d="M 60,440.714286 L 850,440.714286 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,466.428571 L 850,466.428571 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,492.142857 L 850,492.142857 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,517.857143 L 850,517.857143 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<g transform="">
+					<polyline points="60 449.2857, 125.8333 457.491, 191.6667 458.224, 257.5 447.04, 323.3333 452.2568, 389.1667 454.0296, 455 455.1252, 520.8333 461.5602, 586.6667 469.1287, 652.5 476.9862, 718.3333 457.1695, 784.1667 452.9153, 850 451.8281" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 454.5881, 191.6667 448.7147, 257.5 444.0101, 323.3333 445.6637, 389.1667 459.4027, 455 470.7735, 520.8333 474.8533, 586.6667 469.5552, 652.5 474.1087, 718.3333 469.6585, 784.1667 482.1567, 850 471.6495" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 448.7757, 191.6667 451.6184, 257.5 443.6007, 323.3333 452.2461, 389.1667 461.1084, 455 470.4579, 520.8333 475.1368, 586.6667 464.7183, 652.5 479.7724, 718.3333 502.795, 784.1667 500.7386, 850 509.7538" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 453.5484, 191.6667 452.4875, 257.5 459.0877, 323.3333 460.6201, 389.1667 472.9574, 455 469.8208, 520.8333 475.917, 586.6667 485.3538, 652.5 485.2114, 718.3333 508.8562, 784.1667 524.0504, 850 528.4231" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 461.3065, 191.6667 445.82, 257.5 442.8403, 323.3333 436.2241, 389.1667 437.5603, 455 440.7584, 520.8333 436.6539, 586.6667 429.3737, 652.5 430.2989, 718.3333 428.3253, 784.1667 427.9841, 850 430.1648" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 444.4567, 191.6667 445.4053, 257.5 444.226, 323.3333 451.0651, 389.1667 452.2162, 455 439.4881, 520.8333 442.1553, 586.6667 438.1261, 652.5 431.8748, 718.3333 426.6608, 784.1667 425.4234, 850 428.8589" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 443.7639, 191.6667 442.9022, 257.5 440.9301, 323.3333 444.3014, 389.1667 448.6703, 455 451.2551, 520.8333 457.6866, 586.6667 463.6905, 652.5 468.5413, 718.3333 485.7136, 784.1667 478.2684, 850 455.2105" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 449.6379, 191.6667 447.3175, 257.5 441.2796, 323.3333 445.5232, 389.1667 442.6981, 455 441.8124, 520.8333 443.1158, 586.6667 448.5218, 652.5 441.681, 718.3333 439.0963, 784.1667 445.3196, 850 445.0404" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 448.1253, 191.6667 443.212, 257.5 447.3602, 323.3333 440.6076, 389.1667 446.3779, 455 439.2222, 520.8333 435.7694, 586.6667 433.6333, 652.5 433.3948, 718.3333 436.0199, 784.1667 435.8466, 850 437.3975" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 442.0716, 191.6667 435.6199, 257.5 445.7789, 323.3333 468.2252, 389.1667 455.8275, 455 466.9299, 520.8333 454.0059, 586.6667 460.4425, 652.5 466.0334, 718.3333 469.5624, 784.1667 480.7203, 850 478.2353" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 450.0671, 191.6667 450.4897, 257.5 441.3148, 323.3333 435.7091, 389.1667 440.0445, 455 437.8361, 520.8333 447.7751, 586.6667 445.2186, 652.5 447.5604, 718.3333 440.3726, 784.1667 443.1401, 850 449.5494" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 451.0123, 191.6667 445.4595, 257.5 453.8251, 323.3333 464.1804, 389.1667 473.766, 455 467.6746, 520.8333 480.6317, 586.6667 482.0211, 652.5 481.054, 718.3333 488.9615, 784.1667 489.1562, 850 481.0274" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 452.5413, 191.6667 444.6046, 257.5 444.8207, 323.3333 446.0038, 389.1667 442.1218, 455 444.5497, 520.8333 450.6929, 586.6667 452.6704, 652.5 451.6186, 718.3333 450.1902, 784.1667 445.1262, 850 442.7029" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 452.7982, 191.6667 444.7499, 257.5 451.6489, 323.3333 444.3579, 389.1667 451.6743, 455 453.2898, 520.8333 445.0266, 586.6667 445.0137, 652.5 447.4046, 718.3333 449.7172, 784.1667 457.9439, 850 457.6447" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 446.5834, 191.6667 454.0211, 257.5 459.7915, 323.3333 457.8656, 389.1667 474.5838, 455 478.3451, 520.8333 469.997, 586.6667 478.273, 652.5 490.4232, 718.3333 503.576, 784.1667 493.6353, 850 514.9667" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 445.7275, 191.6667 442.7244, 257.5 449.6411, 323.3333 466.7578, 389.1667 462.0323, 455 471.7083, 520.8333 462.2093, 586.6667 466.0296, 652.5 466.4531, 718.3333 455.0275, 784.1667 449.3388, 850 445.9129" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 447.0441, 191.6667 460.9547, 257.5 463.0149, 323.3333 456.3029, 389.1667 455.533, 455 442.7872, 520.8333 444.9928, 586.6667 443.6667, 652.5 442.2468, 718.3333 436.6039, 784.1667 430.9167, 850 429.2127" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 446.4493, 191.6667 446.8484, 257.5 442.5905, 323.3333 447.4339, 389.1667 447.7114, 455 445.1989, 520.8333 452.1196, 586.6667 472.2056, 652.5 468.5526, 718.3333 475.1096, 784.1667 478.7013, 850 495.6587" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 453.7603, 191.6667 457.5949, 257.5 460.857, 323.3333 475.2837, 389.1667 453.8733, 455 460.9494, 520.8333 471.9984, 586.6667 466.8518, 652.5 486.3944, 718.3333 477.4025, 784.1667 487.427, 850 485.8873" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 436.4097, 191.6667 432.8804, 257.5 431.6078, 323.3333 433.1092, 389.1667 428.2978, 455 426.7339, 520.8333 426.2455, 586.6667 423.0831, 652.5 423.9839, 718.3333 423.7977, 784.1667 426.1815, 850 427.662" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 444.79, 191.6667 443.3042, 257.5 446.2442, 323.3333 450.6484, 389.1667 441.9819, 455 440.9308, 520.8333 441.5036, 586.6667 439.7429, 652.5 437.5581, 718.3333 437.9494, 784.1667 434.0599, 850 436.6778" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 442.8311, 191.6667 437.4837, 257.5 432.8475, 323.3333 429.0776, 389.1667 430.6178, 455 432.0678, 520.8333 434.656, 586.6667 432.5404, 652.5 433.6567, 718.3333 434.9992, 784.1667 435.7558, 850 435.9798" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 458.0536, 191.6667 458.9295, 257.5 451.6599, 323.3333 444.6548, 389.1667 441.6975, 455 447.4804, 520.8333 440.8761, 586.6667 437.8916, 652.5 433.9548, 718.3333 433.6148, 784.1667 439.7687, 850 449.0803" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 446.1208, 191.6667 450.3577, 257.5 446.1444, 323.3333 440.8416, 389.1667 437.1219, 455 434.3342, 520.8333 429.7321, 586.6667 438.5716, 652.5 442.436, 718.3333 438.7471, 784.1667 434.1203, 850 437.5679" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 452.696, 191.6667 455.7624, 257.5 458.0101, 323.3333 472.1312, 389.1667 472.5761, 455 484.0899, 520.8333 490.2887, 586.6667 490.3839, 652.5 485.3186, 718.3333 490.9114, 784.1667 494.8574, 850 494.1782" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 450.7582, 191.6667 439.8945, 257.5 436.133, 323.3333 427.6558, 389.1667 425.6884, 455 425.4536, 520.8333 425.6608, 586.6667 425.5824, 652.5 426.1569, 718.3333 427.3304, 784.1667 426.9382, 850 426.8998" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 451.1114, 191.6667 456.2255, 257.5 454.1592, 323.3333 445.5699, 389.1667 444.8458, 455 450.8307, 520.8333 453.2355, 586.6667 461.8985, 652.5 476.1413, 718.3333 494.7566, 784.1667 496.5515, 850 477.4795" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 448.1955, 191.6667 449.1304, 257.5 447.165, 323.3333 442.556, 389.1667 442.6212, 455 438.7524, 520.8333 435.1967, 586.6667 432.2916, 652.5 431.8133, 718.3333 437.1945, 784.1667 435.6897, 850 429.0949" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 451.0883, 191.6667 444.9418, 257.5 441.5007, 323.3333 440.8961, 389.1667 447.1056, 455 450.5839, 520.8333 443.1698, 586.6667 444.4143, 652.5 450.8969, 718.3333 445.6903, 784.1667 450.6409, 850 455.2195" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 443.888, 191.6667 438.5744, 257.5 433.4221, 323.3333 430.1702, 389.1667 426.6552, 455 427.6308, 520.8333 426.4244, 586.6667 431.188, 652.5 432.9855, 718.3333 436.8781, 784.1667 435.381, 850 432.9867" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 442.5717, 191.6667 437.4136, 257.5 436.8857, 323.3333 440.0283, 389.1667 440.4006, 455 439.7615, 520.8333 434.0207, 586.6667 434.3867, 652.5 430.2015, 718.3333 430.6193, 784.1667 427.0486, 850 426.6534" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 468.4288, 191.6667 468.1809, 257.5 466.9274, 323.3333 482.2382, 389.1667 479.3082, 455 469.5754, 520.8333 476.199, 586.6667 475.894, 652.5 466.7625, 718.3333 467.7073, 784.1667 460.6921, 850 475.6579" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 448.436, 191.6667 449.9667, 257.5 451.1587, 323.3333 460.1795, 389.1667 458.0556, 455 464.1296, 520.8333 465.6132, 586.6667 457.8663, 652.5 447.9517, 718.3333 441.7946, 784.1667 442.2229, 850 435.0701" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 458.1627, 191.6667 450.1775, 257.5 443.7531, 323.3333 437.9123, 389.1667 432.8598, 455 435.4642, 520.8333 439.3069, 586.6667 440.0062, 652.5 447.2795, 718.3333 455.7768, 784.1667 463.1679, 850 467.8008" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 456.1505, 191.6667 452.9096, 257.5 459.903, 323.3333 469.474, 389.1667 462.1067, 455 454.7261, 520.8333 457.5726, 586.6667 456.3195, 652.5 462.2336, 718.3333 455.6022, 784.1667 454.4355, 850 449.4084" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 447.5668, 191.6667 442.0202, 257.5 444.8062, 323.3333 446.4389, 389.1667 443.0055, 455 439.3813, 520.8333 435.9636, 586.6667 438.6957, 652.5 444.7562, 718.3333 446.5385, 784.1667 449.7578, 850 450.5439" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 444.2255, 191.6667 457.5068, 257.5 461.9623, 323.3333 460.8347, 389.1667 465.4171, 455 450.0466, 520.8333 451.6148, 586.6667 448.8256, 652.5 445.5709, 718.3333 441.4453, 784.1667 444.4165, 850 437.8362" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 457.7864, 191.6667 458.5342, 257.5 449.0357, 323.3333 443.556, 389.1667 434.7192, 455 438.3744, 520.8333 435.2946, 586.6667 438.3261, 652.5 433.9328, 718.3333 434.5694, 784.1667 435.9788, 850 441.853" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 448.2211, 191.6667 442.122, 257.5 444.7456, 323.3333 449.0512, 389.1667 451.0076, 455 454.5362, 520.8333 462.8717, 586.6667 475.1341, 652.5 493.4828, 718.3333 491.4352, 784.1667 510.6882, 850 534.2715" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 438.7969, 191.6667 437.3241, 257.5 438.0332, 323.3333 440.6619, 389.1667 439.0561, 455 438.4233, 520.8333 433.6019, 586.6667 430.7116, 652.5 428.4225, 718.3333 431.1945, 784.1667 436.8317, 850 431.5664" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 125.8333 448.6058, 191.6667 447.083, 257.5 445.9617, 323.3333 445.8337, 389.1667 447.4085, 455 446.3396, 520.8333 446.4008, 586.6667 446.8702, 652.5 447.4825, 718.3333 446.1144, 784.1667 447.3292, 850 449.2443" style="stroke: rgb(9%,33%,63%); stroke-linecap: round; stroke-width: 2.2; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 449.2857, 850 449.2857" style="stroke: rgb(33%,36%,40%); stroke-linecap: round; stroke-width: 1; fill: None; fill-rule: evenodd; stroke-dasharray: 5, 3;"/>
+					<polyline points="60 432.1436, 850 432.1436" style="stroke: rgb(70%,13%,9%); stroke-linecap: round; stroke-width: 1; fill: None; fill-rule: evenodd; stroke-dasharray: 5, 3;"/>
+				</g>
+			</g>
+			<text x="60" y="547" style="font-family: Helvetica-Bold; font-size: 12px;fill: rgb(9%,33%,63%); stroke:none;" transform="translate(0,1094) scale(1,-1)">AMZN</text>
+			<g transform="">
+				<g transform="">
+					<g transform="">
+						<path d="M 60,240 L 850,240 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<path d="M 60,240 L 60,235 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 191.666667,240 L 191.666667,235 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 323.333333,240 L 323.333333,235 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 455,240 L 455,235 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 586.666667,240 L 586.666667,235 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 718.333333,240 L 718.333333,235 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 850,240 L 850,235 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,60,235)">
+							<text x="-2.7800000000000002" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">P</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,191.666667,235)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O2</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,323.333333,235)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O4</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,455,235)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O6</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,586.666667,235)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O8</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,718.333333,235)">
+							<text x="-8.61" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O10</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,850,235)">
+							<text x="-8.61" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O12</text>
+						</g>
+					</g>
+				</g>
+				<g transform="">
+					<g transform="">
+						<path d="M 60,240 L 60,360 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<path d="M 60,240 L 55,240 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,267.692308 L 55,267.692308 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,295.384615 L 55,295.384615 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,323.076923 L 55,323.076923 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,350.769231 L 55,350.769231 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,55,240)">
+							<text x="-5.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">0</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,267.692308)">
+							<text x="-10.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">75</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,295.384615)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">150</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,323.076923)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">225</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,350.769231)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">300</text>
+						</g>
+					</g>
+				</g>
+				<path d="M 60,267.692308 L 850,267.692308 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,295.384615 L 850,295.384615 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,323.076923 L 850,323.076923 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,350.769231 L 850,350.769231 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<g transform="">
+					<polyline points="60 276.9231, 125.8333 281.1971, 191.6667 286.1766, 257.5 276.9819, 323.3333 279.0399, 389.1667 278.8789, 455 289.5268, 520.8333 283.9284, 586.6667 295.4326, 652.5 281.4587, 718.3333 263.9472, 784.1667 261.8206, 850 258.8286" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 271.9807, 191.6667 259.415, 257.5 269.3501, 323.3333 275.0912, 389.1667 272.0439, 455 275.8715, 520.8333 273.7202, 586.6667 266.8288, 652.5 265.6725, 718.3333 278.714, 784.1667 275.1145, 850 265.6537" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 291.609, 191.6667 282.8007, 257.5 273.2642, 323.3333 266.4076, 389.1667 270.2801, 455 271.2146, 520.8333 264.9323, 586.6667 261.9606, 652.5 262.9523, 718.3333 262.2874, 784.1667 264.5515, 850 263.6777" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 279.8693, 191.6667 274.8234, 257.5 285.8403, 323.3333 286.4915, 389.1667 306.7777, 455 295.4672, 520.8333 286.8554, 586.6667 296.7394, 652.5 297.3117, 718.3333 287.0282, 784.1667 287.4133, 850 284.1621" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 275.6245, 191.6667 262.8162, 257.5 268.1107, 323.3333 262.297, 389.1667 254.1384, 455 250.6354, 520.8333 247.2195, 586.6667 244.668, 652.5 247.1516, 718.3333 246.2282, 784.1667 246.2505, 850 247.858" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 280.2665, 191.6667 287.5174, 257.5 292.4441, 323.3333 320.2467, 389.1667 333.6762, 455 293.1864, 520.8333 323.3233, 586.6667 323.8875, 652.5 296.4548, 718.3333 282.6459, 784.1667 276.7448, 850 290.7174" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 272.0691, 191.6667 274.8705, 257.5 268.5468, 323.3333 279.0302, 389.1667 285.7856, 455 310.472, 520.8333 343.6273, 586.6667 354.1199, 652.5 339.1338, 718.3333 339.5957, 784.1667 312.2083, 850 302.5282" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 276.548, 191.6667 299.2361, 257.5 281.1005, 323.3333 275.1497, 389.1667 274.6235, 455 272.4829, 520.8333 284.9784, 586.6667 298.6163, 652.5 281.8436, 718.3333 282.6904, 784.1667 287.0008, 850 284.2962" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 264.4022, 191.6667 263.2163, 257.5 262.9882, 323.3333 258.691, 389.1667 268.1761, 455 261.0706, 520.8333 259.8741, 586.6667 253.5815, 652.5 256.9586, 718.3333 253.9579, 784.1667 249.3661, 850 250.6617" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 270.635, 191.6667 257.2975, 257.5 259.7684, 323.3333 275.4523, 389.1667 259.6732, 455 266.6828, 520.8333 261.9522, 586.6667 271.263, 652.5 272.0837, 718.3333 278.5463, 784.1667 265.8379, 850 257.0862" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 277.1395, 191.6667 282.3927, 257.5 269.8801, 323.3333 262.6838, 389.1667 256.3499, 455 265.6757, 520.8333 270.5291, 586.6667 258.5106, 652.5 265.2716, 718.3333 266.2767, 784.1667 280.1791, 850 294.748" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 294.5091, 191.6667 294.5737, 257.5 295.5032, 323.3333 299.9935, 389.1667 305.587, 455 299.6907, 520.8333 297.566, 586.6667 302.2169, 652.5 307.58, 718.3333 310.1472, 784.1667 311.8852, 850 290.8873" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 284.6263, 191.6667 267.7351, 257.5 261.3663, 323.3333 257.4449, 389.1667 259.062, 455 263.1281, 520.8333 270.1069, 586.6667 263.8514, 652.5 261.5362, 718.3333 267.6971, 784.1667 261.2747, 850 251.9791" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 270.4589, 191.6667 259.2674, 257.5 258.759, 323.3333 257.882, 389.1667 263.3783, 455 271.0947, 520.8333 259.7129, 586.6667 266.1929, 652.5 274.2063, 718.3333 276.0513, 784.1667 276.3079, 850 271.7217" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 272.6202, 191.6667 270.7426, 257.5 284.2979, 323.3333 286.8851, 389.1667 290.6921, 455 293.0614, 520.8333 292.8836, 586.6667 317.9585, 652.5 298.8718, 718.3333 310.909, 784.1667 316.5153, 850 321.4176" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 272.2786, 191.6667 268.5333, 257.5 275.724, 323.3333 294.9831, 389.1667 289.8502, 455 302.8197, 520.8333 297.9464, 586.6667 304.9061, 652.5 304.3054, 718.3333 295.0415, 784.1667 270.658, 850 268.0663" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 274.0456, 191.6667 288.7077, 257.5 283.5337, 323.3333 293.7604, 389.1667 293.7473, 455 274.9183, 520.8333 281.9016, 586.6667 272.0289, 652.5 274.1329, 718.3333 271.7326, 784.1667 265.3445, 850 267.2633" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 274.1957, 191.6667 270.7467, 257.5 256.9126, 323.3333 260.2747, 389.1667 263.1695, 455 261.6816, 520.8333 257.249, 586.6667 264.9313, 652.5 262.7214, 718.3333 260.707, 784.1667 259.0586, 850 265.383" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 297.1555, 191.6667 314.7494, 257.5 318.5049, 323.3333 344.8206, 389.1667 315.4954, 455 298.3654, 520.8333 294.072, 586.6667 280.3434, 652.5 276.066, 718.3333 274.5067, 784.1667 288.9494, 850 287.4889" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 267.8375, 191.6667 265.0848, 257.5 254.4757, 323.3333 255.4155, 389.1667 253.3586, 455 264.2968, 520.8333 260.4348, 586.6667 260.959, 652.5 255.8571, 718.3333 261.7506, 784.1667 271.2963, 850 278.9286" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 270.4088, 191.6667 288.996, 257.5 298.2536, 323.3333 316.6314, 389.1667 299.6736, 455 300.1947, 520.8333 335.8444, 586.6667 324.1174, 652.5 306.8307, 718.3333 301.1354, 784.1667 296.0806, 850 286.4829" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 279.2059, 191.6667 265.9914, 257.5 258.2773, 323.3333 255.194, 389.1667 252.4792, 455 252.988, 520.8333 251.9431, 586.6667 252.0295, 652.5 249.0647, 718.3333 247.7435, 784.1667 246.5071, 850 245.8829" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 288.2897, 191.6667 286.357, 257.5 274.0575, 323.3333 279.1127, 389.1667 281.5579, 455 292.3508, 520.8333 284.6527, 586.6667 278.6386, 652.5 277.7767, 718.3333 284.7478, 784.1667 292.427, 850 318.6248" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 275.4297, 191.6667 284.8395, 257.5 292.0638, 323.3333 271.4821, 389.1667 271.3214, 455 268.9961, 520.8333 266.4099, 586.6667 274.6417, 652.5 283.1646, 718.3333 287.2791, 784.1667 295.517, 850 292.1315" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 281.5243, 191.6667 282.8688, 257.5 299.5433, 323.3333 290.7823, 389.1667 298.5636, 455 303.0315, 520.8333 289.241, 586.6667 286.5451, 652.5 272.5161, 718.3333 263.0589, 784.1667 257.5011, 850 258.4878" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 278.567, 191.6667 272.8315, 257.5 263.8761, 323.3333 256.4847, 389.1667 253.9994, 455 255.3683, 520.8333 254.7615, 586.6667 251.933, 652.5 252.5206, 718.3333 252.3337, 784.1667 249.8805, 850 249.8769" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 272.3878, 191.6667 265.1926, 257.5 273.7656, 323.3333 269.5548, 389.1667 265.9779, 455 274.0275, 520.8333 282.5803, 586.6667 282.4747, 652.5 288.5948, 718.3333 316.5993, 784.1667 324.0128, 850 303.7285" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 278.4238, 191.6667 277.6925, 257.5 272.9649, 323.3333 257.3562, 389.1667 258.9917, 455 256.5569, 520.8333 257.5205, 586.6667 255.6382, 652.5 256.4971, 718.3333 270.0095, 784.1667 271.8727, 850 272.5496" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 274.484, 191.6667 266.0644, 257.5 267.3823, 323.3333 268.0515, 389.1667 272.7799, 455 274.0723, 520.8333 265.6918, 586.6667 265.18, 652.5 266.4416, 718.3333 269.807, 784.1667 276.0662, 850 270.8256" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 266.5218, 191.6667 263.1089, 257.5 262.3716, 323.3333 255.4355, 389.1667 254.3407, 455 259.6512, 520.8333 261.2362, 586.6667 273.4709, 652.5 274.1396, 718.3333 269.7489, 784.1667 268.3934, 850 262.5469" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 270.978, 191.6667 262.0582, 257.5 274.422, 323.3333 277.3782, 389.1667 282.849, 455 274.7876, 520.8333 259.1761, 586.6667 259.3936, 652.5 257.9482, 718.3333 254.7178, 784.1667 254.0986, 850 255.0054" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 297.2052, 191.6667 282.1711, 257.5 273.0003, 323.3333 282.0822, 389.1667 273.6301, 455 267.4013, 520.8333 264.5916, 586.6667 262.089, 652.5 263.4625, 718.3333 260.5868, 784.1667 256.4109, 850 257.8531" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 277.9699, 191.6667 285.7006, 257.5 280.817, 323.3333 285.3106, 389.1667 288.6023, 455 276.9952, 520.8333 276.6306, 586.6667 273.9269, 652.5 272.3766, 718.3333 265.426, 784.1667 265.8983, 850 259.6993" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 277.9929, 191.6667 272.4269, 257.5 273.7076, 323.3333 266.2646, 389.1667 263.1203, 455 266.9189, 520.8333 278.6761, 586.6667 284.8196, 652.5 283.1649, 718.3333 313.7279, 784.1667 332.5485, 850 330.6265" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 281.212, 191.6667 271.0872, 257.5 262.7636, 323.3333 264.8847, 389.1667 260.6437, 455 262.2808, 520.8333 263.9843, 586.6667 264.5043, 652.5 262.7524, 718.3333 262.1328, 784.1667 262.026, 850 261.1841" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 271.9625, 191.6667 265.8104, 257.5 265.9564, 323.3333 270.4772, 389.1667 270.1467, 455 265.2541, 520.8333 263.4321, 586.6667 262.8282, 652.5 271.5962, 718.3333 269.0993, 784.1667 279.341, 850 289.6987" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 269.4389, 191.6667 277.5466, 257.5 291.7902, 323.3333 282.582, 389.1667 277.172, 455 282.4663, 520.8333 287.0458, 586.6667 295.2349, 652.5 286.2565, 718.3333 278.0795, 784.1667 273.8476, 850 268.8069" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 281.8584, 191.6667 275.1593, 257.5 267.9796, 323.3333 270.7978, 389.1667 258.9841, 455 266.5529, 520.8333 260.6113, 586.6667 256.6907, 652.5 257.3427, 718.3333 255.0664, 784.1667 259.1671, 850 268.753" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 267.551, 191.6667 257.623, 257.5 265.1941, 323.3333 269.0505, 389.1667 264.0868, 455 268.8406, 520.8333 264.8981, 586.6667 266.3744, 652.5 274.4657, 718.3333 278.4031, 784.1667 272.1068, 850 290.4662" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 264.5755, 191.6667 263.7237, 257.5 264.334, 323.3333 272.4522, 389.1667 273.2231, 455 268.1757, 520.8333 261.3589, 586.6667 257.6504, 652.5 254.8825, 718.3333 260.9463, 784.1667 255.0815, 850 254.0572" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 125.8333 275.5271, 191.6667 272.6292, 257.5 272.9826, 323.3333 271.9672, 389.1667 271.6826, 455 271.1547, 520.8333 268.2584, 586.6667 269.0459, 652.5 272.4464, 718.3333 269.9083, 784.1667 271.5845, 850 268.78" style="stroke: rgb(0%,46%,34%); stroke-linecap: round; stroke-width: 2.2; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 276.9231, 850 276.9231" style="stroke: rgb(33%,36%,40%); stroke-linecap: round; stroke-width: 1; fill: None; fill-rule: evenodd; stroke-dasharray: 5, 3;"/>
+					<polyline points="60 258.4626, 850 258.4626" style="stroke: rgb(70%,13%,9%); stroke-linecap: round; stroke-width: 1; fill: None; fill-rule: evenodd; stroke-dasharray: 5, 3;"/>
+				</g>
+			</g>
+			<text x="60" y="372" style="font-family: Helvetica-Bold; font-size: 12px;fill: rgb(0%,46%,34%); stroke:none;" transform="translate(0,744) scale(1,-1)">NVDA</text>
+			<g transform="">
+				<g transform="">
+					<g transform="">
+						<path d="M 60,65 L 850,65 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<path d="M 60,65 L 60,60 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 191.666667,65 L 191.666667,60 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 323.333333,65 L 323.333333,60 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 455,65 L 455,60 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 586.666667,65 L 586.666667,60 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 718.333333,65 L 718.333333,60 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 850,65 L 850,60 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,60,60)">
+							<text x="-2.7800000000000002" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">P</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,191.666667,60)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O2</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,323.333333,60)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O4</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,455,60)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O6</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,586.666667,60)">
+							<text x="-6.109999999999999" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O8</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,718.333333,60)">
+							<text x="-8.61" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O10</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,850,60)">
+							<text x="-8.61" y="-10.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-20) scale(1,-1)">O12</text>
+						</g>
+					</g>
+				</g>
+				<g transform="">
+					<g transform="">
+						<path d="M 60,65 L 60,185 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<path d="M 60,65 L 55,65 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,90.263158 L 55,90.263158 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,115.526316 L 55,115.526316 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,140.789474 L 55,140.789474 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+						<path d="M 60,166.052632 L 55,166.052632 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+					</g>
+					<g transform="">
+						<g transform=" matrix(1,0,0,1,55,65)">
+							<text x="-5.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">0</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,90.263158)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">100</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,115.526316)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">200</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,140.789474)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">300</text>
+						</g>
+						<g transform=" matrix(1,0,0,1,55,166.052632)">
+							<text x="-15.0" y="-4.0" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,-8) scale(1,-1)">400</text>
+						</g>
+					</g>
+				</g>
+				<path d="M 60,90.263158 L 850,90.263158 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,115.526316 L 850,115.526316 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,140.789474 L 850,140.789474 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<path d="M 60,166.052632 L 850,166.052632 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.25;"/>
+				<g transform="">
+					<polyline points="60 90.26316, 125.8333 86.67366, 191.6667 85.79776, 257.5 81.52332, 323.3333 79.60386, 389.1667 79.44041, 455 86.11725, 520.8333 90.09448, 586.6667 90.98873, 652.5 81.27808, 718.3333 80.51189, 784.1667 76.33851, 850 77.13238" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 86.09025, 191.6667 77.81292, 257.5 78.23577, 323.3333 74.83941, 389.1667 71.33054, 455 73.02658, 520.8333 73.38124, 586.6667 77.29454, 652.5 72.38296, 718.3333 76.0084, 784.1667 76.57073, 850 81.19689" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 98.30705, 191.6667 95.75422, 257.5 82.37088, 323.3333 77.28579, 389.1667 76.55252, 455 78.70666, 520.8333 81.48948, 586.6667 77.03417, 652.5 86.15328, 718.3333 80.69144, 784.1667 82.03047, 850 83.68527" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 83.90575, 191.6667 77.47866, 257.5 83.70719, 323.3333 84.34976, 389.1667 86.08917, 455 88.88013, 520.8333 90.68617, 586.6667 101.1798, 652.5 94.56113, 718.3333 92.73048, 784.1667 96.35117, 850 94.79813" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 93.99245, 191.6667 92.26661, 257.5 99.00966, 323.3333 88.83927, 389.1667 79.96634, 455 78.34864, 520.8333 75.6225, 586.6667 72.46997, 652.5 77.10903, 718.3333 72.69994, 784.1667 71.99668, 850 73.05527" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 99.79549, 191.6667 84.35257, 257.5 88.82192, 323.3333 111.0148, 389.1667 109.1854, 455 98.73376, 520.8333 112.8902, 586.6667 121.9852, 652.5 106.7446, 718.3333 97.86796, 784.1667 90.63476, 850 109.6092" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 91.15206, 191.6667 93.31378, 257.5 88.23927, 323.3333 98.07934, 389.1667 112.7707, 455 133.8637, 520.8333 149.9439, 586.6667 161.056, 652.5 153.876, 718.3333 178.7396, 784.1667 170.608, 850 160.8931" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 83.51067, 191.6667 83.80909, 257.5 81.11718, 323.3333 83.3927, 389.1667 81.61643, 455 79.30292, 520.8333 84.27879, 586.6667 85.96955, 652.5 83.13222, 718.3333 80.9496, 784.1667 80.37467, 850 85.44431" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 85.13766, 191.6667 85.25013, 257.5 87.45197, 323.3333 79.96239, 389.1667 83.49937, 455 82.55961, 520.8333 81.499, 586.6667 75.62119, 652.5 80.24693, 718.3333 77.28944, 784.1667 79.11264, 850 77.96721" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 86.37666, 191.6667 77.69881, 257.5 75.71563, 323.3333 83.93893, 389.1667 79.90676, 455 83.18498, 520.8333 77.55449, 586.6667 77.07337, 652.5 76.47816, 718.3333 74.59072, 784.1667 76.09328, 850 71.78417" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 103.1254, 191.6667 108.2096, 257.5 91.39688, 323.3333 78.98682, 389.1667 75.27141, 455 81.1094, 520.8333 84.88486, 586.6667 80.98915, 652.5 82.5485, 718.3333 80.88696, 784.1667 85.70467, 850 100.2674" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 90.46134, 191.6667 93.88364, 257.5 92.2531, 323.3333 96.4792, 389.1667 91.1368, 455 93.63012, 520.8333 84.09152, 586.6667 82.93491, 652.5 81.04956, 718.3333 85.16288, 784.1667 88.15867, 850 86.06748" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 91.29381, 191.6667 91.28549, 257.5 87.01112, 323.3333 82.34992, 389.1667 85.01034, 455 80.6895, 520.8333 86.24887, 586.6667 85.16197, 652.5 91.99199, 718.3333 108.6574, 784.1667 110.3047, 850 102.5812" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 96.8008, 191.6667 85.58642, 257.5 86.531, 323.3333 90.44648, 389.1667 106.5014, 455 107.0293, 520.8333 106.6452, 586.6667 103.6678, 652.5 111.1469, 718.3333 115.1228, 784.1667 115.8712, 850 108.5502" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 88.59447, 191.6667 90.36918, 257.5 92.29745, 323.3333 111.0839, 389.1667 126.8696, 455 130.2916, 520.8333 114.5597, 586.6667 139.7183, 652.5 114.0737, 718.3333 131.9437, 784.1667 115.9648, 850 112.1025" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 81.54939, 191.6667 76.37243, 257.5 75.42891, 323.3333 80.08192, 389.1667 77.32915, 455 79.56147, 520.8333 77.38304, 586.6667 80.16302, 652.5 81.6112, 718.3333 78.6125, 784.1667 75.5663, 850 74.89019" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 81.57101, 191.6667 82.43587, 257.5 80.2504, 323.3333 87.42568, 389.1667 88.00756, 455 84.44747, 520.8333 94.45206, 586.6667 81.80692, 652.5 78.5587, 718.3333 75.23452, 784.1667 73.1591, 850 74.25092" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 86.49779, 191.6667 80.61805, 257.5 76.35844, 323.3333 77.55639, 389.1667 76.09288, 455 78.12251, 520.8333 80.66906, 586.6667 94.52964, 652.5 85.55179, 718.3333 85.92695, 784.1667 80.66204, 850 99.35709" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 108.1161, 191.6667 104.1859, 257.5 106.7905, 323.3333 124.1527, 389.1667 106.4936, 455 104.3319, 520.8333 124.2348, 586.6667 112.1831, 652.5 98.57851, 718.3333 93.54549, 784.1667 109.7895, 850 105.9138" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 86.86332, 191.6667 88.6334, 257.5 77.90533, 323.3333 81.85303, 389.1667 78.27809, 455 81.45875, 520.8333 79.03299, 586.6667 79.546, 652.5 79.36595, 718.3333 84.49779, 784.1667 89.45249, 850 95.23801" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 85.06213, 191.6667 89.77649, 257.5 86.24898, 323.3333 84.46257, 389.1667 79.77591, 455 76.36194, 520.8333 73.66672, 586.6667 72.94298, 652.5 71.19187, 718.3333 72.79327, 784.1667 71.82156, 850 70.9372" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 88.81311, 191.6667 88.56441, 257.5 91.80408, 323.3333 84.39022, 389.1667 79.94083, 455 76.46791, 520.8333 78.48235, 586.6667 75.84546, 652.5 74.83684, 718.3333 75.92232, 784.1667 75.47443, 850 72.6062" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 93.52902, 191.6667 93.76714, 257.5 86.69989, 323.3333 89.73314, 389.1667 85.70858, 455 100.7291, 520.8333 93.75154, 586.6667 93.56289, 652.5 105.418, 718.3333 115.4492, 784.1667 120.629, 850 122.0563" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 80.12116, 191.6667 78.26475, 257.5 80.76746, 323.3333 75.78854, 389.1667 72.41151, 455 72.20571, 520.8333 73.27461, 586.6667 75.31141, 652.5 86.07539, 718.3333 97.82653, 784.1667 97.66409, 850 91.02045" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 87.41437, 191.6667 88.8234, 257.5 99.98994, 323.3333 100.0102, 389.1667 113.1221, 455 135.7004, 520.8333 135.2489, 586.6667 134.7029, 652.5 114.648, 718.3333 104.8199, 784.1667 85.94102, 850 89.94874" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 94.71799, 191.6667 95.98629, 257.5 92.4994, 323.3333 92.30018, 389.1667 86.49842, 455 92.82979, 520.8333 89.74159, 586.6667 82.88852, 652.5 85.34683, 718.3333 90.46444, 784.1667 84.67543, 850 81.37821" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 91.75123, 191.6667 95.28041, 257.5 106.5221, 323.3333 105.3065, 389.1667 96.59827, 455 91.91904, 520.8333 95.2044, 586.6667 95.10578, 652.5 103.2707, 718.3333 120.0127, 784.1667 128.0999, 850 110.4681" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 92.65896, 191.6667 96.45896, 257.5 98.57704, 323.3333 83.15571, 389.1667 80.40072, 455 81.06554, 520.8333 80.27539, 586.6667 77.8067, 652.5 79.12598, 718.3333 85.95849, 784.1667 93.33968, 850 95.72798" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 90.77564, 191.6667 93.2469, 257.5 97.16209, 323.3333 100.859, 389.1667 106.6039, 455 107.7111, 520.8333 112.4001, 586.6667 115.6968, 652.5 134.3908, 718.3333 123.982, 784.1667 121.2137, 850 119.1142" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 83.93814, 191.6667 85.13672, 257.5 80.32285, 323.3333 79.04712, 389.1667 78.25524, 455 78.74311, 520.8333 73.5178, 586.6667 77.66288, 652.5 74.38723, 718.3333 73.0229, 784.1667 73.05363, 850 71.62996" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 96.31009, 191.6667 85.91491, 257.5 92.83451, 323.3333 94.02012, 389.1667 100.4512, 455 96.65656, 520.8333 82.33269, 586.6667 80.68591, 652.5 76.49661, 718.3333 74.41278, 784.1667 73.46649, 850 73.94324" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 95.08931, 191.6667 93.67803, 257.5 85.1665, 323.3333 86.70246, 389.1667 79.1467, 455 81.18811, 520.8333 84.80948, 586.6667 88.2973, 652.5 87.48605, 718.3333 91.86504, 784.1667 92.80635, 850 96.44486" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 99.79164, 191.6667 106.1009, 257.5 116.0896, 323.3333 112.5827, 389.1667 109.8473, 455 108.7979, 520.8333 98.4512, 586.6667 101.9582, 652.5 101.7673, 718.3333 106.3305, 784.1667 103.4477, 850 99.87196" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 100.1121, 191.6667 90.52056, 257.5 79.60776, 323.3333 75.70925, 389.1667 77.54306, 455 79.82722, 520.8333 81.93941, 586.6667 81.62476, 652.5 80.29022, 718.3333 102.2804, 784.1667 112.2786, 850 113.1871" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 92.78147, 191.6667 89.32168, 257.5 77.39603, 323.3333 79.05276, 389.1667 78.11665, 455 83.17172, 520.8333 84.42683, 586.6667 91.33547, 652.5 89.1365, 718.3333 92.17892, 784.1667 100.7284, 850 94.78647" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 98.12732, 191.6667 89.02649, 257.5 86.86164, 323.3333 89.72018, 389.1667 85.96397, 455 81.64036, 520.8333 80.09406, 586.6667 84.02005, 652.5 92.36762, 718.3333 92.33182, 784.1667 97.35282, 850 98.38699" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 87.13815, 191.6667 88.19366, 257.5 90.71425, 323.3333 89.90756, 389.1667 85.43242, 455 83.73657, 520.8333 89.68337, 586.6667 88.35049, 652.5 83.17287, 718.3333 77.31574, 784.1667 79.69194, 850 76.81469" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 105.9454, 191.6667 90.24373, 257.5 84.76914, 323.3333 76.80751, 389.1667 71.84405, 455 74.26099, 520.8333 72.95361, 586.6667 73.22432, 652.5 70.87064, 718.3333 70.06956, 784.1667 69.56467, 850 70.63362" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 88.56637, 191.6667 82.17463, 257.5 89.07384, 323.3333 88.86204, 389.1667 87.18104, 455 88.45892, 520.8333 87.9047, 586.6667 100.5337, 652.5 103.0124, 718.3333 102.7496, 784.1667 105.7664, 850 106.2199" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 81.42443, 191.6667 82.58417, 257.5 79.36723, 323.3333 81.67785, 389.1667 87.40945, 455 79.94774, 520.8333 79.49889, 586.6667 83.91806, 652.5 76.97047, 718.3333 79.16395, 784.1667 76.51473, 850 71.7519" style="stroke: rgb(79%,83%,88%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 125.8333 90.61849, 191.6667 88.92495, 257.5 86.78076, 323.3333 84.4264, 389.1667 84.25485, 455 82.86567, 520.8333 84.35281, 586.6667 83.96906, 652.5 84.25985, 718.3333 85.94272, 784.1667 87.04984, 850 92.90346" style="stroke: rgb(67%,28%,9%); stroke-linecap: round; stroke-width: 2.2; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 90.26316, 850 90.26316" style="stroke: rgb(33%,36%,40%); stroke-linecap: round; stroke-width: 1; fill: None; fill-rule: evenodd; stroke-dasharray: 5, 3;"/>
+					<polyline points="60 77.63158, 850 77.63158" style="stroke: rgb(70%,13%,9%); stroke-linecap: round; stroke-width: 1; fill: None; fill-rule: evenodd; stroke-dasharray: 5, 3;"/>
+				</g>
+			</g>
+			<text x="60" y="197" style="font-family: Helvetica-Bold; font-size: 12px;fill: rgb(67%,28%,9%); stroke:none;" transform="translate(0,394) scale(1,-1)">PLTR</text>
+			<text x="60" y="25" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,50) scale(1,-1)">Grey paths  |  Coloured median  |  Dashed autocall and coupon barriers</text>
+		</g>
+	</g>
+</svg>

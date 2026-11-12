@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="900" height="455" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 455" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="900" height="455"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-455)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="900" height="455" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="60" y="418" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,836) scale(1,-1)">Monte Carlo discounted payoff distribution</text>
+			<text x="60" y="394" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,788) scale(1,-1)">10,000 simulated paths   |   value per USD 1,000 note</text>
+			<rect x="65.0" y="85" width="25.0" height="2.7669270833333286" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="91.0" y="85" width="25.0" height="6.97265625" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="117.0" y="85" width="25.0" height="13.9453125" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="143.0" y="85" width="25.0" height="17.48697916666667" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="169.0" y="85" width="25.0" height="22.35677083333333" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="195.0" y="85" width="25.0" height="23.13151041666667" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="221.0" y="85" width="25.0" height="27.66927083333333" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="247.0" y="85" width="25.0" height="22.79947916666667" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="273.0" y="85" width="25.0" height="20.80729166666667" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="299.0" y="85" width="25.0" height="20.5859375" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="325.0" y="85" width="25.0" height="19.2578125" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="351.0" y="85" width="25.0" height="16.26953125" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="377.0" y="85" width="25.0" height="16.38020833333333" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="403.0" y="85" width="25.0" height="13.28125" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="429.0" y="85" width="25.0" height="11.510416666666671" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="455.0" y="85" width="25.0" height="9.62890625" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="481.0" y="85" width="25.0" height="8.190104166666671" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="507.0" y="85" width="25.0" height="8.190104166666671" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="533.0" y="85" width="25.0" height="4.759114583333329" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="559.0" y="85" width="25.0" height="0.7747395833333286" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="585.0" y="85" width="25.0" height="7.083333333333329" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="611.0" y="85" width="25.0" height="11.731770833333329" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="637.0" y="85" width="25.0" height="10.514322916666671" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="663.0" y="85" width="25.0" height="255.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="689.0" y="85" width="25.0" height="95.18229166666669" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="715.0" y="85" width="25.0" height="108.90625" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="741.0" y="85" width="25.0" height="63.86067708333334" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="767.0" y="85" width="25.0" height="27.44791666666667" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="793.0" y="85" width="25.0" height="42.27864583333334" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<rect x="819.0" y="85" width="25.0" height="198.00130208333337" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,64%,84%); fill-rule: evenodd;"/>
+			<path d="M 65,85 L 845,85 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 65,85 L 65,340 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 65,81 L 65,85 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="47.0" y="65" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,130) scale(1,-1)">39</text>
+			<path d="M 260,81 L 260,85 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="242.0" y="65" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,130) scale(1,-1)">361</text>
+			<path d="M 455,81 L 455,85 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="437.0" y="65" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,130) scale(1,-1)">683</text>
+			<path d="M 650,81 L 650,85 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="632.0" y="65" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,130) scale(1,-1)">1,005</text>
+			<path d="M 845,81 L 845,85 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="827.0" y="65" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,130) scale(1,-1)">1,327</text>
+			<path d="M 625.0892,85 L 625.0892,340 Z" style="stroke: rgb(4%,36%,67%); stroke-linecap: butt; stroke-width: 1.8; stroke-dasharray: 5, 3;"/>
+			<text x="513.0891999695658" y="327" style="font-family: Times-Roman; font-size: 9px;fill: rgb(4%,36%,67%); stroke:none;" transform="translate(0,654) scale(1,-1)">Monte Carlo value: 963.63</text>
+			<path d="M 647.127271,85 L 647.127271,340 Z" style="stroke: rgb(70%,13%,9%); stroke-linecap: butt; stroke-width: 1.8; stroke-dasharray: 5, 3;"/>
+			<text x="654.1272714314558" y="309" style="font-family: Times-Roman; font-size: 9px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,618) scale(1,-1)">Principal: 1,000.00</text>
+			<text x="60" y="38" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,76) scale(1,-1)">Illustrative correlated-GBM assumptions; model inputs require team review before final valuation.</text>
+		</g>
+	</g>
+</svg>

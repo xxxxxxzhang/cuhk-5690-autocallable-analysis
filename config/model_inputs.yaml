@@ -1,0 +1,19 @@
+# Development assumptions for the baseline Monte Carlo engine.
+# These are illustrative inputs, not final calibrated valuation parameters.
+model: correlated_gbm
+measure: risk_neutral
+risk_free_rate: 0.0400
+dividend_yields:
+  AMZN: 0.0000
+  NVDA: 0.0003
+  PLTR: 0.0000
+volatilities:
+  AMZN: 0.35
+  NVDA: 0.50
+  PLTR: 0.55
+correlation:
+  AMZN: {AMZN: 1.00, NVDA: 0.55, PLTR: 0.45}
+  NVDA: {AMZN: 0.55, NVDA: 1.00, PLTR: 0.60}
+  PLTR: {AMZN: 0.45, NVDA: 0.60, PLTR: 1.00}
+n_paths: 10000
+seed: 5690

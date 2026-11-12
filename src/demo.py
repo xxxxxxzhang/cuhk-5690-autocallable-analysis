@@ -2,8 +2,10 @@
 from decimal import Decimal as D
 
 from .data_loader import load_market, write_rows
+from .model import load_model_inputs, select_median_path, simulate_paths
 from .payoff import ROOT, evaluate_note, load_terms
-from .visualization import plot_prices
+from .valuation import value_paths
+from .visualization import plot_prices, plot_simulated_paths, plot_value_distribution
 
 
 def print_data_summary(prices, terms):
@@ -80,12 +82,51 @@ def main():
         source_note="Illustrative deterministic scenario",
     )
 
+    model_inputs = load_model_inputs()
+    simulated_paths = simulate_paths(terms, model_inputs)
+    valuation = value_paths(simulated_paths, terms, model_inputs)
+    summary = valuation["summary"]
+    write_rows(out / "monte_carlo_summary.csv", [summary])
+    plot_simulated_paths(simulated_paths, terms)
+    plot_value_distribution(
+        valuation["present_values"], summary["estimated_value"],
+        float(terms["principal"]),
+    )
+    representative_index, representative_path = select_median_path(simulated_paths, terms)
+    representative_result = evaluate_note(representative_path, terms)
+    write_rows(out / "representative_median_path.csv", representative_result["rows"])
+    plot_prices(
+        representative_path,
+        terms,
+        filename="representative_median_path.svg",
+        title="Representative median simulated path",
+        result=representative_result,
+        source_note=(
+            f"Correlated-GBM path {representative_index + 1:,}; "
+            "nearest actual path to the pointwise median"
+        ),
+    )
+
     print_data_summary(prices, terms)
     print("\n" + "=" * 64)
     print("2. PAYOFF RESULTS")
     print("=" * 64)
     print_result_summary("Historical Replay", history, terms, as_of=max(prices))
     print_result_summary("Synthetic Memory-and-Autocall Scenario", demo, terms)
+    print("\n" + "=" * 64)
+    print("3. ILLUSTRATIVE MONTE CARLO VALUATION")
+    print("=" * 64)
+    print(f"Model                    : {model_inputs['model']}")
+    print(f"Simulated paths          : {summary['paths']:,}")
+    print(f"Random seed              : {model_inputs['seed']}")
+    print(f"Estimated value          : USD {summary['estimated_value']:,.4f}")
+    print(f"Standard error           : USD {summary['standard_error']:,.4f}")
+    print(f"Autocall probability     : {summary['autocall_probability']:.2%}")
+    print(f"Principal-loss probability: {summary['principal_loss_probability']:.2%}")
+    print(f"Representative path       : {representative_index + 1:,}")
+    print(f"Representative status     : {representative_result['rows'][-1]['status'].upper()}")
+    print(f"Representative cash flow  : USD {representative_result['total_cashflow']:,.4f}")
+    print("Assumption status        : ILLUSTRATIVE — TEAM REVIEW REQUIRED")
 
 
 if __name__ == "__main__":
