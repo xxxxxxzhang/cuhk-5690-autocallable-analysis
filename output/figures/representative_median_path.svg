@@ -96,9 +96,9 @@
 				<path d="M 60,296 L 850,296 Z" style="stroke: rgb(88%,89%,91%); stroke-linecap: butt; stroke-width: 0.25;"/>
 				<path d="M 60,347 L 850,347 Z" style="stroke: rgb(88%,89%,91%); stroke-linecap: butt; stroke-width: 0.25;"/>
 				<g transform="">
-					<polyline points="60 296, 124.8723 286.8001, 193.3485 336.4009, 258.9416 320.07, 324.5347 333.0744, 387.9653 331.4832, 455.7208 266.3244, 521.3139 281.3059, 586.9069 294.6614, 652.5 290.5005, 718.8139 261.5267, 784.4069 256.8697, 850 271.6782" style="stroke: rgb(9%,33%,63%); stroke-linecap: round; stroke-width: 1.5; fill: None; fill-rule: evenodd;"/>
-					<polyline points="60 296, 124.8723 310.7032, 193.3485 276.8917, 258.9416 264.3096, 324.5347 252.8901, 387.9653 270.2964, 455.7208 237.4801, 521.3139 238.2592, 586.9069 224.2361, 652.5 238.9859, 718.8139 250.2934, 784.4069 234.724, 850 232.6145" style="stroke: rgb(0%,46%,34%); stroke-linecap: round; stroke-width: 1.5; fill: None; fill-rule: evenodd;"/>
-					<polyline points="60 296, 124.8723 294.6312, 193.3485 304.3846, 258.9416 326.6159, 324.5347 300.8082, 387.9653 261.0185, 455.7208 294.4973, 521.3139 246.1703, 586.9069 260.43, 652.5 256.952, 718.8139 232.7967, 784.4069 237.6338, 850 212.4017" style="stroke: rgb(67%,28%,9%); stroke-linecap: round; stroke-width: 1.5; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 296, 124.8723 267.8796, 193.3485 263.3727, 258.9416 243.4812, 324.5347 221.8478, 387.9653 234.7231, 455.7208 258.9716, 521.3139 299.5443, 586.9069 287.9297, 652.5 314.8497, 718.8139 283.1761, 784.4069 271.9018, 850 262.0417" style="stroke: rgb(9%,33%,63%); stroke-linecap: round; stroke-width: 1.5; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 296, 124.8723 317.4288, 193.3485 292.7728, 258.9416 262.6081, 324.5347 259.4983, 387.9653 309.5255, 455.7208 276.7608, 521.3139 242.8637, 586.9069 218.4569, 652.5 263.3528, 718.8139 257.8686, 784.4069 267.4329, 850 237.1594" style="stroke: rgb(0%,46%,34%); stroke-linecap: round; stroke-width: 1.5; fill: None; fill-rule: evenodd;"/>
+					<polyline points="60 296, 124.8723 274.3846, 193.3485 281.0976, 258.9416 246.4342, 324.5347 276.0926, 387.9653 253.7332, 455.7208 242.4264, 521.3139 249.8737, 586.9069 203.4453, 652.5 207.4457, 718.8139 189.9572, 784.4069 197.1401, 850 208.0568" style="stroke: rgb(67%,28%,9%); stroke-linecap: round; stroke-width: 1.5; fill: None; fill-rule: evenodd;"/>
 					<polyline points="60 296, 850 296" style="stroke: rgb(33%,36%,40%); stroke-linecap: round; stroke-width: 1.1; fill: None; fill-rule: evenodd; stroke-dasharray: 5, 3;"/>
 					<polyline points="60 194.0034, 850 194.0034" style="stroke: rgb(70%,13%,9%); stroke-linecap: round; stroke-width: 1.1; fill: None; fill-rule: evenodd; stroke-dasharray: 5, 3;"/>
 					<polyline points="124.8723 92, 124.8723 347" style="stroke: rgb(60%,63%,67%); stroke-linecap: round; stroke-width: 0.55; fill: None; fill-rule: evenodd; stroke-dasharray: 2, 3;"/>
@@ -131,7 +131,7 @@
 			<text x="778.4069343065694" y="336" style="font-family: Times-Roman; font-size: 7px;fill: rgb(33%,36%,40%); stroke:none;" transform="translate(0,672) scale(1,-1)">O11</text>
 			<text x="844.0" y="336" style="font-family: Times-Roman; font-size: 7px;fill: rgb(33%,36%,40%); stroke:none;" transform="translate(0,672) scale(1,-1)">O12</text>
 			<text x="65" y="100" style="font-family: Times-Roman; font-size: 8px;fill: rgb(43%,25%,75%); stroke:none;" transform="translate(0,200) scale(1,-1)">Pricing date</text>
-			<text x="60" y="40" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,80) scale(1,-1)">Source: Correlated-GBM path 8,953; nearest actual path to the pointwise median  |  chart horizon 2025-12-19 through 2028-12-19</text>
+			<text x="60" y="40" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,80) scale(1,-1)">Source: Correlated-GBM path 69,785; nearest actual path to the pointwise median  |  chart horizon 2025-12-19 through 2028-12-19</text>
 		</g>
 	</g>
 </svg>

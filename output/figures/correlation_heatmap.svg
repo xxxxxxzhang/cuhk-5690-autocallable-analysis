@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="900" height="470" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="900" height="470"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-470)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="900" height="470" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="60" y="432" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,864) scale(1,-1)">Historical correlation comparison</text>
+			<text x="60" y="408" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,816) scale(1,-1)">Pearson correlations of daily log returns through the pricing date</text>
+			<text x="105" y="365" style="font-family: Helvetica-Bold; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,730) scale(1,-1)">2025-01-02 to 2025-12-19</text>
+			<text x="105" y="347" style="font-family: Times-Roman; font-size: 9px;fill: rgb(33%,36%,40%); stroke:none;" transform="translate(0,694) scale(1,-1)">242 daily returns</text>
+			<text x="128" y="330" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,660) scale(1,-1)">AMZN</text>
+			<text x="59" y="286" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,572) scale(1,-1)">AMZN</text>
+			<text x="206" y="330" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,660) scale(1,-1)">NVDA</text>
+			<text x="59" y="208" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,416) scale(1,-1)">NVDA</text>
+			<text x="284" y="330" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,660) scale(1,-1)">PLTR</text>
+			<text x="59" y="130" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,260) scale(1,-1)">PLTR</text>
+			<rect x="105" y="250" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(20%,37%,66%); fill-rule: evenodd;"/>
+			<text x="125" y="281" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,562) scale(1,-1)">1.000</text>
+			<rect x="183" y="250" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(50%,62%,80%); fill-rule: evenodd;"/>
+			<text x="203" y="281" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,562) scale(1,-1)">0.561</text>
+			<rect x="261" y="250" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(55%,65%,82%); fill-rule: evenodd;"/>
+			<text x="281" y="281" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,562) scale(1,-1)">0.496</text>
+			<rect x="105" y="172" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(50%,62%,80%); fill-rule: evenodd;"/>
+			<text x="125" y="203" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,406) scale(1,-1)">0.561</text>
+			<rect x="183" y="172" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(20%,37%,65%); fill-rule: evenodd;"/>
+			<text x="203" y="203" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,406) scale(1,-1)">1.000</text>
+			<rect x="261" y="172" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(49%,61%,79%); fill-rule: evenodd;"/>
+			<text x="281" y="203" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,406) scale(1,-1)">0.573</text>
+			<rect x="105" y="94" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(55%,65%,82%); fill-rule: evenodd;"/>
+			<text x="125" y="125" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,250) scale(1,-1)">0.496</text>
+			<rect x="183" y="94" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(49%,61%,79%); fill-rule: evenodd;"/>
+			<text x="203" y="125" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,250) scale(1,-1)">0.573</text>
+			<rect x="261" y="94" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(20%,37%,66%); fill-rule: evenodd;"/>
+			<text x="281" y="125" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,250) scale(1,-1)">1.000</text>
+			<text x="535" y="365" style="font-family: Helvetica-Bold; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,730) scale(1,-1)">2025-06-19 to 2025-12-19</text>
+			<text x="535" y="347" style="font-family: Times-Roman; font-size: 9px;fill: rgb(33%,36%,40%); stroke:none;" transform="translate(0,694) scale(1,-1)">127 daily returns</text>
+			<text x="558" y="330" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,660) scale(1,-1)">AMZN</text>
+			<text x="489" y="286" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,572) scale(1,-1)">AMZN</text>
+			<text x="636" y="330" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,660) scale(1,-1)">NVDA</text>
+			<text x="489" y="208" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,416) scale(1,-1)">NVDA</text>
+			<text x="714" y="330" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,660) scale(1,-1)">PLTR</text>
+			<text x="489" y="130" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,260) scale(1,-1)">PLTR</text>
+			<rect x="535" y="250" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(20%,37%,65%); fill-rule: evenodd;"/>
+			<text x="555" y="281" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,562) scale(1,-1)">1.000</text>
+			<rect x="613" y="250" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(66%,74%,87%); fill-rule: evenodd;"/>
+			<text x="633" y="281" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,562) scale(1,-1)">0.342</text>
+			<rect x="691" y="250" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(64%,73%,86%); fill-rule: evenodd;"/>
+			<text x="711" y="281" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,562) scale(1,-1)">0.364</text>
+			<rect x="535" y="172" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(66%,74%,87%); fill-rule: evenodd;"/>
+			<text x="555" y="203" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,406) scale(1,-1)">0.342</text>
+			<rect x="613" y="172" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(20%,37%,65%); fill-rule: evenodd;"/>
+			<text x="633" y="203" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,406) scale(1,-1)">1.000</text>
+			<rect x="691" y="172" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(53%,64%,81%); fill-rule: evenodd;"/>
+			<text x="711" y="203" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,406) scale(1,-1)">0.519</text>
+			<rect x="535" y="94" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(64%,73%,86%); fill-rule: evenodd;"/>
+			<text x="555" y="125" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,250) scale(1,-1)">0.364</text>
+			<rect x="613" y="94" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(53%,64%,81%); fill-rule: evenodd;"/>
+			<text x="633" y="125" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,12%,16%); stroke:none;" transform="translate(0,250) scale(1,-1)">0.519</text>
+			<rect x="691" y="94" width="74" height="74" style="stroke: rgb(85%,87%,90%); stroke-linecap: butt; stroke-width: 0.6; fill: rgb(20%,37%,66%); fill-rule: evenodd;"/>
+			<text x="711" y="125" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,250) scale(1,-1)">1.000</text>
+			<rect x="330.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(90%,94%,98%); fill-rule: evenodd;"/>
+			<rect x="340.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,91%,96%); fill-rule: evenodd;"/>
+			<rect x="350.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,89%,95%); fill-rule: evenodd;"/>
+			<rect x="360.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(80%,86%,93%); fill-rule: evenodd;"/>
+			<rect x="370.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(77%,84%,92%); fill-rule: evenodd;"/>
+			<rect x="380.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(74%,81%,91%); fill-rule: evenodd;"/>
+			<rect x="390.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(71%,79%,89%); fill-rule: evenodd;"/>
+			<rect x="400.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(68%,76%,88%); fill-rule: evenodd;"/>
+			<rect x="410.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(65%,74%,86%); fill-rule: evenodd;"/>
+			<rect x="420.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(62%,71%,85%); fill-rule: evenodd;"/>
+			<rect x="430.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(59%,69%,84%); fill-rule: evenodd;"/>
+			<rect x="440.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(56%,66%,82%); fill-rule: evenodd;"/>
+			<rect x="450.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(53%,64%,81%); fill-rule: evenodd;"/>
+			<rect x="460.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(50%,61%,79%); fill-rule: evenodd;"/>
+			<rect x="470.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(47%,59%,78%); fill-rule: evenodd;"/>
+			<rect x="480.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(44%,56%,77%); fill-rule: evenodd;"/>
+			<rect x="490.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(41%,54%,75%); fill-rule: evenodd;"/>
+			<rect x="500.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(38%,51%,74%); fill-rule: evenodd;"/>
+			<rect x="510.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(35%,49%,72%); fill-rule: evenodd;"/>
+			<rect x="520.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(32%,46%,71%); fill-rule: evenodd;"/>
+			<rect x="530.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,44%,70%); fill-rule: evenodd;"/>
+			<rect x="540.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(26%,41%,68%); fill-rule: evenodd;"/>
+			<rect x="550.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(23%,39%,67%); fill-rule: evenodd;"/>
+			<rect x="560.0" y="55" width="10.5" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(20%,37%,65%); fill-rule: evenodd;"/>
+			<text x="318" y="39" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,78) scale(1,-1)">0</text>
+			<text x="562" y="39" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,78) scale(1,-1)">1</text>
+			<text x="406" y="39" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,78) scale(1,-1)">Correlation</text>
+			<text x="60" y="22" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,44) scale(1,-1)">Changing the window alters all volatilities and correlations jointly; it is not a one-factor shock.</text>
+		</g>
+	</g>
+</svg>

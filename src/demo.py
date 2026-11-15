@@ -2,10 +2,26 @@
 from decimal import Decimal as D
 
 from .data_loader import load_market, write_rows
-from .model import load_model_inputs, select_median_path, simulate_paths
+from .model import (
+    array_paths,
+    calibrate_historical,
+    load_model_inputs,
+    select_median_array_path,
+)
 from .payoff import ROOT, evaluate_note, load_terms
-from .valuation import value_paths
-from .visualization import plot_prices, plot_simulated_paths, plot_value_distribution
+from .valuation import run_scenario_analysis
+from .visualization import (
+    plot_coupon_distribution,
+    plot_correlation_heatmap,
+    plot_exit_distribution,
+    plot_maturity_redemption_map,
+    plot_nominal_return_distribution,
+    plot_parameter_window_comparison,
+    plot_prices,
+    plot_scenario_sensitivity,
+    plot_simulated_paths,
+    plot_value_distribution,
+)
 
 
 def print_data_summary(prices, terms):
@@ -63,36 +79,54 @@ def main():
     out = ROOT / "output/tables"
     history = evaluate_note(prices, terms, as_of=max(prices))
     write_rows(out / "historical_replay.csv", history["rows"])
-
-    initials = {s: D(a["initial"]) for s, a in terms["underlyings"].items()}
-    first, second = [row[0] for row in terms["schedule"][:2]]
-    # Keep a full illustrative underlying path for plotting even though the
-    # note's contractual cash flows stop when it is autocalled in period two.
-    paths = {observation: dict(initials) for observation, _ in terms["schedule"]}
-    paths[first]["PLTR"] = D(terms["underlyings"]["PLTR"]["coupon_barrier"]) - D(".01")
-    demo = evaluate_note(paths, terms)
-    write_rows(out / "synthetic_memory_call.csv", demo["rows"])
     plot_prices(prices, terms, result=history, data_cutoff=max(prices))
-    plot_prices(
-        paths,
-        terms,
-        filename="synthetic_prices.svg",
-        title="Synthetic memory-and-autocall scenario",
-        result=demo,
-        source_note="Illustrative deterministic scenario",
-    )
 
     model_inputs = load_model_inputs()
-    simulated_paths = simulate_paths(terms, model_inputs)
-    valuation = value_paths(simulated_paths, terms, model_inputs)
-    summary = valuation["summary"]
+    symbols = list(terms["underlyings"])
+    adjusted_path = ROOT / "data/processed/prices_adjusted.csv"
+    full_calibration = calibrate_historical(
+        adjusted_path, "2025-01-02", terms["pricing_date"], symbols
+    )
+    half_calibration = calibrate_historical(
+        adjusted_path, "2025-06-19", terms["pricing_date"], symbols
+    )
+    analysis = run_scenario_analysis(
+        terms, model_inputs, full_calibration, half_calibration
+    )
+    baseline = analysis["baseline"]
+    summary = baseline["summary"]
+
+    def parameter_row(calibration):
+        correlation = calibration["correlation"]
+        return {
+            "window_start": calibration["window_start"],
+            "window_end": calibration["window_end"],
+            "daily_returns": calibration["daily_returns"],
+            **{symbol: calibration["volatilities"][symbol] for symbol in symbols},
+            "AMZN_NVDA": correlation["AMZN"]["NVDA"],
+            "AMZN_PLTR": correlation["AMZN"]["PLTR"],
+            "NVDA_PLTR": correlation["NVDA"]["PLTR"],
+        }
+
+    write_rows(out / "parameters.csv", [
+        parameter_row(full_calibration), parameter_row(half_calibration)
+    ])
+    write_rows(out / "scenarios.csv", analysis["scenarios"])
+    write_rows(out / "exit_distribution.csv", analysis["exit_distribution"])
     write_rows(out / "monte_carlo_summary.csv", [summary])
-    plot_simulated_paths(simulated_paths, terms)
+
+    count = len(baseline["paths"])
+    step = max(1, count // 40)
+    sample_indices = list(range(0, count, step))[:40]
+    sample_paths = array_paths(baseline["paths"], terms, sample_indices)
+    plot_simulated_paths(sample_paths, terms, total_paths=count)
     plot_value_distribution(
-        valuation["present_values"], summary["estimated_value"],
+        baseline["present_values"], summary["estimated_value"],
         float(terms["principal"]),
     )
-    representative_index, representative_path = select_median_path(simulated_paths, terms)
+    representative_index, representative_path = select_median_array_path(
+        baseline["paths"], terms
+    )
     representative_result = evaluate_note(representative_path, terms)
     write_rows(out / "representative_median_path.csv", representative_result["rows"])
     plot_prices(
@@ -106,15 +140,28 @@ def main():
             "nearest actual path to the pointwise median"
         ),
     )
+    plot_maturity_redemption_map(terms)
+    plot_exit_distribution(analysis["exit_distribution"])
+    plot_scenario_sensitivity(analysis["scenarios"])
+    plot_nominal_return_distribution(baseline["nominal_returns"])
+    plot_parameter_window_comparison(
+        [full_calibration, half_calibration], analysis["scenarios"]
+    )
+    plot_correlation_heatmap([full_calibration, half_calibration])
+    plot_coupon_distribution(
+        baseline["coupon_totals"],
+        float(terms["principal"])
+        * float(terms["coupon_rate_annual"])
+        / int(terms["coupons_per_year"]),
+    )
 
     print_data_summary(prices, terms)
     print("\n" + "=" * 64)
     print("2. PAYOFF RESULTS")
     print("=" * 64)
     print_result_summary("Historical Replay", history, terms, as_of=max(prices))
-    print_result_summary("Synthetic Memory-and-Autocall Scenario", demo, terms)
     print("\n" + "=" * 64)
-    print("3. ILLUSTRATIVE MONTE CARLO VALUATION")
+    print("3. ISSUE-DATE MONTE CARLO VALUATION")
     print("=" * 64)
     print(f"Model                    : {model_inputs['model']}")
     print(f"Simulated paths          : {summary['paths']:,}")
@@ -123,10 +170,19 @@ def main():
     print(f"Standard error           : USD {summary['standard_error']:,.4f}")
     print(f"Autocall probability     : {summary['autocall_probability']:.2%}")
     print(f"Principal-loss probability: {summary['principal_loss_probability']:.2%}")
+    print(f"Mean nominal return       : {summary['mean_nominal_return']:.2%}")
+    print(f"Median nominal return     : {summary['median_nominal_return']:.2%}")
+    print(f"Worst 5% mean return      : {summary['worst_5pct_mean_return']:.2%}")
+    print(f"Mean payment time         : {summary['mean_payment_years']:.3f} years")
     print(f"Representative path       : {representative_index + 1:,}")
     print(f"Representative status     : {representative_result['rows'][-1]['status'].upper()}")
     print(f"Representative cash flow  : USD {representative_result['total_cashflow']:,.4f}")
-    print("Assumption status        : ILLUSTRATIVE — TEAM REVIEW REQUIRED")
+    print("\n" + "=" * 64)
+    print("4. SENSITIVITY ANALYSIS")
+    print("=" * 64)
+    print(f"Scenarios evaluated       : {len(analysis['scenarios'])}")
+    print("Tables                    : parameters.csv, scenarios.csv, exit_distribution.csv")
+    print("Figures                   : payoff, exit, sensitivity, correlation, coupon distribution")
 
 
 if __name__ == "__main__":

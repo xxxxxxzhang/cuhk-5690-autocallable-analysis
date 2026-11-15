@@ -2,9 +2,16 @@ import copy
 import math
 import unittest
 
-from src.model import select_median_path, simulate_paths
-from src.payoff import load_terms
-from src.valuation import value_paths
+from src.model import (
+    array_paths,
+    calibrate_historical,
+    select_median_path,
+    simulate_paths,
+    simulate_price_array,
+    standard_normal_shocks,
+)
+from src.payoff import ROOT, evaluate_note, load_terms
+from src.valuation import evaluate_price_array, value_paths, value_price_array
 
 
 class ModelTests(unittest.TestCase):
@@ -86,6 +93,72 @@ class ModelTests(unittest.TestCase):
         inputs = {"model": "correlated_gbm", "risk_free_rate": 0.0, "seed": 1}
         summary = value_paths([path], self.terms, inputs)["summary"]
         self.assertAlmostEqual(summary["estimated_value"], 1078.25)
+
+    def test_historical_calibration_matches_handoff(self):
+        calibration = calibrate_historical(
+            ROOT / "data/processed/prices_adjusted.csv",
+            "2025-01-02",
+            self.terms["pricing_date"],
+            self.symbols,
+        )
+        self.assertEqual(calibration["daily_returns"], 242)
+        self.assertAlmostEqual(calibration["volatilities"]["AMZN"], 0.34775447995055164)
+        self.assertAlmostEqual(calibration["volatilities"]["NVDA"], 0.5042270618443454)
+        self.assertAlmostEqual(calibration["volatilities"]["PLTR"], 0.673549605921139)
+
+    def test_vectorized_cashflows_match_contract_engine(self):
+        inputs = copy.deepcopy(self.inputs)
+        inputs["n_paths"] = 12
+        inputs["seed"] = 5690
+        shocks = standard_normal_shocks(self.terms, inputs)
+        price_array = simulate_price_array(self.terms, inputs, shocks=shocks)
+        vectorized = evaluate_price_array(price_array, self.terms)
+        mapped = array_paths(price_array, self.terms, range(len(price_array)))
+        scalar = [evaluate_note(path, self.terms) for path in mapped]
+        for index, result in enumerate(scalar):
+            self.assertAlmostEqual(
+                vectorized["coupons"][index].sum(),
+                sum(float(row["coupon"]) for row in result["rows"]),
+            )
+            self.assertAlmostEqual(
+                vectorized["principal"][index].sum(),
+                float(result["redemption_amount"]),
+            )
+            self.assertEqual(
+                bool(vectorized["called"][index]),
+                result["autocall_date"] is not None,
+            )
+
+    def test_exit_distribution_sums_to_one(self):
+        inputs = copy.deepcopy(self.inputs)
+        inputs["n_paths"] = 100
+        price_array = simulate_price_array(self.terms, inputs)
+        result = value_price_array(price_array, self.terms, inputs)
+        total = sum(
+            row["autocall_Q"] + row["maturity_Q"]
+            for row in result["exit_distribution"]
+        )
+        self.assertAlmostEqual(total, 1.0)
+
+    def test_best_of_protection_counterfactual(self):
+        observations = [row[0] for row in self.terms["schedule"]]
+        path = {
+            observation: {
+                symbol: float(spec["initial"]) * 0.8
+                for symbol, spec in self.terms["underlyings"].items()
+            }
+            for observation in observations
+        }
+        last = observations[-1]
+        path[last] = {
+            "AMZN": float(self.terms["underlyings"]["AMZN"]["initial"]) * 1.1,
+            "NVDA": float(self.terms["underlyings"]["NVDA"]["initial"]) * 0.8,
+            "PLTR": float(self.terms["underlyings"]["PLTR"]["initial"]) * 0.4,
+        }
+        terms_without = copy.deepcopy(self.terms)
+        terms_without["maturity"]["best_of_principal_protection_enabled"] = False
+        self.assertEqual(evaluate_note(path, self.terms)["redemption_amount"], 1000)
+        self.assertEqual(evaluate_note(path, terms_without)["redemption_amount"], 400)
 
 
 if __name__ == "__main__":

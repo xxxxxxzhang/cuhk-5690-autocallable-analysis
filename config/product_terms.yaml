@@ -20,6 +20,7 @@ autocall:
   first_period: 2
   level_as_fraction_of_initial: "1.00"
 maturity:
+  best_of_principal_protection_enabled: true
   best_of_principal_protection_level: "1.00"
 # Each entry pairs the scheduled observation and payment dates.
 schedule:

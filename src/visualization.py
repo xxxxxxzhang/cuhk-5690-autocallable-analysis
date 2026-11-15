@@ -1,11 +1,12 @@
 """Render historical, scenario and Monte Carlo charts as standalone SVG files."""
+from collections import Counter
 from datetime import date
 from math import ceil
 from statistics import median
 
 from reportlab.graphics import renderSVG
 from reportlab.graphics.charts.lineplots import LinePlot
-from reportlab.graphics.shapes import Drawing, Line, Rect, String
+from reportlab.graphics.shapes import Circle, Drawing, Line, Rect, String
 from reportlab.lib import colors
 
 from .payoff import ROOT
@@ -200,7 +201,8 @@ def plot_prices(close, terms, *, filename="normalized_prices.svg",
     return target
 
 
-def plot_simulated_paths(paths, terms, *, filename="monte_carlo_paths.svg", max_paths=40):
+def plot_simulated_paths(paths, terms, *, filename="monte_carlo_paths.svg", max_paths=40,
+                         total_paths=None):
     """Plot a representative subset and the median of simulated normalized paths."""
     if not paths:
         raise ValueError("At least one simulated path is required")
@@ -213,7 +215,7 @@ def plot_simulated_paths(paths, terms, *, filename="monte_carlo_paths.svg", max_
     fig.add(String(60, 615, "Correlated-GBM simulated underlying paths",
                    fontName="Helvetica-Bold", fontSize=22))
     fig.add(String(60, 592,
-                   f"{len(paths):,} paths generated; {len(selected)} displayed; pricing date = 100",
+                   f"{(total_paths or len(paths)):,} paths generated; {len(selected)} displayed; pricing date = 100",
                    fontSize=11))
 
     palette = ["#1856a3", "#007657", "#ad4918"]
@@ -273,9 +275,10 @@ def plot_simulated_paths(paths, terms, *, filename="monte_carlo_paths.svg", max_
 
 
 def plot_value_distribution(present_values, estimated_value, principal, *,
+                            issuer_estimate=940.80,
                             filename="monte_carlo_value_distribution.svg", bins=30):
     """Render a compact histogram of discounted path values."""
-    if not present_values:
+    if len(present_values) == 0:
         raise ValueError("At least one present value is required")
     low, high = min(present_values), max(present_values)
     if high <= low:
@@ -311,8 +314,11 @@ def plot_value_distribution(present_values, estimated_value, principal, *,
         x = x_position(value)
         fig.add(Line(x, bottom - 4, x, bottom, strokeColor=colors.black))
         fig.add(String(x - 18, bottom - 20, f"{value:,.0f}", fontSize=8))
-    markers = ((estimated_value, "Monte Carlo value", "#0b5cab", -112, -13),
-               (principal, "Principal", "#b42318", 7, -31))
+    markers = (
+        (estimated_value, "Model value", "#0b5cab", -97, -13),
+        (issuer_estimate, "Barclays estimate", "#6f42c1", 7, -31),
+        (principal, "Issue price", "#b42318", 7, -49),
+    )
     for value, label, colour, label_dx, label_dy in markers:
         if low <= value <= high:
             x = x_position(value)
@@ -323,8 +329,441 @@ def plot_value_distribution(present_values, estimated_value, principal, *,
                            f"{label}: {value:,.2f}",
                            fillColor=colors.HexColor(colour), fontSize=9))
     fig.add(String(60, 38,
-                   "Illustrative correlated-GBM assumptions; model inputs require team review before final valuation.",
+                   "Historical-baseline correlated GBM; risk-neutral values are model outputs, not market quotes.",
                    fontSize=9))
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_maturity_redemption_map(terms, *, filename="maturity_redemption_map.svg"):
+    """Show the maturity principal rule as a worst-of/best-of state map."""
+    fig = Drawing(900, 520)
+    fig.add(Rect(0, 0, 900, 520, fillColor=colors.white, strokeColor=None))
+    fig.add(String(65, 482, "Maturity principal redemption map",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(65, 458,
+                   "Worst-of below 50 can still receive full principal when best-of reaches 100",
+                   fontSize=11))
+    left, bottom, width, height = 90, 90, 720, 330
+    x_max, y_max, cells = 120.0, 160.0, 48
+    face = float(terms["principal"])
+    barrier = sum(
+        100 * float(spec["principal_barrier"]) / float(spec["initial"])
+        for spec in terms["underlyings"].values()
+    ) / len(terms["underlyings"])
+    best_level = 100 * float(terms["maturity"]["best_of_principal_protection_level"])
+    cell_w, cell_h = width / cells, height / cells
+
+    for ix in range(cells):
+        worst = x_max * (ix + 0.5) / cells
+        for iy in range(cells):
+            best = y_max * (iy + 0.5) / cells
+            if best + 1e-9 < worst:
+                fill = colors.HexColor("#f3f4f6")
+            else:
+                redemption = face if worst >= barrier or best >= best_level else face * worst / 100
+                fraction = redemption / face
+                fill = colors.Color(
+                    0.86 - 0.52 * fraction,
+                    0.25 + 0.38 * fraction,
+                    0.20 + 0.60 * fraction,
+                )
+            fig.add(Rect(left + ix * cell_w, bottom + iy * cell_h,
+                         cell_w + 0.2, cell_h + 0.2,
+                         fillColor=fill, strokeColor=None))
+
+    def x_pos(value):
+        return left + width * value / x_max
+
+    def y_pos(value):
+        return bottom + height * value / y_max
+
+    fig.add(Line(x_pos(barrier), bottom, x_pos(barrier), bottom + height,
+                 strokeColor=colors.HexColor("#b42318"), strokeWidth=1.7,
+                 strokeDashArray=[5, 3]))
+    fig.add(Line(left, y_pos(best_level), left + width, y_pos(best_level),
+                 strokeColor=colors.HexColor("#6f42c1"), strokeWidth=1.7,
+                 strokeDashArray=[5, 3]))
+    fig.add(String(x_pos(barrier) + 5, bottom + 8, f"Barrier {barrier:.0f}",
+                   fillColor=colors.HexColor("#b42318"), fontSize=9))
+    fig.add(String(left + 8, y_pos(best_level) + 5, f"Best-of protection {best_level:.0f}",
+                   fillColor=colors.HexColor("#6f42c1"), fontSize=9))
+    fig.add(Line(left, bottom, left + width, bottom, strokeColor=colors.black))
+    fig.add(Line(left, bottom, left, bottom + height, strokeColor=colors.black))
+    for value in (0, 25, 50, 75, 100, 120):
+        x = x_pos(value)
+        fig.add(Line(x, bottom - 4, x, bottom, strokeColor=colors.black))
+        fig.add(String(x - 8, bottom - 19, f"{value:.0f}", fontSize=8))
+    for value in (0, 50, 100, 150):
+        y = y_pos(value)
+        fig.add(Line(left - 4, y, left, y, strokeColor=colors.black))
+        fig.add(String(left - 28, y - 3, f"{value:.0f}", fontSize=8))
+    fig.add(String(left + width / 2 - 65, 55, "Worst-of at maturity (% of initial)", fontSize=10))
+    fig.add(String(8, bottom + height / 2, "Best-of (% of initial)", fontSize=10))
+    fig.add(String(610, 65, "Grey: infeasible (best-of < worst-of)", fontSize=8))
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_exit_distribution(exit_rows, *, scenario="historical_baseline",
+                           filename="exit_distribution.svg"):
+    """Plot unconditional autocall and maturity exit probabilities by period."""
+    rows = [row for row in exit_rows if row["scenario"] == scenario]
+    rows.sort(key=lambda row: int(row["period"]))
+    if not rows:
+        raise ValueError(f"No exit distribution for {scenario}")
+    fig = Drawing(900, 480)
+    fig.add(Rect(0, 0, 900, 480, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 442, "Exit timing under the historical baseline",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 418,
+                   "Unconditional share of all risk-neutral paths; O12 is maturity",
+                   fontSize=11))
+    left, bottom, width, height = 70, 92, 780, 285
+    maximum = max(float(row["autocall_Q"]) + float(row["maturity_Q"]) for row in rows)
+    y_max = max(0.60, ceil(maximum * 10) / 10)
+    slot = width / len(rows)
+    cumulative, previous = 0.0, None
+    for index, row in enumerate(rows):
+        autocall = float(row["autocall_Q"])
+        maturity = float(row["maturity_Q"])
+        x = left + index * slot + slot * 0.18
+        call_height = height * autocall / y_max
+        maturity_height = height * maturity / y_max
+        fig.add(Rect(x, bottom, slot * 0.64, call_height,
+                     fillColor=colors.HexColor("#d97706"), strokeColor=None))
+        fig.add(Rect(x, bottom + call_height, slot * 0.64, maturity_height,
+                     fillColor=colors.HexColor("#6f42c1"), strokeColor=None))
+        total = autocall + maturity
+        if total >= 0.01:
+            fig.add(String(x - 2, bottom + call_height + maturity_height + 5,
+                           f"{total:.1%}", fontSize=7))
+        fig.add(String(x + slot * 0.18, bottom - 18, f"O{row['period']}", fontSize=8))
+        cumulative += autocall
+        point = (x + slot * 0.32, bottom + height * cumulative / y_max)
+        if previous is not None:
+            fig.add(Line(previous[0], previous[1], point[0], point[1],
+                         strokeColor=colors.HexColor("#1856a3"), strokeWidth=1.6))
+        fig.add(Circle(point[0], point[1], 2.4,
+                       fillColor=colors.HexColor("#1856a3"), strokeColor=None))
+        previous = point
+    fig.add(Line(left, bottom, left + width, bottom, strokeColor=colors.black))
+    fig.add(Line(left, bottom, left, bottom + height, strokeColor=colors.black))
+    for value in (0.0, 0.2, 0.4, 0.6):
+        y = bottom + height * value / y_max
+        fig.add(Line(left - 4, y, left, y, strokeColor=colors.black))
+        fig.add(String(left - 38, y - 3, f"{value:.0%}", fontSize=8))
+    fig.add(Rect(610, 395, 12, 8, fillColor=colors.HexColor("#d97706"), strokeColor=None))
+    fig.add(String(627, 393, "Autocall", fontSize=9))
+    fig.add(Rect(690, 395, 12, 8, fillColor=colors.HexColor("#6f42c1"), strokeColor=None))
+    fig.add(String(707, 393, "Maturity", fontSize=9))
+    fig.add(Line(775, 399, 794, 399, strokeColor=colors.HexColor("#1856a3"), strokeWidth=1.6))
+    fig.add(String(800, 393, "Cumulative call", fontSize=9))
+    fig.add(String(60, 42,
+                   "Risk-neutral model probabilities, not forecasts of real-world frequencies.",
+                   fontSize=9))
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_scenario_sensitivity(rows, *, filename="scenario_sensitivity.svg"):
+    """Plot scenario value changes relative to the historical baseline."""
+    values = {row["scenario"]: float(row["pv_usd"]) for row in rows}
+    baseline = values["historical_baseline"]
+    order = [
+        ("half_year_window", "Half-year window"),
+        ("lower_correlation", "Lower correlation"),
+        ("higher_correlation", "Higher correlation"),
+        ("no_memory_counterfactual", "No memory coupon"),
+        ("high_vol_and_low_correlation", "High vol + low corr"),
+        ("all_vols_plus_25pct", "All vols +25%"),
+        ("no_best_protection_counterfactual", "No best-of protection"),
+    ]
+    deltas = [(key, label, values[key] - baseline) for key, label in order]
+    bound = max(abs(delta) for _key, _label, delta in deltas) * 1.15
+    fig = Drawing(900, 500)
+    fig.add(Rect(0, 0, 900, 500, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 462, "Model-value sensitivity",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 438,
+                   f"Change from historical baseline value of USD {baseline:,.2f} per note",
+                   fontSize=11))
+    left, centre, right = 255, 545, 835
+    top, gap = 390, 43
+    fig.add(Line(centre, 82, centre, 406, strokeColor=colors.HexColor("#6b7280"),
+                 strokeWidth=1.0))
+    for index, (_key, label, delta) in enumerate(deltas):
+        y = top - index * gap
+        x = centre + (right - centre) * delta / bound
+        colour = "#1856a3" if delta >= 0 else "#b42318"
+        fig.add(String(60, y - 4, label, fontSize=10))
+        fig.add(Line(centre, y, x, y, strokeColor=colors.HexColor(colour), strokeWidth=2.0))
+        fig.add(Circle(x, y, 4, fillColor=colors.HexColor(colour), strokeColor=None))
+        text = f"{delta:+.2f}"
+        fig.add(String(x + (7 if delta >= 0 else -45), y - 4, text,
+                       fillColor=colors.HexColor(colour), fontSize=9))
+    fig.add(String(left - 18, 60, f"−{bound:.0f}", fontSize=8))
+    fig.add(String(centre - 4, 60, "0", fontSize=8))
+    fig.add(String(right - 10, 60, f"+{bound:.0f}", fontSize=8))
+    fig.add(String(60, 27,
+                   "Historical-window, market-parameter and contract counterfactuals are distinct tests.",
+                   fontSize=9))
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_nominal_return_distribution(returns, *,
+                                     filename="nominal_return_distribution.svg",
+                                     bins=40):
+    """Show the left-tailed risk-neutral distribution of nominal total returns."""
+    values = [float(value) for value in returns]
+    if not values:
+        raise ValueError("At least one nominal return is required")
+    ordered = sorted(values)
+    low, high = ordered[0], ordered[-1]
+    width = (high - low) / bins if high > low else 1.0
+    counts = [0] * bins
+    for value in values:
+        index = min(int((value - low) / width), bins - 1)
+        counts[index] += 1
+    mean = sum(values) / len(values)
+    median_value = median(values)
+    p05 = ordered[int((len(ordered) - 1) * 0.05)]
+    fig = Drawing(900, 455)
+    fig.add(Rect(0, 0, 900, 455, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 418, "Risk-neutral nominal return distribution",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 394,
+                   "Undiscounted total receipts divided by USD 1,000, less one",
+                   fontSize=11))
+    left, bottom, plot_width, plot_height = 65, 85, 780, 255
+    maximum = max(counts)
+    bar_width = plot_width / bins
+    for index, count in enumerate(counts):
+        midpoint = low + width * (index + 0.5)
+        height = plot_height * count / maximum if maximum else 0
+        colour = "#c95b52" if midpoint <= p05 else "#7aa5d8"
+        fig.add(Rect(left + index * bar_width, bottom, max(1, bar_width - 1), height,
+                     fillColor=colors.HexColor(colour), strokeColor=None))
+    fig.add(Line(left, bottom, left + plot_width, bottom, strokeColor=colors.black))
+    fig.add(Line(left, bottom, left, bottom + plot_height, strokeColor=colors.black))
+
+    def x_position(value):
+        return left + plot_width * (value - low) / (high - low)
+
+    markers = (
+        (mean, "Mean", "#0b5cab", -55, -13),
+        (median_value, "Median", "#007657", 6, -31),
+        (p05, "5th percentile", "#b42318", 6, -49),
+    )
+    for value, label, colour, dx, dy in markers:
+        x = x_position(value)
+        fig.add(Line(x, bottom, x, bottom + plot_height,
+                     strokeColor=colors.HexColor(colour), strokeWidth=1.5,
+                     strokeDashArray=[5, 3]))
+        fig.add(String(x + dx, bottom + plot_height + dy,
+                       f"{label}: {value:.1%}",
+                       fillColor=colors.HexColor(colour), fontSize=9))
+    for tick in range(5):
+        value = low + (high - low) * tick / 4
+        x = x_position(value)
+        fig.add(String(x - 15, bottom - 20, f"{value:.0%}", fontSize=8))
+    fig.add(String(60, 38,
+                   "Red bars mark the worst 5% tail; probabilities are risk-neutral, not real-world forecasts.",
+                   fontSize=9))
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_parameter_window_comparison(calibrations, scenario_rows, *,
+                                     filename="parameter_window_comparison.svg"):
+    """Compare full-year and half-year volatility estimates and model values."""
+    full, half = calibrations
+    scenario = {row["scenario"]: float(row["pv_usd"]) for row in scenario_rows}
+    symbols = list(full["volatilities"])
+    fig = Drawing(900, 470)
+    fig.add(Rect(0, 0, 900, 470, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 432, "Historical-window sensitivity",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 408,
+                   "Annualized volatility estimates and resulting model value",
+                   fontSize=11))
+    left, bottom, width, height = 85, 105, 500, 240
+    slot = width / len(symbols)
+    for index, symbol in enumerate(symbols):
+        full_vol = float(full["volatilities"][symbol])
+        half_vol = float(half["volatilities"][symbol])
+        x = left + index * slot + 30
+        fig.add(Rect(x, bottom, 38, height * full_vol / 0.75,
+                     fillColor=colors.HexColor("#1856a3"), strokeColor=None))
+        fig.add(Rect(x + 48, bottom, 38, height * half_vol / 0.75,
+                     fillColor=colors.HexColor("#7aa5d8"), strokeColor=None))
+        fig.add(String(x + 18, bottom - 20, symbol, fontSize=9))
+        fig.add(String(x - 1, bottom + height * full_vol / 0.75 + 5,
+                       f"{full_vol:.1%}", fontSize=8))
+        fig.add(String(x + 45, bottom + height * half_vol / 0.75 + 5,
+                       f"{half_vol:.1%}", fontSize=8))
+    fig.add(Line(left, bottom, left + width, bottom, strokeColor=colors.black))
+    fig.add(String(650, 325, "Model value", fontName="Helvetica-Bold", fontSize=12))
+    fig.add(String(650, 285, f"Full year   USD {scenario['historical_baseline']:,.2f}", fontSize=11))
+    fig.add(String(650, 250, f"Half year   USD {scenario['half_year_window']:,.2f}", fontSize=11))
+    delta = scenario["half_year_window"] - scenario["historical_baseline"]
+    fig.add(String(650, 210, f"Difference  {delta:+,.2f}",
+                   fillColor=colors.HexColor("#b42318"), fontSize=11))
+    fig.add(Rect(610, 380, 12, 8, fillColor=colors.HexColor("#1856a3"), strokeColor=None))
+    fig.add(String(627, 378, "Full-year window", fontSize=9))
+    fig.add(Rect(735, 380, 12, 8, fillColor=colors.HexColor("#7aa5d8"), strokeColor=None))
+    fig.add(String(752, 378, "Half-year window", fontSize=9))
+    fig.add(String(60, 42,
+                   "The window changes volatility and correlation jointly; it is not a one-factor shock.",
+                   fontSize=9))
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_correlation_heatmap(calibrations, *,
+                             filename="correlation_heatmap.svg"):
+    """Compare historical Pearson correlations from two calibration windows."""
+    if len(calibrations) != 2:
+        raise ValueError("Exactly two calibration windows are required")
+    symbols = list(calibrations[0]["correlation"])
+    if not symbols:
+        raise ValueError("Correlation matrix cannot be empty")
+
+    fig = Drawing(900, 470)
+    fig.add(Rect(0, 0, 900, 470, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 432, "Historical correlation comparison",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 408,
+                   "Pearson correlations of daily log returns through the pricing date",
+                   fontSize=11))
+
+    panel_lefts = [105, 535]
+    cell = 78
+    for panel, (calibration, panel_left) in enumerate(zip(calibrations, panel_lefts, strict=True)):
+        matrix = calibration["correlation"]
+        label = (f"{calibration['window_start']} to "
+                 f"{calibration['window_end']}")
+        fig.add(String(panel_left, 365, label,
+                       fontName="Helvetica-Bold", fontSize=11))
+        fig.add(String(panel_left, 347,
+                       f"{calibration['daily_returns']} daily returns",
+                       fillColor=colors.HexColor("#555d68"), fontSize=9))
+        for index, symbol in enumerate(symbols):
+            fig.add(String(panel_left + index * cell + 23, 330, symbol,
+                           fontName="Helvetica-Bold", fontSize=9))
+            fig.add(String(panel_left - 46, 286 - index * cell, symbol,
+                           fontName="Helvetica-Bold", fontSize=9))
+        for row, left_symbol in enumerate(symbols):
+            for column, right_symbol in enumerate(symbols):
+                value = float(matrix[left_symbol][right_symbol])
+                intensity = max(0.0, min(1.0, value))
+                fill = colors.Color(
+                    0.90 - 0.70 * intensity,
+                    0.94 - 0.57 * intensity,
+                    0.98 - 0.32 * intensity,
+                )
+                x = panel_left + column * cell
+                y = 250 - row * cell
+                fig.add(Rect(x, y, cell - 4, cell - 4,
+                             fillColor=fill,
+                             strokeColor=colors.HexColor("#d9dfe7"),
+                             strokeWidth=0.6))
+                text_colour = colors.white if value >= 0.75 else colors.HexColor("#17202a")
+                fig.add(String(x + 20, y + 31, f"{value:.3f}",
+                               fillColor=text_colour,
+                               fontName="Helvetica-Bold", fontSize=10))
+
+    legend_left, legend_bottom, legend_width = 330, 55, 240
+    for index in range(24):
+        intensity = index / 23
+        fill = colors.Color(
+            0.90 - 0.70 * intensity,
+            0.94 - 0.57 * intensity,
+            0.98 - 0.32 * intensity,
+        )
+        fig.add(Rect(legend_left + index * legend_width / 24, legend_bottom,
+                     legend_width / 24 + 0.5, 10, fillColor=fill, strokeColor=None))
+    fig.add(String(legend_left - 12, legend_bottom - 16, "0", fontSize=8))
+    fig.add(String(legend_left + legend_width - 8, legend_bottom - 16, "1", fontSize=8))
+    fig.add(String(legend_left + 76, legend_bottom - 16, "Correlation", fontSize=8))
+    fig.add(String(60, 22,
+                   "Changing the window alters all volatilities and correlations jointly; it is not a one-factor shock.",
+                   fontSize=9))
+    target = ROOT / "output/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_coupon_distribution(coupon_totals, coupon_amount, *,
+                             filename="coupon_distribution.svg"):
+    """Plot the risk-neutral distribution of total coupon receipts per note."""
+    values = [float(value) for value in coupon_totals]
+    if not values:
+        raise ValueError("At least one coupon total is required")
+    amount = float(coupon_amount)
+    if amount <= 0:
+        raise ValueError("coupon_amount must be positive")
+
+    coupon_counts = [int(round(value / amount)) for value in values]
+    frequencies = Counter(coupon_counts)
+    maximum_count = max(frequencies)
+    periods = list(range(maximum_count + 1))
+    probabilities = [frequencies.get(period, 0) / len(values) for period in periods]
+    maximum_probability = max(probabilities)
+
+    fig = Drawing(900, 470)
+    fig.add(Rect(0, 0, 900, 470, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 432, "Risk-neutral total coupon distribution",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 408,
+                   f"Per USD 1,000 note  |  one contractual coupon = USD {amount:.3f}",
+                   fontSize=11))
+
+    left, bottom, plot_width, plot_height = 70, 100, 775, 250
+    slot = plot_width / len(periods)
+    bar_width = max(6, slot * 0.68)
+    for period, probability in zip(periods, probabilities, strict=True):
+        height = plot_height * probability / maximum_probability if maximum_probability else 0
+        x = left + period * slot + (slot - bar_width) / 2
+        colour = "#b42318" if period == 0 else "#3f79bd"
+        fig.add(Rect(x, bottom, bar_width, height,
+                     fillColor=colors.HexColor(colour), strokeColor=None))
+        if probability >= 0.025:
+            fig.add(String(x + max(0, bar_width / 2 - 13), bottom + height + 7,
+                           f"{probability:.1%}", fontSize=8))
+        fig.add(String(x + max(0, bar_width / 2 - 4), bottom - 20,
+                       str(period), fontSize=8))
+
+    fig.add(Line(left, bottom, left + plot_width, bottom, strokeColor=colors.black))
+    fig.add(Line(left, bottom, left, bottom + plot_height, strokeColor=colors.black))
+    for tick in range(5):
+        probability = maximum_probability * tick / 4
+        y = bottom + plot_height * tick / 4
+        fig.add(Line(left - 4, y, left, y, strokeColor=colors.black))
+        fig.add(String(left - 42, y - 3, f"{probability:.0%}", fontSize=8))
+    fig.add(String(330, 58, "Number of contractual coupon periods ultimately paid", fontSize=9))
+    zero_probability = probabilities[0]
+    mean_coupon = sum(values) / len(values)
+    fig.add(String(60, 30,
+                   f"No-coupon paths: {zero_probability:.2%}  |  mean total coupon: USD {mean_coupon:.2f}",
+                   fontSize=9))
+    fig.add(String(525, 30,
+                   "Memory changes timing and recovery, not the USD 39.125 unit.",
+                   fillColor=colors.HexColor("#555d68"), fontSize=9))
     target = ROOT / "output/figures" / filename
     target.parent.mkdir(parents=True, exist_ok=True)
     renderSVG.drawToFile(fig, str(target))

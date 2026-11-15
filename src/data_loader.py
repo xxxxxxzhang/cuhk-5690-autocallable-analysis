@@ -14,7 +14,12 @@ from .payoff import ROOT
 def write_rows(path, rows, columns=None):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as out:
-        writer = csv.DictWriter(out, fieldnames=columns or list(rows[0]))
+        lineterminator = "\r\n" if path.parent.name == "processed" else "\n"
+        writer = csv.DictWriter(
+            out,
+            fieldnames=columns or list(rows[0]),
+            lineterminator=lineterminator,
+        )
         writer.writeheader()
         writer.writerows(rows)
 

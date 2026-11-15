@@ -51,8 +51,17 @@ def evaluate_note(paths, terms, *, as_of=None):
         expired = 0
         if period == len(schedule):
             worst = min(ratios, key=ratios.get)
-            protected = (prices[worst] >= D(names[worst]["principal_barrier"]) or
-                         max(ratios.values()) >= D(terms["maturity"]["best_of_principal_protection_level"]))
+            best_of_enabled = terms["maturity"].get(
+                "best_of_principal_protection_enabled", True
+            )
+            protected = (
+                prices[worst] >= D(names[worst]["principal_barrier"])
+                or (
+                    best_of_enabled
+                    and max(ratios.values())
+                    >= D(terms["maturity"]["best_of_principal_protection_level"])
+                )
+            )
             redemption = face if protected else face * ratios[worst]
             status = "matured"
             expired, pending = pending, 0

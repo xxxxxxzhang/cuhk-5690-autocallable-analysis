@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="900" height="500" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="900" height="500"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-500)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="900" height="500" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="60" y="462" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,924) scale(1,-1)">Model-value sensitivity</text>
+			<text x="60" y="438" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,876) scale(1,-1)">Change from historical baseline value of USD 928.56 per note</text>
+			<path d="M 545,82 L 545,406 Z" style="stroke: rgb(41%,44%,50%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="60" y="386" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,772) scale(1,-1)">Half-year window</text>
+			<path d="M 545,390 L 797.173913,390 Z" style="stroke: rgb(9%,33%,63%); stroke-linecap: butt; stroke-width: 2.0;"/>
+			<circle cx="797.1739130434783" cy="390" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,33%,63%); fill-rule: evenodd;"/>
+			<text x="804.1739130434783" y="386" style="font-family: Times-Roman; font-size: 9px;fill: rgb(9%,33%,63%); stroke:none;" transform="translate(0,772) scale(1,-1)">+129.63</text>
+			<text x="60" y="343" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,686) scale(1,-1)">Lower correlation</text>
+			<path d="M 545,347 L 588.382076,347 Z" style="stroke: rgb(9%,33%,63%); stroke-linecap: butt; stroke-width: 2.0;"/>
+			<circle cx="588.3820762457851" cy="347" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,33%,63%); fill-rule: evenodd;"/>
+			<text x="595.3820762457851" y="343" style="font-family: Times-Roman; font-size: 9px;fill: rgb(9%,33%,63%); stroke:none;" transform="translate(0,686) scale(1,-1)">+22.30</text>
+			<text x="60" y="300" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,600) scale(1,-1)">Higher correlation</text>
+			<path d="M 545,304 L 517.613495,304 Z" style="stroke: rgb(70%,13%,9%); stroke-linecap: butt; stroke-width: 2.0;"/>
+			<circle cx="517.613494760981" cy="304" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="472.613494760981" y="300" style="font-family: Times-Roman; font-size: 9px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,600) scale(1,-1)">-14.08</text>
+			<text x="60" y="257" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,514) scale(1,-1)">No memory coupon</text>
+			<path d="M 545,261 L 488.473291,261 Z" style="stroke: rgb(70%,13%,9%); stroke-linecap: butt; stroke-width: 2.0;"/>
+			<circle cx="488.47329139257585" cy="261" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="443.47329139257585" y="257" style="font-family: Times-Roman; font-size: 9px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,514) scale(1,-1)">-29.06</text>
+			<text x="60" y="214" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,428) scale(1,-1)">High vol + low corr</text>
+			<path d="M 545,218 L 397.290231,218 Z" style="stroke: rgb(70%,13%,9%); stroke-linecap: butt; stroke-width: 2.0;"/>
+			<circle cx="397.2902306373825" cy="218" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="352.2902306373825" y="214" style="font-family: Times-Roman; font-size: 9px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,428) scale(1,-1)">-75.93</text>
+			<text x="60" y="171" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,342) scale(1,-1)">All vols +25%</text>
+			<path d="M 545,175 L 365.319056,175 Z" style="stroke: rgb(70%,13%,9%); stroke-linecap: butt; stroke-width: 2.0;"/>
+			<circle cx="365.31905644060066" cy="175" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="320.31905644060066" y="171" style="font-family: Times-Roman; font-size: 9px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,342) scale(1,-1)">-92.37</text>
+			<text x="60" y="128" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,256) scale(1,-1)">No best-of protection</text>
+			<path d="M 545,132 L 362.668587,132 Z" style="stroke: rgb(70%,13%,9%); stroke-linecap: butt; stroke-width: 2.0;"/>
+			<circle cx="362.6685866401993" cy="132" r="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="317.6685866401993" y="128" style="font-family: Times-Roman; font-size: 9px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,256) scale(1,-1)">-93.73</text>
+			<text x="237" y="60" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,120) scale(1,-1)">−149</text>
+			<text x="541" y="60" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,120) scale(1,-1)">0</text>
+			<text x="825" y="60" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,120) scale(1,-1)">+149</text>
+			<text x="60" y="27" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,54) scale(1,-1)">Historical-window, market-parameter and contract counterfactuals are distinct tests.</text>
+		</g>
+	</g>
+</svg>
