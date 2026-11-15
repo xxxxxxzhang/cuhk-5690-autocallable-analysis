@@ -6,6 +6,8 @@
 
 ## 1 `maturity_redemption_map.svg` — 到期本金状态图
 
+![到期本金状态图](./output/figures/maturity_redemption_map.svg)
+
 **图中内容：**
 
 - 横轴为到期 Worst-of 相对初始价格的百分比；
@@ -21,6 +23,8 @@
 
 ## 2 `monte_carlo_value_distribution.svg` — 折现路径价值分布
 
+![折现路径价值分布](./output/figures/monte_carlo_value_distribution.svg)
+
 **图中内容：**
 
 - 横轴为每条路径全部现金流的定价日折现价值；
@@ -32,6 +36,8 @@
 模型价值是整张分布的均值，而不是最常见的单一路径结果。分布的多个集中区域来自不同赎回时间、累计票息和到期本金状态。该图适合比较“模型估值”“发行人披露估值”和“投资者支付价格”，但不能单独说明现实世界亏损概率。
 
 ## 3 `nominal_return_distribution.svg` — 名义总回报分布
+
+![名义总回报分布](./output/figures/nominal_return_distribution.svg)
 
 **图中内容：**
 
@@ -51,6 +57,8 @@ R^{nominal}=\frac{\text{未折现票息与本金总收入}}{1{,}000}-1.
 
 ## 4 `exit_distribution.svg` — 退出时间分布
 
+![退出时间分布](./output/figures/exit_distribution.svg)
+
 **图中内容：**
 
 - 橙色柱表示各期自动赎回的无条件风险中性比例；
@@ -63,6 +71,8 @@ R^{nominal}=\frac{\text{未折现票息与本金总收入}}{1{,}000}-1.
 O1 不允许自动赎回，因此第一期赎回比例为零。基准模型下约 44.89% 的路径在 O2–O11 提前结束，其余约 55.12% 存续至 O12。该图可以帮助分析平均期限和再投资风险，但这些比例仍然是风险中性模型输出。
 
 ## 5 `coupon_distribution.svg` — 累计票息分布
+
+![累计票息分布](./output/figures/coupon_distribution.svg)
 
 **图中内容：**
 
@@ -80,6 +90,8 @@ O1 不允许自动赎回，因此第一期赎回比例为零。基准模型下�
 
 ## 6 `scenario_sensitivity.svg` — 模型价值敏感性
 
+![模型价值敏感性](./output/figures/scenario_sensitivity.svg)
+
 **图中内容：**
 
 - 中央零点代表历史基准价值 USD 928.56；
@@ -91,6 +103,8 @@ O1 不允许自动赎回，因此第一期赎回比例为零。基准模型下�
 半年窗口使价值上升约 USD 129.63，主要因为该窗口估计的波动率和相关性整体不同；全部波动率增加 25% 使价值下降约 USD 92.37；取消 Best-of 保护使价值下降约 USD 93.73；取消 Memory coupon 也会降低投资者价值。由于使用共同随机数，这些差异受 Monte Carlo 噪声的干扰较小。
 
 ## 7 `normalized_prices.svg` — 历史标的表现
+
+![历史标的表现](./output/figures/normalized_prices.svg)
 
 **图中内容：**
 
@@ -108,6 +122,8 @@ O1 不允许自动赎回，因此第一期赎回比例为零。基准模型下�
 
 ## 8 `parameter_window_comparison.svg` — 历史窗口敏感性
 
+![历史窗口敏感性](./output/figures/parameter_window_comparison.svg)
+
 **图中内容：**
 
 - 每只股票的两根柱分别为一年窗口和半年窗口的年化波动率；
@@ -118,6 +134,8 @@ O1 不允许自动赎回，因此第一期赎回比例为零。基准模型下�
 半年窗口的三只股票波动率均低于一年窗口，因此得到更高的模型价值。但窗口切换也同时改变了相关矩阵，所以价值差异不能全部归因于波动率。这张图用于展示参数估计风险：即使合同条款不变，选取不同历史样本也可能显著改变估值。
 
 ## 9 `correlation_heatmap.svg` — 历史相关矩阵比较
+
+![历史相关矩阵比较](./output/figures/correlation_heatmap.svg)
 
 **图中内容：**
 
@@ -134,6 +152,8 @@ O1 不允许自动赎回，因此第一期赎回比例为零。基准模型下�
 
 ## 10 `representative_median_path.svg` — 代表性实际模拟路径
 
+![代表性实际模拟路径](./output/figures/representative_median_path.svg)
+
 **图中内容：**
 
 - 从 100,000 条完整路径中，选出与“逐观察日、逐标的中位数路径”距离最近的一条真实路径；
@@ -145,6 +165,8 @@ O1 不允许自动赎回，因此第一期赎回比例为零。基准模型下�
 这张图用于演示一条完整路径如何进入合同现金流引擎。它不是把各期中位数拼接出来的虚构路径，而是模拟中真实存在的一条路径，因此股票走势、票息和最终本金状态彼此一致。代表性不等于最可能，也不等于模型期望值。
 
 ## 11 `monte_carlo_paths.svg` — 模拟价格路径样本
+
+![模拟价格路径样本](./output/figures/monte_carlo_paths.svg)
 
 **图中内容：**
 
