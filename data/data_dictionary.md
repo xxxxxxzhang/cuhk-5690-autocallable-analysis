@@ -1,23 +1,350 @@
-# 数据字典与来源
+# 数据字典、参数口径与输出说明
 
-快照取于 2026-11-09，窗口为 2025-01-01 至 2026-11-06，首个交易日为 2025-01-02。每只股票保留独立的 Yahoo Finance Chart 原始 JSON。精确请求、校验值和更新时间见 [manifest](raw/manifest.json)。冻结快照以便复现，重新采集时另存版本并重新检查公司行动。
+## 1. 数据版本与用途
 
-| 文件 / 字段 | 单位、频率与用途 | 来源和处理 |
-| --- | --- | --- |
-| raw/*.json 的 timestamp、quote.close | Unix 秒、美元/股，每个交易日 | 以 America/New_York 得交易日；检查代码、币种、时区和重复日期。 |
-| processed/prices_close.csv 的 date、AMZN、NVDA、PLTR | ISO 交易日、美元/股；合同回放、价格走势图 | Yahoo 的 close 按拆股口径呈现；本窗口事件字段无拆股。保留原始值，输出四舍五入至美分以消除二进制报价噪声。定价日与合同初始价逐股核对。 |
-| processed/prices_adjusted.csv 的三列股票 | 美元/股、日频；候选历史收益输入 | 供应商调整收盘价，包含其拆分、分红调整，保留六位小数。成员 B 确认历史收益口径与回看窗口。 |
-| processed/corporate_actions.csv 的 date、symbol、event、value | 除权息日、股票代码；dividends 为美元/股，splits 为比例 | 原始 events 字段。窗口内返回 NVDA 7 笔现金分红，三股均无拆股记录；发生拆股时回放会暂停，需核对计算代理调整。 |
-| output/tables/data_quality.csv | 每只标的 1 行 | 按日历逐日匹配、查重、校验两个价格字段；缺失记录、非法价格或合同初值不符均报错，无插值。 |
-| config/product_terms.yaml | 单张票据美元金额、比率、ISO 日期 | SEC 定价文件 PS-1、PS-2，成员 A 待复核。schedule 每对日期依次为观察日与支付日。 |
-| 两张现金流表的 period、observation_date、payment_date、股票代码 | 观察期、计划日期、各股美元收盘价 | historical_replay 使用行情；synthetic_memory_call 使用手设路径。 |
-| coupon、principal、cashflow | 每张票据应付美元 | 含补发的票息、当期偿还本金、二者之和。保留合同票息精度。 |
-| pending_periods、expired_periods、status | 期数、期数、状态 | 期末可补发期数、到期失效期数、outstanding / autocalled / matured。 |
+本项目使用冻结的 Yahoo Finance Chart 响应重建三只标的股票的数据，并将合同履约回放与模型参数估计分开处理。
 
-周末和全日休市日从预期交易日中剔除；提前收市日计入。2025-01-09 特别休市也已纳入。[Nasdaq 交易日历](https://www.nasdaqtrader.com/Trader.aspx?id=Calendar) · [特别休市公告](https://www.nasdaqtrader.com/TraderNews.aspx?id=ETA2025-1)
+- 股票：AMZN、NVDA、PLTR；
+- 原始请求区间：2025-01-01 至 2026-11-06；
+- 有效交易日区间：2025-01-02 至 2026-11-06；
+- 冻结快照下载日：2026-11-09；
+- 每只股票有效交易日：464；
+- 产品定价日：2025-12-19；
+- 发行后真实行情截止日：2026-11-06。
 
-| 后续输入 | 负责人及待定口径 |
-| --- | --- |
-| 股息、波动率、相关系数 | B 选择历史/隐含估计、期限、样本区间及分红预测。C 按估值日截断，并记录数据版本。 |
-| 无风险利率、折现和发行人信用 | B 确认曲线、计息约定和是否计入发行人信用。A 整理 Barclays 发行文件和信用资料。 |
-| 历史与模拟 | 定价日估值仅使用当时可知的输入。快照中的后续价格用于回放；如要求严格时点数据，还需取得当时留存的行情/参数版本。 |
+定价日模型只使用截至 2025-12-19 的信息估计参数。定价日后的真实价格只用于历史履约回放，不进入定价日模型校准，以避免前视偏差。
+
+---
+
+## 2. 原始数据
+
+### 2.1 `raw/manifest.json`
+
+记录以下可追溯信息：
+
+- 数据提供方；
+- 原始请求起止时间；
+- 数据下载日期；
+- 每只股票的精确请求 URL；
+- 每份原始 JSON 的 SHA-256 校验值。
+
+程序每次运行都会重新计算原始文件的 SHA-256。如果文件与 manifest 不一致，数据处理将停止。
+
+### 2.2 `raw/AMZN.json`、`raw/NVDA.json`、`raw/PLTR.json`
+
+Yahoo Finance Chart API 的冻结响应，主要使用：
+
+| 原始字段 | 单位与频率 | 用途 |
+|---|---|---|
+| `timestamp` | Unix 秒，每个交易日 | 转换为 America/New_York 当地交易日期 |
+| `quote.close` | USD/股，日频 | 重建合同使用的 Close |
+| `adjclose.adjclose` | USD/股，日频 | 重建用于历史参数估计的 Adjusted Close |
+| `events.dividends` | USD/股 | 记录现金分红 |
+| `events.splits` | 拆股比例 | 检测公司行动和潜在合同调整 |
+| `meta.symbol` | 股票代码 | 验证标的身份 |
+| `meta.currency` | 币种 | 必须为 USD |
+| `meta.exchangeTimezoneName` | 时区 | 必须为 America/New_York |
+
+---
+
+## 3. 处理后数据
+
+### 3.1 `processed/prices_close.csv`
+
+| 字段 | 类型与单位 | 说明 |
+|---|---|---|
+| `date` | ISO 日期 | 美国市场交易日 |
+| `AMZN`、`NVDA`、`PLTR` | USD/股 | Yahoo Close，输出至小数点后两位 |
+
+主要用途：
+
+- 按合同观察日回放实际票息和赎回状态；
+- 与合同列示的美元障碍价格比较；
+- 绘制历史标准化价格图。
+
+合同履约判断使用 Close，而不是 Adjusted Close。程序会核对定价日 Close 与合同初始价格是否完全一致。
+
+### 3.2 `processed/prices_adjusted.csv`
+
+| 字段 | 类型与单位 | 说明 |
+|---|---|---|
+| `date` | ISO 日期 | 美国市场交易日 |
+| `AMZN`、`NVDA`、`PLTR` | USD/股 | 供应商 Adjusted Close，保留六位小数 |
+
+主要用途：
+
+- 计算日对数收益率；
+- 估计年化波动率；
+- 估计收益率相关矩阵。
+
+Adjusted Close 用于消除分红和拆股对历史收益率造成的非经济性跳变，不能直接与合同原始美元障碍比较。
+
+### 3.3 `processed/corporate_actions.csv`
+
+| 字段 | 类型与单位 | 说明 |
+|---|---|---|
+| `date` | ISO 日期 | 公司行动日期 |
+| `symbol` | 股票代码 | AMZN、NVDA 或 PLTR |
+| `event` | 文本 | `dividends` 或 `splits` |
+| `value` | USD/股或比例 | 分红金额或拆股比例 |
+
+当前窗口记录 NVDA 七笔现金分红，三只股票均无拆股记录。若检测到拆股，程序会停止自动回放，要求核对计算代理的合同调整。
+
+### 3.4 质量检查结果
+
+`output/tables/data_quality.csv` 每只股票一行，包含：
+
+- 首末交易日；
+- 交易日数量；
+- 缺失交易日；
+- 重复日期；
+- 缺失价格；
+- 拆股和分红数量；
+- 定价日 Close；
+- 合同初始价格。
+
+当前三只股票均有 464 个交易日，缺失、重复和非法价格数量均为零，定价日 Close 与合同初始价格一致。
+
+---
+
+## 4. 市场日历
+
+### `config/market_calendar.yaml`
+
+保存项目使用的交易日区间和特殊休市日期。周末和全日休市日从预期交易日中剔除，提前收市日仍计为交易日。
+
+日历参考：
+
+- [Nasdaq Trader Calendar](https://www.nasdaqtrader.com/Trader.aspx?id=Calendar)；
+- [2025-01-09 特别休市公告](https://www.nasdaqtrader.com/TraderNews.aspx?id=ETA2025-1)。
+
+程序要求三只股票的实际日期集合与预期交易日集合完全一致，不进行自动插值或向前填充。
+
+---
+
+## 5. 合同与模型配置
+
+### 5.1 `config/product_terms.yaml`
+
+保存 SEC 最终定价文件确定的合同参数：
+
+- 产品名称、ISIN、CUSIP、发行人和币种；
+- 面值、定价日、结算日和到期日；
+- 年化票息率和每年票息次数；
+- Memory coupon 开关；
+- 三只股票的初始价格、票息障碍和本金障碍；
+- 自动赎回起始期及赎回水平；
+- Best-of 本金保护开关和保护水平；
+- 12 组观察日与付款日。
+
+金额以每张面值 USD 1,000 的票据为单位。程序使用合同列示的实际障碍价格，不以未经舍入的 50% 计算值替代。
+
+### 5.2 `config/model_inputs.yaml`
+
+| 参数 | 当前值或单位 | 用途 |
+|---|---|---|
+| `model` | `correlated_gbm` | 相关几何布朗运动 |
+| `measure` | `risk_neutral` | 风险中性估值口径 |
+| `risk_free_rate` | 0.0353 | 常数连续复利无风险利率近似 |
+| `dividend_yields` | AMZN 0；NVDA 0.0003；PLTR 0 | 连续股息率假设 |
+| `volatilities` | 年化小数 | 一年历史窗口估计 |
+| `correlation` | 无量纲矩阵 | 一年历史窗口日对数收益相关性 |
+| `n_paths` | 100000 | Monte Carlo 路径数 |
+| `seed` | 5690 | 固定随机种子，保证复现 |
+
+无风险利率当前以定价日附近三年期美国国债收益率 3.53% 作常数连续利率近似。股息率为当前模型简化假设。正式提交前应由模型负责人确认利率曲线、计息约定和股息率依据，并将对应来源或假设说明加入 Source Table；这些值不是 SEC 合同参数。
+
+---
+
+## 6. 参数估计
+
+### 6.1 收益率
+
+使用 Adjusted Close 的日对数收益：
+
+\[
+r_{i,t}=\ln\left(\frac{S^{adj}_{i,t}}{S^{adj}_{i,t-1}}\right).
+\]
+
+### 6.2 年化波动率
+
+使用样本标准差并按 252 个交易日年化：
+
+\[
+\sigma_i=\operatorname{Std}(r_{i,t})\sqrt{252}.
+\]
+
+### 6.3 相关矩阵
+
+使用同一窗口内三只股票日对数收益的 Pearson 相关系数。
+
+### 6.4 估计窗口
+
+| 窗口 | 起止日期 | 日收益数 | 用途 |
+|---|---|---:|---|
+| 一年窗口 | 2025-01-02 至 2025-12-19 | 242 | 历史基准参数 |
+| 半年窗口 | 2025-06-19 至 2025-12-19 | 127 | 参数窗口敏感性 |
+
+具体波动率和相关系数保存在 `output/tables/parameters.csv`。模型时间间隔和现金流折现使用 Actual/365；历史波动率年化使用 252 个交易日，二者用途不同。
+
+---
+
+## 7. 输出表格
+
+### 7.1 `output/tables/historical_replay.csv`
+
+定价日后的实际合同回放，每行对应一个已发生观察日：
+
+| 字段 | 含义 |
+|---|---|
+| `period` | 观察期编号 |
+| `observation_date`、`payment_date` | 观察日和相关付款日 |
+| `AMZN`、`NVDA`、`PLTR` | 观察日实际 Close，USD/股 |
+| `coupon` | 当期实际支付票息，包括 Memory 补发 |
+| `pending_periods` | 尚待恢复的票息期数 |
+| `expired_periods` | 到期失效的未付票息期数 |
+| `principal` | 当期偿还本金 |
+| `cashflow` | 票息与本金之和 |
+| `status` | `outstanding`、`autocalled` 或 `matured` |
+
+### 7.2 `output/tables/parameters.csv`
+
+记录一年和半年估计窗口的：
+
+- 样本起止日期；
+- 日收益数量；
+- 三只股票年化波动率；
+- 三组两两相关系数。
+
+### 7.3 `output/tables/monte_carlo_summary.csv`
+
+记录历史基准情景的主要估值和风险指标：
+
+- 模型、路径数、随机种子和无风险利率；
+- 模型价值和 Monte Carlo 标准误；
+- 未折现预期现金流；
+- 自动赎回、本金损失及负回报比例；
+- 平均票息；
+- 平均、中位数和第 5 百分位名义回报；
+- 最差 5% 路径平均回报；
+- 平均本金支付时间；
+- Memory 补发比例；
+- 路径现值的最小值、分位数和最大值。
+
+所有概率和分布均来自风险中性模型，不能解释为现实世界预测概率。
+
+### 7.4 `output/tables/scenarios.csv`
+
+每行对应一组情景，包含模型价值、标准误、赎回比例、本金损失比例、负回报比例、平均票息、回报分位数、尾部回报、平均期限和 Memory 补发比例。
+
+当前十组情景包括：
+
+1. 开发期参数；
+2. 仅替换 PLTR 波动率；
+3. 一年历史参数基准；
+4. 半年历史窗口；
+5. 全部波动率增加 25%；
+6. 较低相关性；
+7. 较高相关性；
+8. 高波动率与低相关性组合；
+9. 取消 Memory coupon；
+10. 取消 Best-of 本金保护。
+
+### 7.5 `output/tables/exit_distribution.csv`
+
+记录每个情景、每个观察期的无条件自动赎回比例和到期退出比例。各期退出比例之和为 1。
+
+### 7.6 `output/tables/representative_median_path.csv`
+
+记录从全部 Monte Carlo 路径中选出的代表性实际路径及其逐期现金流。该路径最接近逐观察日、逐标的标准化价格的横截面中位数，但不等于预期路径或最可能路径。
+
+---
+
+## 8. 输出图形
+
+`output/figures/` 当前包含：
+
+| 文件 | 内容 |
+|---|---|
+| `normalized_prices.svg` | 定价日后的真实标准化价格、障碍和观察日 |
+| `maturity_redemption_map.svg` | Worst-of 与 Best-of 共同决定的到期本金状态图 |
+| `monte_carlo_value_distribution.svg` | 折现路径价值分布及三项价格参照 |
+| `nominal_return_distribution.svg` | 风险中性名义总回报及最差 5% 尾部 |
+| `exit_distribution.svg` | 各观察期自动赎回、到期和累计赎回比例 |
+| `coupon_distribution.svg` | 最终实际支付票息期数分布 |
+| `scenario_sensitivity.svg` | 各情景相对历史基准的模型价值变化 |
+| `parameter_window_comparison.svg` | 一年与半年窗口波动率及模型价值比较 |
+| `correlation_heatmap.svg` | 一年与半年窗口相关矩阵比较 |
+| `representative_median_path.svg` | 代表性实际模拟路径及合同状态 |
+| `monte_carlo_paths.svg` | 相关 GBM 路径样本和中位走势 |
+
+图形的详细阅读方法见项目根目录 `FIGURE_GUIDE.md`。
+
+---
+
+## 9. 数据与模型验证
+
+`src/data_loader.py` 执行：
+
+- 原始文件 SHA-256 校验；
+- 股票代码、币种和时区校验；
+- 交易日集合匹配；
+- 重复日期、缺失值、非正数和非有限价格检查；
+- 定价日 Close 与合同初始价格核对；
+- 拆股检测。
+
+`tests/` 当前包含 18 项自动测试，覆盖：
+
+- 第一观察日不可自动赎回；
+- 首个符合资格的观察日赎回；
+- Memory 累计、补发和重置；
+- 提前赎回后后续现金流为零；
+- 到期 Worst-of 本金损失；
+- Best-of 本金保护及等号边界；
+- 合同列示障碍边界；
+- 向量化现金流与可读单路径引擎一致；
+- 固定随机种子的可复现性；
+- 模拟价格形状和正值；
+- 零波动率确定性增长；
+- 相关矩阵有效性；
+- 历史校准结果；
+- 折现估值；
+- 退出分布合计为 1。
+
+自动测试是当前主要验证证据。组内可由非主要实现者复核边界案例和预期结果，无需为满足课程要求另建重复的计算引擎。
+
+---
+
+## 10. 复现方法
+
+从项目根目录运行：
+
+```bash
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -v
+python -m src.demo
+```
+
+依赖版本：
+
+- Python 3.10；
+- PyYAML 6.0；
+- reportlab 3.6.12；
+- NumPy 1.26.4。
+
+只要原始数据、配置、依赖和随机种子保持不变，主要表格、图形和终端摘要应可重复生成。
+
+---
+
+## 11. 已知数据与参数限制
+
+- Yahoo Finance 是公共市场数据源，不是合同指定的计算代理数据源；
+- 历史波动率和相关性可能随样本窗口变化；
+- 当前无风险利率使用单一常数近似，未建立完整零息曲线；
+- 当前股息率为简化假设，未建立期限结构；
+- 历史参数不是期权市场隐含参数；
+- 风险中性概率不是投资者现实世界发生概率；
+- 当前模型不包含跳跃、随机波动率、动态相关性、发行人违约、bail-in 或二级市场流动性；
+- 市场中断、延期估值和计算代理裁量不在普通计划内模拟中自动处理；
+- 定价日后的真实行情只能用于履约回放，不应进入定价日参数估计。
