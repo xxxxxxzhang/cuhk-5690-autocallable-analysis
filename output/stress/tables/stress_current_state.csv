@@ -1,0 +1,2 @@
+valuation_date,event_shock_label,source_event,AMZN_spot,NVDA_spot,PLTR_spot,AMZN_mega_ipo_proxy_CAR,NVDA_mega_ipo_proxy_CAR,PLTR_mega_ipo_proxy_CAR
+2026-11-20,mega_ipo_proxy_shock,spacex_ipo,246.82,125.53,143.49,-0.06339597026288533,-0.05224441948035677,-0.052792008265412804

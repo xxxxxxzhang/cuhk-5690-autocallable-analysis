@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="900" height="500" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="900" height="500"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-500)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="900" height="500" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="60" y="462" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,924) scale(1,-1)">Rate-curve and mega-IPO proxy factorial stress test</text>
+			<text x="60" y="438" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,876) scale(1,-1)">All four factorial scenarios use identical shocks and the same election-regime parameters</text>
+			<rect x="128.0" y="145" width="106.5" height="181.26027403485853" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,47%,65%); fill-rule: evenodd;"/>
+			<text x="133.0" y="335.2602740348585" style="font-family: Times-Roman; font-size: 9px;fill: rgb(29%,47%,65%); stroke:none;" transform="translate(0,670) scale(1,-1)">USD 779.73</text>
+			<text x="128.0" y="123" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,246) scale(1,-1)">current_regime</text>
+			<text x="118.0" y="102" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,204) scale(1,-1)">Call 25.2%</text>
+			<text x="118.0" y="86" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,172) scale(1,-1)">Loss 39.0%</text>
+			<rect x="310.5" y="145" width="106.5" height="176.5948452943029" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(81%,56%,15%); fill-rule: evenodd;"/>
+			<text x="315.5" y="330.5948452943029" style="font-family: Times-Roman; font-size: 9px;fill: rgb(81%,56%,15%); stroke:none;" transform="translate(0,661) scale(1,-1)">USD 778.27</text>
+			<text x="310.5" y="123" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,246) scale(1,-1)">rate_only</text>
+			<text x="300.5" y="102" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,204) scale(1,-1)">Call 25.7%</text>
+			<text x="300.5" y="86" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,172) scale(1,-1)">Loss 37.7%</text>
+			<rect x="493.0" y="145" width="106.5" height="65.4300537956334" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(56%,41%,70%); fill-rule: evenodd;"/>
+			<text x="498.0" y="219.4300537956334" style="font-family: Times-Roman; font-size: 9px;fill: rgb(56%,41%,70%); stroke:none;" transform="translate(0,438) scale(1,-1)">USD 743.39</text>
+			<text x="493.0" y="123" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,246) scale(1,-1)">ipo_only</text>
+			<text x="483.0" y="102" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,204) scale(1,-1)">Call 21.5%</text>
+			<text x="483.0" y="86" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,172) scale(1,-1)">Loss 43.1%</text>
+			<rect x="675.5" y="145" width="106.5" height="63.739725965141474" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="680.5" y="217.73972596514147" style="font-family: Times-Roman; font-size: 9px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,435) scale(1,-1)">USD 742.86</text>
+			<text x="675.5" y="123" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,246) scale(1,-1)">joint</text>
+			<text x="665.5" y="102" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,204) scale(1,-1)">Call 22.1%</text>
+			<text x="665.5" y="86" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,172) scale(1,-1)">Loss 41.7%</text>
+			<path d="M 90,145 L 820,145 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="60" y="35" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,70) scale(1,-1)">Base = current regime + flat rate; IPO = mega-IPO proxy shock sourced from SpaceX [-5,+5] CAR.</text>
+		</g>
+	</g>
+</svg>

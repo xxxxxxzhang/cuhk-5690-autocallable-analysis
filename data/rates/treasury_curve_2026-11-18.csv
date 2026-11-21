@@ -1,0 +1,7 @@
+as_of,tenor_years,zero_rate,source,interpretation
+2026-11-18,0.083333,0.0410,Federal Reserve H.15,Treasury constant-maturity yield used as zero-rate proxy
+2026-11-18,0.250000,0.0434,Federal Reserve H.15,Treasury constant-maturity yield used as zero-rate proxy
+2026-11-18,0.500000,0.0443,Federal Reserve H.15,Treasury constant-maturity yield used as zero-rate proxy
+2026-11-18,1.000000,0.0462,Federal Reserve H.15,Treasury constant-maturity yield used as zero-rate proxy
+2026-11-18,2.000000,0.0480,Federal Reserve H.15,Treasury constant-maturity yield used as zero-rate proxy
+2026-11-18,3.000000,0.0484,Federal Reserve H.15,Treasury constant-maturity yield used as zero-rate proxy

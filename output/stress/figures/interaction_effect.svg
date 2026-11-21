@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="900" height="455" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 455" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="900" height="455"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-455)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="900" height="455" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="60" y="417" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,834) scale(1,-1)">Nonlinear joint-effect diagnostic</text>
+			<text x="60" y="393" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,786) scale(1,-1)">Does the combined rate/mega-IPO proxy result equal the two standalone effects?</text>
+			<rect x="177.0" y="115" width="112.66666666666663" height="163.4510172155674" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,47%,65%); fill-rule: evenodd;"/>
+			<text x="175.0" y="286.4510172155674" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,572) scale(1,-1)">USD 779.73</text>
+			<text x="159.0" y="93" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,186) scale(1,-1)">Base</text>
+			<rect x="393.66666666666663" y="115" width="112.66666666666663" height="56.54898278443258" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(48%,54%,60%); fill-rule: evenodd;"/>
+			<text x="391.66666666666663" y="179.54898278443258" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,359) scale(1,-1)">USD 741.92</text>
+			<text x="375.66666666666663" y="93" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,186) scale(1,-1)">Additive prediction</text>
+			<rect x="610.3333333333333" y="115" width="112.66666666666663" height="59.18845020600813" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="608.3333333333333" y="182.18845020600813" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,364) scale(1,-1)">USD 742.86</text>
+			<text x="592.3333333333333" y="93" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,186) scale(1,-1)">Actual joint</text>
+			<path d="M 125,115 L 775,115 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="60" y="50" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,100) scale(1,-1)">Rate effect -1.46  |  mega-IPO proxy effect -36.34  |  interaction +0.93 USD</text>
+		</g>
+	</g>
+</svg>

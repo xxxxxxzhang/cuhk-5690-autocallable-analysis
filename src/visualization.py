@@ -768,3 +768,200 @@ def plot_coupon_distribution(coupon_totals, coupon_amount, *,
     target.parent.mkdir(parents=True, exist_ok=True)
     renderSVG.drawToFile(fig, str(target))
     return target
+
+
+def plot_event_study_cars(rows, *, filename="spacex_car.svg"):
+    """Compare target cumulative abnormal returns across event windows."""
+    selected = sorted(rows, key=lambda row: (
+        int(row["window_end"]) - int(row["window_start"]), row["target"]
+    ))
+    if not selected:
+        raise ValueError("No event-study rows to plot")
+    labels = [
+        f"{row['target']} [{row['window_start']:+d},{row['window_end']:+d}]"
+        for row in selected
+    ]
+    values = [100 * float(row["car"]) for row in selected]
+    limit = max(1.0, max(abs(value) for value in values) * 1.25)
+    fig = Drawing(900, 470)
+    fig.add(Rect(0, 0, 900, 470, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 432, "SpaceX IPO cumulative abnormal returns",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 408,
+                   "Two-factor market model: QQQ and SOXX; trading-day windows",
+                   fontSize=11))
+    left, bottom, width, height = 95, 105, 735, 245
+    zero = bottom + height * limit / (2 * limit)
+    fig.add(Line(left, zero, left + width, zero,
+                 strokeColor=colors.HexColor("#374151"), strokeWidth=1))
+    slot = width / len(values)
+    bar_width = slot * 0.60
+    for index, (label, value) in enumerate(zip(labels, values, strict=True)):
+        x = left + index * slot + (slot - bar_width) / 2
+        y = zero if value >= 0 else zero + height * value / (2 * limit)
+        bar_height = abs(height * value / (2 * limit))
+        colour = "#1d6f42" if value >= 0 else "#b42318"
+        fig.add(Rect(x, y, bar_width, bar_height,
+                     fillColor=colors.HexColor(colour), strokeColor=None))
+        fig.add(String(x + 2, zero + (bar_height + 7 if value >= 0 else -18),
+                       f"{value:.2f}%", fontSize=8,
+                       fillColor=colors.HexColor(colour)))
+        fig.add(String(x - 6, bottom - 24, label, fontSize=7))
+    fig.add(String(60, 35,
+                   "Negative CAR indicates underperformance after controlling for broad technology and semiconductor returns.",
+                   fontSize=9))
+    target = ROOT / "output/stress/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_factorial_stress(rows, *, filename="factorial_stress.svg"):
+    """Show current value and key probabilities for the four factorial scenarios."""
+    order = ["current_regime", "rate_only", "ipo_only", "joint"]
+    by_name = {row["scenario"]: row for row in rows}
+    if not set(order).issubset(by_name):
+        raise ValueError("Factorial stress plot is missing a required scenario")
+    values = [float(by_name[name]["pv_usd"]) for name in order]
+    low = min(values) - 20
+    high = max(values) + 20
+    fig = Drawing(900, 500)
+    fig.add(Rect(0, 0, 900, 500, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 462, "Rate-curve and mega-IPO proxy factorial stress test",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 438,
+                   "All four factorial scenarios use identical shocks and the same election-regime parameters",
+                   fontSize=11))
+    left, bottom, width, height = 90, 145, 730, 245
+    slot = width / len(order)
+    palette = ["#4b78a8", "#d18f28", "#8f6bb3", "#b42318"]
+    for index, name in enumerate(order):
+        row = by_name[name]
+        value = float(row["pv_usd"])
+        x = left + index * slot + 38
+        bar_width = slot - 76
+        bar_height = height * (value - low) / (high - low)
+        fig.add(Rect(x, bottom, bar_width, bar_height,
+                     fillColor=colors.HexColor(palette[index]), strokeColor=None))
+        fig.add(String(x + 5, bottom + bar_height + 9,
+                       f"USD {value:.2f}", fontSize=9,
+                       fillColor=colors.HexColor(palette[index])))
+        fig.add(String(x, bottom - 22, name, fontSize=9))
+        fig.add(String(x - 10, bottom - 43,
+                       f"Call {float(row['autocall_Q']):.1%}", fontSize=8))
+        fig.add(String(x - 10, bottom - 59,
+                       f"Loss {float(row['principal_loss_Q']):.1%}", fontSize=8))
+    fig.add(Line(left, bottom, left + width, bottom, strokeColor=colors.black))
+    fig.add(String(60, 35,
+                   "Base = current regime + flat rate; IPO = mega-IPO proxy shock sourced from SpaceX [-5,+5] CAR.",
+                   fontSize=9))
+    target = ROOT / "output/stress/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_interaction_effect(rows, *, filename="interaction_effect.svg"):
+    """Visualize additive and actual joint effects on current note value."""
+    by_name = {row["scenario"]: row for row in rows}
+    base = float(by_name["current_regime"]["pv_usd"])
+    rate_effect = float(by_name["rate_only"]["pv_usd"]) - base
+    ipo_effect = float(by_name["ipo_only"]["pv_usd"]) - base
+    additive = base + rate_effect + ipo_effect
+    joint = float(by_name["joint"]["pv_usd"])
+    interaction = joint - additive
+    labels = ["Base", "Additive prediction", "Actual joint"]
+    values = [base, additive, joint]
+    low, high = min(values) - 20, max(values) + 20
+    fig = Drawing(900, 455)
+    fig.add(Rect(0, 0, 900, 455, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 417, "Nonlinear joint-effect diagnostic",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 393,
+                   "Does the combined rate/mega-IPO proxy result equal the two standalone effects?",
+                   fontSize=11))
+    left, bottom, width, height = 125, 115, 650, 220
+    slot = width / len(values)
+    colours = ["#4b78a8", "#7c8b9a", "#b42318"]
+    for index, (label, value) in enumerate(zip(labels, values, strict=True)):
+        x = left + index * slot + 52
+        bar_width = slot - 104
+        bar_height = height * (value - low) / (high - low)
+        fig.add(Rect(x, bottom, bar_width, bar_height,
+                     fillColor=colors.HexColor(colours[index]), strokeColor=None))
+        fig.add(String(x - 2, bottom + bar_height + 8,
+                       f"USD {value:.2f}", fontSize=9))
+        fig.add(String(x - 18, bottom - 22, label, fontSize=9))
+    fig.add(Line(left, bottom, left + width, bottom, strokeColor=colors.black))
+    fig.add(String(60, 50,
+                   f"Rate effect {rate_effect:+.2f}  |  mega-IPO proxy effect {ipo_effect:+.2f}  |  interaction {interaction:+.2f} USD",
+                   fontSize=10))
+    target = ROOT / "output/stress/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target
+
+
+def plot_election_regime(comparison_rows, scenario_rows, *,
+                         filename="election_regime_comparison.svg"):
+    """Compare pre/post election volatility and the legacy/current-regime value."""
+    if not comparison_rows:
+        raise ValueError("No election-regime comparison rows to plot")
+    by_scenario = {row["scenario"]: row for row in scenario_rows}
+    legacy = float(by_scenario["legacy_current"]["pv_usd"])
+    regime = float(by_scenario["current_regime"]["pv_usd"])
+    fig = Drawing(900, 510)
+    fig.add(Rect(0, 0, 900, 510, fillColor=colors.white, strokeColor=None))
+    fig.add(String(60, 472, "Post-midterm-election regime update",
+                   fontName="Helvetica-Bold", fontSize=22))
+    fig.add(String(60, 448,
+                   "Equal-length realized windows for diagnosis; EWMA volatility for forward simulation",
+                   fontSize=11))
+
+    left, bottom, width, height = 75, 150, 540, 235
+    maximum = 100 * max(
+        max(float(row["pre_annualized_volatility"]),
+            float(row["post_annualized_volatility"]),
+            float(row["ewma_annualized_volatility"]))
+        for row in comparison_rows
+    ) * 1.20
+    group_width = width / len(comparison_rows)
+    colours = ["#7c8b9a", "#b42318", "#1d6f42"]
+    labels = ["Pre-election", "Post-election", "EWMA current"]
+    keys = ["pre_annualized_volatility", "post_annualized_volatility",
+            "ewma_annualized_volatility"]
+    for group, row in enumerate(comparison_rows):
+        for index, key in enumerate(keys):
+            value = 100 * float(row[key])
+            bar_width = group_width / 5
+            x = left + group * group_width + (index + 1) * bar_width
+            bar_height = height * value / maximum
+            fig.add(Rect(x, bottom, bar_width - 4, bar_height,
+                         fillColor=colors.HexColor(colours[index]), strokeColor=None))
+            fig.add(String(x - 1, bottom + bar_height + 7,
+                           f"{value:.1f}%", fontSize=7))
+        fig.add(String(left + group * group_width + group_width / 2 - 15,
+                       bottom - 22, row["symbol"], fontSize=9))
+    fig.add(Line(left, bottom, left + width, bottom, strokeColor=colors.black))
+    for index, label in enumerate(labels):
+        x = 80 + index * 135
+        fig.add(Rect(x, 414, 12, 8, fillColor=colors.HexColor(colours[index]),
+                     strokeColor=None))
+        fig.add(String(x + 17, 411, label, fontSize=8))
+
+    box_x = 660
+    fig.add(String(box_x, 350, "Current-value comparison",
+                   fontName="Helvetica-Bold", fontSize=11))
+    fig.add(String(box_x, 318, f"Legacy parameters: USD {legacy:.2f}", fontSize=10))
+    fig.add(String(box_x, 291, f"Election regime:  USD {regime:.2f}", fontSize=10))
+    difference = regime - legacy
+    fig.add(String(box_x, 264, f"Difference:       USD {difference:+.2f}",
+                   fontSize=10,
+                   fillColor=colors.HexColor("#1d6f42" if difference >= 0 else "#b42318")))
+    fig.add(String(60, 55,
+                   "The election date is a regime breakpoint, not a second price shock; current spots are not adjusted again.",
+                   fontSize=9))
+    target = ROOT / "output/stress/figures" / filename
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(fig, str(target))
+    return target

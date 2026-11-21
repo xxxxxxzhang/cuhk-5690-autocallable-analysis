@@ -324,6 +324,7 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python -m src.demo
+python -m src.stress_demo
 ```
 
 依赖版本：
@@ -335,13 +336,76 @@ python -m src.demo
 
 只要原始数据、配置、依赖和随机种子保持不变，主要表格、图形和终端摘要应可重复生成。
 
+### 10.1 Terminal 摘要与底层表格的对应关系
+
+`python -m src.demo` 的发行日估值和敏感性摘要分别来自：
+
+- `monte_carlo_summary.csv`；
+- `scenarios.csv`；
+- `historical_replay.csv`。
+
+`python -m src.stress_demo` 的七段当前状态摘要分别来自：
+
+- 当前状态：`stress_current_state.csv`；
+- 选举前后诊断：`election_pre_post_comparison.csv`；
+- 参数更新：`election_regime_parameters.csv`；
+- 事件研究：`spacex_event_study.csv`；
+- 五情景结果：`stress_scenarios.csv`；
+- 非线性互动：`interaction_decomposition.csv`。
+
+Terminal 只负责便于快速阅读，不替代 CSV。报告数字应优先引用对应 CSV，以保留完整精度和可审计性。
+
 ---
 
-## 11. 已知数据与参数限制
+## 11. 当前状态压力测试扩展数据
+
+### 11.1 `event_study/raw/`
+
+保存 AMZN、NVDA、PLTR、QQQ 和 SOXX 的 Nasdaq 历史行情冻结响应，覆盖 SpaceX 2026-06-12 IPO 的估计窗口和事件窗口。`manifest.json` 保存每份快照的 SHA-256，程序运行时重新验证。
+
+### 11.2 `event_study/processed/event_prices.csv`
+
+五个代码按共同交易日对齐后的收盘价宽表。该数据只用于 SpaceX IPO 事件研究，不进入发行日参数校准。
+
+### 11.3 `stress/raw/`
+
+保存 AMZN、NVDA 和 PLTR 截至 2026-11-20 的冻结快照，用于确定当前状态估值的起始价格，并与长期 Adjusted Close 合并以估计选举后的 EWMA 参数。2026-10-15至2026-11-19的原始区间来自 Nasdaq 历史接口；2026-11-20一行来自 Yahoo Finance 历史价格页，并在 `manifest.json` 中单独记录来源、抓取日期和更新后的 SHA-256。当前估值不会改写合同初始价格、障碍价格或自动赎回水平。
+
+### 11.4 `rates/treasury_curve_2026-11-19.csv`
+
+| 字段 | 说明 |
+|---|---|
+| `as_of` | Federal Reserve H.15 数据日期 |
+| `tenor_years` | 期限，以年表示 |
+| `zero_rate` | 年化小数；课堂模型将 constant-maturity yield 作为连续复利零息率代理 |
+| `source` | 数据来源 |
+| `interpretation` | 模型解释和限制 |
+
+该曲线用于当前压力估值中的路径远期利率和现金流贴现。它不是交易级 OIS 零息曲线，因此只能解释为透明、可复现的利率期限结构代理。
+2026-11-21提交版本使用美联储2026-11-20发布的 [H.15 Selected Interest Rates](https://www.federalreserve.gov/releases/h15/)；该期最新可用的 constant-maturity 观察日为2026-11-19。
+
+### 11.5 当前状态、参数换挡和事件输出
+
+`output/stress/tables/` 包含：
+
+- `spacex_event_study.csv`：事件窗口、原始收益、CAR、近似 z 值和回归系数；
+- `stress_current_state.csv`：估值日价格、超大型 IPO 代理冲击及其历史来源；
+- `election_pre_post_comparison.csv`：2026-11-03 前后等长窗口的累计收益和已实现波动率；
+- `election_regime_parameters.csv`：长期、EWMA、收缩后当前参数以及选举前后诊断估计；
+- `stress_scenarios.csv`：旧参数基准、当前参数基准及四个 2×2 因子情景的估值与风险指标；
+- `stress_exit_distribution.csv`：五个当前状态情景的剩余观察期退出概率；
+- `interaction_decomposition.csv`：联合结果相对机械可加预测的互动项。
+
+中期选举在模型中是参数换挡节点，不是第二次价格冲击；现货价格不会因此再次调整。SpaceX CAR 则是未来超大型 IPO 资金分流的历史代理冲击，并非假设 SpaceX 再次上市。所有当前压力概率仍为风险中性模型结果；单一事件 CAR 不构成因果证明、现实世界发生概率或未来收益预测。
+
+---
+
+## 12. 已知数据与参数限制
 
 - Yahoo Finance 是公共市场数据源，不是合同指定的计算代理数据源；
 - 历史波动率和相关性可能随样本窗口变化；
-- 当前无风险利率使用单一常数近似，未建立完整零息曲线；
+- 选举后诊断窗口只有 13 个日收益，近期相关性因此向长期矩阵收缩，但参数不确定性仍然较高；
+- 发行日模型使用单一常数利率；当前压力扩展将 H.15 constant-maturity yields 作为零息曲线代理，而非交易级 OIS 曲线；
 - 当前股息率为简化假设，未建立期限结构；
 - 历史参数不是期权市场隐含参数；
 - 风险中性概率不是投资者现实世界发生概率；

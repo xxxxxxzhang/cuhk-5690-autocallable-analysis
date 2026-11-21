@@ -205,6 +205,90 @@ def simulate_price_array(terms, inputs, *, shocks=None, n_paths=None, seed=None)
     return initial * np.exp(np.cumsum(increments, axis=1))
 
 
+def simulate_remaining_price_array(terms, inputs, *, valuation_date,
+                                   current_spots, past_fixings, rate_curve,
+                                   shocks=None, n_paths=None, seed=None):
+    """Condition the simulation on the live note state and simulate future fixings.
+
+    Historical observation fixings are copied into every path so the existing
+    vectorized payoff engine reconstructs coupon-memory and autocall state. Only
+    observations strictly after ``valuation_date`` are simulated from the
+    supplied current spots. The rate curve supplies interval forward rates.
+    """
+    symbols, _rate, volatilities, dividends, lower = _validated_parameters(
+        terms, inputs
+    )
+    observations = [row[0] for row in terms["schedule"]]
+    first_future = next(
+        (index for index, observation in enumerate(observations)
+         if observation > valuation_date),
+        len(observations),
+    )
+    if first_future == len(observations):
+        raise ValueError("No contractual observation remains after the valuation date")
+
+    future_periods = len(observations) - first_future
+    count = int(inputs["n_paths"] if n_paths is None else n_paths)
+    random_seed = int(inputs["seed"] if seed is None else seed)
+    if count <= 0:
+        raise ValueError("n_paths must be positive")
+    if shocks is None:
+        shocks = np.random.default_rng(random_seed).standard_normal(
+            (count, future_periods, len(symbols))
+        )
+    shocks = np.asarray(shocks, dtype=float)
+    expected_shape = (future_periods, len(symbols))
+    if shocks.ndim != 3 or shocks.shape[1:] != expected_shape:
+        raise ValueError(
+            f"Shocks must have shape (n_paths, {future_periods}, {len(symbols)})"
+        )
+    if not np.isfinite(shocks).all():
+        raise ValueError("Shocks must be finite")
+    count = len(shocks)
+
+    prices = np.empty((count, len(observations), len(symbols)), dtype=float)
+    for period in range(first_future):
+        observation = observations[period]
+        if observation not in past_fixings:
+            raise ValueError(f"Missing historical fixing on {observation}")
+        try:
+            fixing = [float(past_fixings[observation][symbol]) for symbol in symbols]
+        except KeyError as error:
+            raise ValueError(
+                f"Historical fixing on {observation} is missing {error.args[0]}"
+            ) from error
+        if not np.isfinite(fixing).all() or any(value <= 0 for value in fixing):
+            raise ValueError(f"Invalid historical fixing on {observation}")
+        prices[:, period, :] = fixing
+
+    try:
+        levels = np.asarray([float(current_spots[symbol]) for symbol in symbols])
+    except KeyError as error:
+        raise ValueError(f"Current spots are missing {error.args[0]}") from error
+    if not np.isfinite(levels).all() or (levels <= 0).any():
+        raise ValueError("Current spots must be positive and finite")
+    levels = np.broadcast_to(levels, (count, len(symbols))).copy()
+
+    sigma = np.asarray(volatilities, dtype=float)
+    dividend = np.asarray(dividends, dtype=float)
+    lower = np.asarray(lower, dtype=float)
+    start_years = 0.0
+    for offset, observation in enumerate(observations[first_future:]):
+        end_years = _year_fraction(valuation_date, observation)
+        dt = end_years - start_years
+        if dt <= 0:
+            raise ValueError("Future observations must follow the valuation date")
+        forward_rate = rate_curve.forward_rate(start_years, end_years)
+        correlated = shocks[:, offset, :] @ lower.T
+        levels *= np.exp(
+            (forward_rate - dividend - 0.5 * sigma * sigma) * dt
+            + sigma * np.sqrt(dt) * correlated
+        )
+        prices[:, first_future + offset, :] = levels
+        start_years = end_years
+    return prices, first_future
+
+
 def array_paths(price_array, terms, indices):
     """Convert selected array paths to the mapping consumed by evaluate_note."""
     prices = np.asarray(price_array, dtype=float)

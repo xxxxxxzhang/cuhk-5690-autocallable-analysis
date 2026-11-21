@@ -227,6 +227,86 @@ def value_price_array(price_array, terms, inputs, *, memory_coupon=None,
     }
 
 
+def value_remaining_price_array(price_array, terms, *, valuation_date,
+                                first_future_period, rate_curve,
+                                memory_coupon=None, best_of_protection=None):
+    """Value only unpaid cash flows after a live note's valuation date.
+
+    ``price_array`` includes fixed historical observations before
+    ``first_future_period`` so the payoff engine can reconstruct the contractual
+    state. Historical coupons are deliberately excluded from current value.
+    """
+    evaluated = evaluate_price_array(
+        price_array,
+        terms,
+        memory_coupon=memory_coupon,
+        best_of_protection=best_of_protection,
+    )
+    coupons = evaluated["coupons"]
+    principal = evaluated["principal"]
+    called = evaluated["called"]
+    exit_period = evaluated["exit_period"]
+    if ((called) & (exit_period < first_future_period)).any():
+        raise ValueError("The note was autocalled before the requested valuation date")
+
+    future_coupons = coupons[:, first_future_period:]
+    future_principal = principal[:, first_future_period:]
+    future_total = future_coupons + future_principal
+    payment_dates = [
+        payment for _observation, payment
+        in terms["schedule"][first_future_period:]
+    ]
+    payment_years = np.asarray([
+        _year_fraction(valuation_date, payment) for payment in payment_dates
+    ])
+    discount = np.asarray([
+        rate_curve.discount_factor(years) for years in payment_years
+    ])
+    present_values = future_total @ discount
+    face = float(terms["principal"])
+    principal_paid = future_principal.sum(axis=1)
+    principal_loss = principal_paid < face
+    called_future = called & (exit_period >= first_future_period)
+    mean = float(present_values.mean())
+    standard_error = float(
+        present_values.std(ddof=1) / np.sqrt(len(present_values))
+    ) if len(present_values) > 1 else 0.0
+    next_coupon = future_coupons[:, 0] > 0
+    next_call = called_future & (exit_period == first_future_period)
+
+    summary = {
+        "valuation_date": valuation_date,
+        "rate_curve": rate_curve.name,
+        "paths": len(present_values),
+        "estimated_value": mean,
+        "standard_error": standard_error,
+        "pv_05": float(np.quantile(present_values, 0.05)),
+        "pv_median": float(np.median(present_values)),
+        "pv_95": float(np.quantile(present_values, 0.95)),
+        "autocall_probability": float(called_future.mean()),
+        "next_coupon_probability": float(next_coupon.mean()),
+        "next_autocall_probability": float(next_call.mean()),
+        "principal_loss_probability": float(principal_loss.mean()),
+        "mean_future_coupon": float(future_coupons.sum(axis=1).mean()),
+    }
+    exit_rows = []
+    for period in range(first_future_period, len(terms["schedule"])):
+        observation, payment = terms["schedule"][period]
+        exit_rows.append({
+            "period": period + 1,
+            "observation": observation,
+            "payment": payment,
+            "autocall_Q": float(((exit_period == period) & called_future).mean()),
+            "maturity_Q": float(((exit_period == period) & ~called_future).mean()),
+        })
+    return {
+        "summary": summary,
+        "present_values": present_values,
+        "exit_distribution": exit_rows,
+        "evaluated": evaluated,
+    }
+
+
 def _correlation_blend(correlation, symbols, target, weight=0.35):
     matrix = np.asarray([
         [float(correlation[left][right]) for right in symbols]

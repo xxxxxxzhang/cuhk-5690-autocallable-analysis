@@ -73,6 +73,60 @@ def print_result_summary(title, result, terms, *, as_of=None):
     print(f"Total cash flow         : USD {result['total_cashflow']:,.4f}")
 
 
+def print_sensitivity_summary(rows):
+    """Print the most decision-relevant parameter and contract comparisons."""
+    by_name = {row["scenario"]: row for row in rows}
+    baseline = by_name["historical_baseline"]
+    selected = [
+        ("historical_baseline", "Historical baseline"),
+        ("half_year_window", "Half-year calibration"),
+        ("all_vols_plus_25pct", "All volatilities +25%"),
+        ("lower_correlation", "Lower correlation"),
+        ("higher_correlation", "Higher correlation"),
+        ("no_memory_counterfactual", "No Memory counterfactual"),
+        ("no_best_protection_counterfactual", "No Best-of protection"),
+    ]
+    print(
+        f"{'Scenario':<28} {'PV (USD)':>10} {'Delta':>10} "
+        f"{'Autocall Q':>12} {'Principal loss Q':>18}"
+    )
+    print("-" * 92)
+    for name, label in selected:
+        row = by_name[name]
+        delta = float(row["pv_usd"]) - float(baseline["pv_usd"])
+        print(
+            f"{label:<28} {float(row['pv_usd']):>10.2f} {delta:>+10.2f} "
+            f"{float(row['call_Q']):>11.2%} "
+            f"{float(row['principal_loss_Q']):>17.2%}"
+        )
+
+    no_memory = by_name["no_memory_counterfactual"]
+    no_best = by_name["no_best_protection_counterfactual"]
+    half_year = by_name["half_year_window"]
+    high_vol = by_name["all_vols_plus_25pct"]
+    print()
+    print(
+        "Half-year window effect  : "
+        f"USD {float(half_year['pv_usd']) - float(baseline['pv_usd']):+.2f}"
+    )
+    print(
+        "All-volatility effect   : "
+        f"USD {float(high_vol['pv_usd']) - float(baseline['pv_usd']):+.2f}"
+    )
+    print(
+        "Memory value contribution: "
+        f"USD {float(baseline['pv_usd']) - float(no_memory['pv_usd']):.2f}"
+    )
+    print(
+        "Best-of value contribution: "
+        f"USD {float(baseline['pv_usd']) - float(no_best['pv_usd']):.2f}"
+    )
+    print(
+        "Best-of loss-Q reduction : "
+        f"{float(no_best['principal_loss_Q']) - float(baseline['principal_loss_Q']):.2%}"
+    )
+
+
 def main():
     terms = load_terms()
     prices = load_market(terms)
@@ -181,8 +235,11 @@ def main():
     print("4. SENSITIVITY ANALYSIS")
     print("=" * 64)
     print(f"Scenarios evaluated       : {len(analysis['scenarios'])}")
+    print_sensitivity_summary(analysis["scenarios"])
+    print()
     print("Tables                    : parameters.csv, scenarios.csv, exit_distribution.csv")
     print("Figures                   : payoff, exit, sensitivity, correlation, coupon distribution")
+    print("Current-state extension   : run `python -m src.stress_demo`")
 
 
 if __name__ == "__main__":

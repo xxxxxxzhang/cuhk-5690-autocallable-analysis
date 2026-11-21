@@ -1,0 +1,11 @@
+{
+  "source": "Nasdaq historical API snapshots",
+  "requested_range": ["2025-11-01", "2026-07-01"],
+  "files": {
+    "AMZN": {"sha256": "ae821940956f0ef651e8532464bc1248f69c659518935abc91cdde65c2e68cbd"},
+    "NVDA": {"sha256": "041005f8c16f28d18f84f239ecce329076d29e5b89359545c6292bbb46f3ef05"},
+    "PLTR": {"sha256": "af06d2c3f228cb14e0a1549377c8934440d7e0cc0fe7bc7da01d7c059157838b"},
+    "QQQ": {"sha256": "4a4c99269a0fb035025dc13a75c9b7782341cf5a42bfc1b497221f302e34714b"},
+    "SOXX": {"sha256": "3fa68314aac5780094a79fb17ead128282674c9ee79d96adccdbd2b0956e4b03"}
+  }
+}

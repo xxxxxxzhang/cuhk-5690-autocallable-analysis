@@ -1,0 +1,15 @@
+events:
+  spacex_ipo:
+    event_date: "2026-06-12"
+    estimation_window: [-120, -20]
+    report_windows:
+      - [-1, 1]
+      - [-5, 5]
+    stress_window: [-5, 5]
+  anthropic_ipo:
+    event_date: "2026-11-19"
+    descriptive_only: true
+targets: [AMZN, NVDA, PLTR]
+factors: [QQQ, SOXX]
+raw_directory: data/event_study/raw
+source: Nasdaq historical API snapshots

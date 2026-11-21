@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="900" height="510" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 510" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="900" height="510"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-510)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="900" height="510" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="60" y="472" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,944) scale(1,-1)">Post-midterm-election regime update</text>
+			<text x="60" y="448" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,896) scale(1,-1)">Equal-length realized windows for diagnosis; EWMA volatility for forward simulation</text>
+			<rect x="111.0" y="150" width="32.0" height="87.90726057566164" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(48%,54%,60%); fill-rule: evenodd;"/>
+			<text x="110.0" y="244.90726057566164" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,489) scale(1,-1)">41.6%</text>
+			<rect x="147.0" y="150" width="32.0" height="102.71115459915166" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="146.0" y="259.71115459915166" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,519) scale(1,-1)">48.7%</text>
+			<rect x="183.0" y="150" width="32.0" height="95.12461800511153" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(11%,43%,25%); fill-rule: evenodd;"/>
+			<text x="182.0" y="252.12461800511153" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,504) scale(1,-1)">45.1%</text>
+			<text x="150.0" y="128" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,256) scale(1,-1)">AMZN</text>
+			<rect x="291.0" y="150" width="32.0" height="76.62248664369702" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(48%,54%,60%); fill-rule: evenodd;"/>
+			<text x="290.0" y="233.62248664369702" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,467) scale(1,-1)">36.3%</text>
+			<rect x="327.0" y="150" width="32.0" height="158.6680649843309" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="326.0" y="315.6680649843309" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,631) scale(1,-1)">75.2%</text>
+			<rect x="363.0" y="150" width="32.0" height="195.83333333333331" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(11%,43%,25%); fill-rule: evenodd;"/>
+			<text x="362.0" y="352.8333333333333" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,705) scale(1,-1)">92.8%</text>
+			<text x="330.0" y="128" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,256) scale(1,-1)">NVDA</text>
+			<rect x="471.0" y="150" width="32.0" height="117.41196747490125" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(48%,54%,60%); fill-rule: evenodd;"/>
+			<text x="470.0" y="274.41196747490125" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,548) scale(1,-1)">55.6%</text>
+			<rect x="507.0" y="150" width="32.0" height="138.80017614860128" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="506.0" y="295.8001761486013" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,591) scale(1,-1)">65.8%</text>
+			<rect x="543.0" y="150" width="32.0" height="128.44041145035726" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(11%,43%,25%); fill-rule: evenodd;"/>
+			<text x="542.0" y="285.44041145035726" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,570) scale(1,-1)">60.9%</text>
+			<text x="510.0" y="128" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,256) scale(1,-1)">PLTR</text>
+			<path d="M 75,150 L 615,150 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<rect x="80" y="414" width="12" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(48%,54%,60%); fill-rule: evenodd;"/>
+			<text x="97" y="411" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,822) scale(1,-1)">Pre-election</text>
+			<rect x="215" y="414" width="12" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
+			<text x="232" y="411" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,822) scale(1,-1)">Post-election</text>
+			<rect x="350" y="414" width="12" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(11%,43%,25%); fill-rule: evenodd;"/>
+			<text x="367" y="411" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,822) scale(1,-1)">EWMA current</text>
+			<text x="660" y="350" style="font-family: Helvetica-Bold; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,700) scale(1,-1)">Current-value comparison</text>
+			<text x="660" y="318" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,636) scale(1,-1)">Legacy parameters: USD 874.71</text>
+			<text x="660" y="291" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,582) scale(1,-1)">Election regime:  USD 779.73</text>
+			<text x="660" y="264" style="font-family: Times-Roman; font-size: 10px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,528) scale(1,-1)">Difference:       USD -94.98</text>
+			<text x="60" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">The election date is a regime breakpoint, not a second price shock; current spots are not adjusted again.</text>
+		</g>
+	</g>
+</svg>

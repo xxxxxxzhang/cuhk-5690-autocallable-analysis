@@ -1,0 +1,28 @@
+{
+  "source": "Nasdaq historical API snapshots through 2026-11-19; Yahoo Finance append for 2026-11-20",
+  "requested_range": [
+    "2026-10-15",
+    "2026-11-20"
+  ],
+  "files": {
+    "AMZN": {
+      "sha256": "77444807a7e67663cf3a2713a384cacdaaef218bc5907651d61bc711ab0e85d5"
+    },
+    "NVDA": {
+      "sha256": "28787efdaf33c3f287de841b83d5a35e985781e355ad66ce7cbedc6d3a983988"
+    },
+    "PLTR": {
+      "sha256": "b47b26fa6b0bdddc2af2bf20cbf20ed697408ab09e3522ce3c6bd106cb157322"
+    }
+  },
+  "append_source": {
+    "date": "2026-11-20",
+    "retrieved_on": "2026-11-21",
+    "provider": "Yahoo Finance historical prices; closes cross-checked with Twelve Data / StockAnalysis search results",
+    "urls": {
+      "AMZN": "https://finance.yahoo.com/quote/AMZN/history/",
+      "NVDA": "https://finance.yahoo.com/quote/NVDA/history/",
+      "PLTR": "https://finance.yahoo.com/quote/PLTR/history/"
+    }
+  }
+}
