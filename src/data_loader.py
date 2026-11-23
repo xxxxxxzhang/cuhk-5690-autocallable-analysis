@@ -84,3 +84,73 @@ def load_market(terms):
     if any(r["splits"] for r in quality):
         raise ValueError("Review split-adjusted closes and contract adjustment before replay.")
     return close
+
+
+def extend_close_with_current_snapshot(close, terms):
+    """Append the separately frozen current close snapshot for replay charts.
+
+    The validated Yahoo archive remains the sole source for pricing-date
+    calibration and the main data-quality table.  This function only appends
+    later common sessions from ``data/stress/raw`` so that contract replay and
+    the historical chart can reach the latest frozen market close without
+    rewriting the original archive.
+    """
+    symbols = list(terms["underlyings"])
+    raw_dir = ROOT / "data/stress/raw"
+    manifest = json.loads((raw_dir / "manifest.json").read_text())
+    requested_end = manifest["requested_range"][1]
+    by_symbol = {}
+
+    for symbol in symbols:
+        raw = (raw_dir / f"{symbol}.json").read_bytes()
+        if hashlib.sha256(raw).hexdigest() != manifest["files"][symbol]["sha256"]:
+            raise ValueError(f"{symbol}: current snapshot checksum mismatch")
+        response = json.loads(raw)
+        if response["data"]["symbol"] != symbol:
+            raise ValueError(f"{symbol}: current snapshot identity mismatch")
+        rows = response["data"]["tradesTable"]["rows"]
+        values = {}
+        for row in rows:
+            day = datetime.strptime(row["date"], "%m/%d/%Y").date().isoformat()
+            if day in values:
+                raise ValueError(f"{symbol}: duplicate current close on {day}")
+            value = D(row["close"].replace("$", "").replace(",", ""))
+            if not value.is_finite() or value <= 0:
+                raise ValueError(f"{symbol}: invalid current close on {day}")
+            values[day] = value.quantize(D(".01"), rounding=ROUND_HALF_UP)
+        by_symbol[symbol] = values
+
+    common_dates = sorted(
+        set.intersection(*(set(by_symbol[symbol]) for symbol in symbols))
+    )
+    if not common_dates or common_dates[-1] != requested_end:
+        raise ValueError(
+            f"Current close snapshot does not reach requested end {requested_end}"
+        )
+
+    archive_end = max(close)
+    extension_dates = [
+        day for day in common_dates if archive_end < day <= requested_end
+    ]
+    if not extension_dates:
+        raise ValueError("Current close snapshot contains no later common sessions")
+
+    merged = {day: dict(values) for day, values in close.items()}
+    for day in extension_dates:
+        merged[day] = {
+            symbol: by_symbol[symbol][day]
+            for symbol in symbols
+        }
+
+    processed = ROOT / "data/processed/prices_close_replay.csv"
+    write_rows(
+        processed,
+        [dict(date=day, **merged[day]) for day in sorted(merged)],
+    )
+    metadata = {
+        "archive_end": archive_end,
+        "snapshot_end": requested_end,
+        "extension_sessions": len(extension_dates),
+        "source": manifest["source"],
+    }
+    return merged, metadata

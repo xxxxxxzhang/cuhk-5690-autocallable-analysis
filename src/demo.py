@@ -1,7 +1,7 @@
 """Run the meeting demonstration from the repository root."""
 from decimal import Decimal as D
 
-from .data_loader import load_market, write_rows
+from .data_loader import extend_close_with_current_snapshot, load_market, write_rows
 from .model import (
     array_paths,
     calibrate_historical,
@@ -129,11 +129,24 @@ def print_sensitivity_summary(rows):
 
 def main():
     terms = load_terms()
-    prices = load_market(terms)
+    archive_prices = load_market(terms)
+    prices, replay_metadata = extend_close_with_current_snapshot(
+        archive_prices, terms
+    )
     out = ROOT / "output/tables"
     history = evaluate_note(prices, terms, as_of=max(prices))
     write_rows(out / "historical_replay.csv", history["rows"])
-    plot_prices(prices, terms, result=history, data_cutoff=max(prices))
+    plot_prices(
+        prices,
+        terms,
+        result=history,
+        data_cutoff=max(prices),
+        source_note=(
+            "Yahoo Finance archive through "
+            f"{replay_metadata['archive_end']}; frozen Nasdaq/Yahoo close "
+            f"extension through {replay_metadata['snapshot_end']}"
+        ),
+    )
 
     model_inputs = load_model_inputs()
     symbols = list(terms["underlyings"])
@@ -209,7 +222,13 @@ def main():
         / int(terms["coupons_per_year"]),
     )
 
-    print_data_summary(prices, terms)
+    print_data_summary(archive_prices, terms)
+    print(
+        "Replay/chart extension   : "
+        f"{replay_metadata['archive_end']} to "
+        f"{replay_metadata['snapshot_end']} "
+        f"({replay_metadata['extension_sessions']} sessions)"
+    )
     print("\n" + "=" * 64)
     print("2. PAYOFF RESULTS")
     print("=" * 64)

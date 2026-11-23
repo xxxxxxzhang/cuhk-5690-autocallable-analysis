@@ -10,9 +10,10 @@
 - 冻结快照下载日：2026-11-09；
 - 每只股票有效交易日：464；
 - 产品定价日：2025-12-19；
-- 发行后真实行情截止日：2026-11-06。
+- 发行日模型与主数据质量档案截止日：2026-11-06；
+- 合同回放与历史图的当前 Close 增量截止日：2026-11-20。
 
-定价日模型只使用截至 2025-12-19 的信息估计参数。定价日后的真实价格只用于历史履约回放，不进入定价日模型校准，以避免前视偏差。
+定价日模型只使用截至 2025-12-19 的信息估计参数。主 Yahoo Finance 档案保持冻结至2026年11月6日；程序从 `data/stress/raw/` 读取单独验证的当前 Close 快照，把合同回放和历史图延伸至2026年11月20日。所有定价日后的真实价格均不进入定价日模型校准，以避免前视偏差。
 
 ---
 
@@ -79,7 +80,11 @@ Yahoo Finance Chart API 的冻结响应，主要使用：
 
 Adjusted Close 用于消除分红和拆股对历史收益率造成的非经济性跳变，不能直接与合同原始美元障碍比较。
 
-### 3.3 `processed/corporate_actions.csv`
+### 3.3 `processed/prices_close_replay.csv`
+
+该文件由程序运行时生成，包含 `prices_close.csv` 的主档案以及 `data/stress/raw/` 中主档案截止日之后的共同交易日 Close。当前版本增加2026年11月9日至11月20日十个交易日，共474个日期。它只用于合同历史回放与 `normalized_prices.svg`，不用于发行日波动率、相关性或估值参数校准。
+
+### 3.4 `processed/corporate_actions.csv`
 
 | 字段 | 类型与单位 | 说明 |
 |---|---|---|
@@ -90,7 +95,7 @@ Adjusted Close 用于消除分红和拆股对历史收益率造成的非经济�
 
 当前窗口记录 NVDA 七笔现金分红，三只股票均无拆股记录。若检测到拆股，程序会停止自动回放，要求核对计算代理的合同调整。
 
-### 3.4 质量检查结果
+### 3.5 质量检查结果
 
 `output/tables/data_quality.csv` 每只股票一行，包含：
 
@@ -266,7 +271,7 @@ r_{i,t}=\ln\left(\frac{S^{adj}_{i,t}}{S^{adj}_{i,t-1}}\right).
 
 | 文件 | 内容 |
 |---|---|
-| `normalized_prices.svg` | 定价日后的真实标准化价格、障碍和观察日 |
+| `normalized_prices.svg` | 定价日后的真实标准化 Close、障碍和观察日；当前展示截止2026-11-20 |
 | `maturity_redemption_map.svg` | Worst-of 与 Best-of 共同决定的到期本金状态图 |
 | `monte_carlo_value_distribution.svg` | 折现路径价值分布及三项价格参照 |
 | `nominal_return_distribution.svg` | 风险中性名义总回报及最差 5% 尾部 |
@@ -369,7 +374,7 @@ Terminal 只负责便于快速阅读，不替代 CSV。报告数字应优先引�
 
 ### 11.3 `stress/raw/`
 
-保存 AMZN、NVDA 和 PLTR 截至 2026-11-20 的冻结快照，用于确定当前状态估值的起始价格，并与长期 Adjusted Close 合并以估计选举后的 EWMA 参数。2026-10-15至2026-11-19的原始区间来自 Nasdaq 历史接口；2026-11-20一行来自 Yahoo Finance 历史价格页，并在 `manifest.json` 中单独记录来源、抓取日期和更新后的 SHA-256。当前估值不会改写合同初始价格、障碍价格或自动赎回水平。
+保存 AMZN、NVDA 和 PLTR 截至 2026-11-20 的冻结快照，用于确定当前状态估值的起始价格，并与长期 Adjusted Close 合并以估计选举后的 EWMA 参数。主档案截止日之后的共同 Close 也用于延伸合同回放与历史图。2026-10-15至2026-11-19的原始区间来自 Nasdaq 历史接口；2026-11-20一行来自 Yahoo Finance 历史价格页，并在 `manifest.json` 中单独记录来源、抓取日期和更新后的 SHA-256。该扩展不会改写合同初始价格、障碍价格、自动赎回水平或发行日校准参数。
 
 ### 11.4 `rates/treasury_curve_2026-11-19.csv`
 
