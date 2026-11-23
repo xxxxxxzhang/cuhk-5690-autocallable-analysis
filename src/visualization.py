@@ -827,10 +827,10 @@ def plot_factorial_stress(rows, *, filename="factorial_stress.svg"):
     high = max(values) + 20
     fig = Drawing(900, 500)
     fig.add(Rect(0, 0, 900, 500, fillColor=colors.white, strokeColor=None))
-    fig.add(String(60, 462, "Rate-curve and mega-IPO proxy factorial stress test",
+    fig.add(String(60, 462, "Rate curve and hypothetical common-equity shock",
                    fontName="Helvetica-Bold", fontSize=22))
     fig.add(String(60, 438,
-                   "All four factorial scenarios use identical shocks and the same election-regime parameters",
+                   "All four factorial scenarios use identical shocks and the same recent-market parameters",
                    fontSize=11))
     left, bottom, width, height = 90, 145, 730, 245
     slot = width / len(order)
@@ -846,14 +846,19 @@ def plot_factorial_stress(rows, *, filename="factorial_stress.svg"):
         fig.add(String(x + 5, bottom + bar_height + 9,
                        f"USD {value:.2f}", fontSize=9,
                        fillColor=colors.HexColor(palette[index])))
-        fig.add(String(x, bottom - 22, name, fontSize=9))
+        display_names = {
+            "current_regime": "recent_params",
+            "ipo_only": "common_shock",
+        }
+        display_name = display_names.get(name, name)
+        fig.add(String(x, bottom - 22, display_name, fontSize=9))
         fig.add(String(x - 10, bottom - 43,
                        f"Call {float(row['autocall_Q']):.1%}", fontSize=8))
         fig.add(String(x - 10, bottom - 59,
                        f"Loss {float(row['principal_loss_Q']):.1%}", fontSize=8))
     fig.add(Line(left, bottom, left + width, bottom, strokeColor=colors.black))
     fig.add(String(60, 35,
-                   "Base = current regime + flat rate; IPO = mega-IPO proxy shock sourced from SpaceX [-5,+5] CAR.",
+                   "Base = recent parameters + flat rate; common-shock magnitude uses one historical [-5,+5] CAR window.",
                    fontSize=9))
     target = ROOT / "output/stress/figures" / filename
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -878,7 +883,7 @@ def plot_interaction_effect(rows, *, filename="interaction_effect.svg"):
     fig.add(String(60, 417, "Nonlinear joint-effect diagnostic",
                    fontName="Helvetica-Bold", fontSize=22))
     fig.add(String(60, 393,
-                   "Does the combined rate/mega-IPO proxy result equal the two standalone effects?",
+                   "Does the combined rate/common-equity-shock result equal the two standalone effects?",
                    fontSize=11))
     left, bottom, width, height = 125, 115, 650, 220
     slot = width / len(values)
@@ -894,7 +899,7 @@ def plot_interaction_effect(rows, *, filename="interaction_effect.svg"):
         fig.add(String(x - 18, bottom - 22, label, fontSize=9))
     fig.add(Line(left, bottom, left + width, bottom, strokeColor=colors.black))
     fig.add(String(60, 50,
-                   f"Rate effect {rate_effect:+.2f}  |  mega-IPO proxy effect {ipo_effect:+.2f}  |  interaction {interaction:+.2f} USD",
+                   f"Rate effect {rate_effect:+.2f}  |  common-equity shock effect {ipo_effect:+.2f}  |  interaction {interaction:+.2f} USD",
                    fontSize=10))
     target = ROOT / "output/stress/figures" / filename
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -904,7 +909,7 @@ def plot_interaction_effect(rows, *, filename="interaction_effect.svg"):
 
 def plot_election_regime(comparison_rows, scenario_rows, *,
                          filename="election_regime_comparison.svg"):
-    """Compare pre/post election volatility and the legacy/current-regime value."""
+    """Compare volatility around a selected diagnostic split and current value."""
     if not comparison_rows:
         raise ValueError("No election-regime comparison rows to plot")
     by_scenario = {row["scenario"]: row for row in scenario_rows}
@@ -912,7 +917,7 @@ def plot_election_regime(comparison_rows, scenario_rows, *,
     regime = float(by_scenario["current_regime"]["pv_usd"])
     fig = Drawing(900, 510)
     fig.add(Rect(0, 0, 900, 510, fillColor=colors.white, strokeColor=None))
-    fig.add(String(60, 472, "Post-midterm-election regime update",
+    fig.add(String(60, 472, "Recent-window market-parameter update",
                    fontName="Helvetica-Bold", fontSize=22))
     fig.add(String(60, 448,
                    "Equal-length realized windows for diagnosis; EWMA volatility for forward simulation",
@@ -927,7 +932,7 @@ def plot_election_regime(comparison_rows, scenario_rows, *,
     ) * 1.20
     group_width = width / len(comparison_rows)
     colours = ["#7c8b9a", "#b42318", "#1d6f42"]
-    labels = ["Pre-election", "Post-election", "EWMA current"]
+    labels = ["Before split", "After split", "EWMA current"]
     keys = ["pre_annualized_volatility", "post_annualized_volatility",
             "ewma_annualized_volatility"]
     for group, row in enumerate(comparison_rows):
@@ -953,13 +958,13 @@ def plot_election_regime(comparison_rows, scenario_rows, *,
     fig.add(String(box_x, 350, "Current-value comparison",
                    fontName="Helvetica-Bold", fontSize=11))
     fig.add(String(box_x, 318, f"Legacy parameters: USD {legacy:.2f}", fontSize=10))
-    fig.add(String(box_x, 291, f"Election regime:  USD {regime:.2f}", fontSize=10))
+    fig.add(String(box_x, 291, f"Recent parameters: USD {regime:.2f}", fontSize=10))
     difference = regime - legacy
     fig.add(String(box_x, 264, f"Difference:       USD {difference:+.2f}",
                    fontSize=10,
                    fillColor=colors.HexColor("#1d6f42" if difference >= 0 else "#b42318")))
     fig.add(String(60, 55,
-                   "The election date is a regime breakpoint, not a second price shock; current spots are not adjusted again.",
+                   "The selected date is a descriptive window boundary, not an identified event effect or a second price shock.",
                    fontSize=9))
     target = ROOT / "output/stress/figures" / filename
     target.parent.mkdir(parents=True, exist_ok=True)

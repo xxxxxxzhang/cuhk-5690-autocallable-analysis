@@ -352,7 +352,7 @@ python -m src.stress_demo
 `python -m src.stress_demo` 的七段当前状态摘要分别来自：
 
 - 当前状态：`stress_current_state.csv`；
-- 选举前后诊断：`election_pre_post_comparison.csv`；
+- 选定诊断分界点前后比较：`election_pre_post_comparison.csv`；
 - 参数更新：`election_regime_parameters.csv`；
 - 事件研究：`spacex_event_study.csv`；
 - 五情景结果：`stress_scenarios.csv`；
@@ -374,7 +374,7 @@ Terminal 只负责便于快速阅读，不替代 CSV。报告数字应优先引�
 
 ### 11.3 `stress/raw/`
 
-保存 AMZN、NVDA 和 PLTR 截至 2026-11-20 的冻结快照，用于确定当前状态估值的起始价格，并与长期 Adjusted Close 合并以估计选举后的 EWMA 参数。主档案截止日之后的共同 Close 也用于延伸合同回放与历史图。2026-10-15至2026-11-19的原始区间来自 Nasdaq 历史接口；2026-11-20一行来自 Yahoo Finance 历史价格页，并在 `manifest.json` 中单独记录来源、抓取日期和更新后的 SHA-256。该扩展不会改写合同初始价格、障碍价格、自动赎回水平或发行日校准参数。
+保存 AMZN、NVDA 和 PLTR 截至 2026-11-20 的冻结快照，用于确定当前状态估值的起始价格，并与长期 Adjusted Close 合并以估计近期 EWMA 参数。主档案截止日之后的共同 Close 也用于延伸合同回放与历史图。2026-10-15至2026-11-19的原始区间来自 Nasdaq 历史接口；2026-11-20一行来自 Yahoo Finance 历史价格页，并在 `manifest.json` 中单独记录来源、抓取日期和更新后的 SHA-256。该扩展不会改写合同初始价格、障碍价格、自动赎回水平或发行日校准参数。
 
 ### 11.4 `rates/treasury_curve_2026-11-19.csv`
 
@@ -394,14 +394,14 @@ Terminal 只负责便于快速阅读，不替代 CSV。报告数字应优先引�
 `output/stress/tables/` 包含：
 
 - `spacex_event_study.csv`：事件窗口、原始收益、CAR、近似 z 值和回归系数；
-- `stress_current_state.csv`：估值日价格、超大型 IPO 代理冲击及其历史来源；
-- `election_pre_post_comparison.csv`：2026-11-03 前后等长窗口的累计收益和已实现波动率；
-- `election_regime_parameters.csv`：长期、EWMA、收缩后当前参数以及选举前后诊断估计；
+- `stress_current_state.csv`：估值日价格、假设性共同股票冲击及其历史幅度来源；字段名为兼容既有输出保留；
+- `election_pre_post_comparison.csv`：2026-11-03 这一选定分界点前后等长窗口的累计收益和已实现波动率；文件名仅为兼容既有输出，不代表因果识别；
+- `election_regime_parameters.csv`：长期、EWMA、收缩后当前参数以及分界点前后诊断估计；
 - `stress_scenarios.csv`：旧参数基准、当前参数基准及四个 2×2 因子情景的估值与风险指标；
 - `stress_exit_distribution.csv`：五个当前状态情景的剩余观察期退出概率；
 - `interaction_decomposition.csv`：联合结果相对机械可加预测的互动项。
 
-中期选举在模型中是参数换挡节点，不是第二次价格冲击；现货价格不会因此再次调整。SpaceX CAR 则是未来超大型 IPO 资金分流的历史代理冲击，并非假设 SpaceX 再次上市。所有当前压力概率仍为风险中性模型结果；单一事件 CAR 不构成因果证明、现实世界发生概率或未来收益预测。
+2026-11-03 只作为描述性参数窗口边界，不代表政治事件产生可识别影响，也不是第二次价格冲击。SpaceX CAR 只为假设性共同股票冲击提供历史幅度参照；SpaceX 并非直接可比公司，单一事件 CAR 不构成因果证明、现实世界发生概率或未来收益预测。所有当前压力概率仍为风险中性模型结果。
 
 ---
 
@@ -409,7 +409,7 @@ Terminal 只负责便于快速阅读，不替代 CSV。报告数字应优先引�
 
 - Yahoo Finance 是公共市场数据源，不是合同指定的计算代理数据源；
 - 历史波动率和相关性可能随样本窗口变化；
-- 选举后诊断窗口只有 13 个日收益，近期相关性因此向长期矩阵收缩，但参数不确定性仍然较高；
+- 分界点后的诊断窗口只有 13 个日收益，近期相关性因此向长期矩阵收缩，但参数不确定性仍然较高；
 - 发行日模型使用单一常数利率；当前压力扩展将 H.15 constant-maturity yields 作为零息曲线代理，而非交易级 OIS 曲线；
 - 当前股息率为简化假设，未建立期限结构；
 - 历史参数不是期权市场隐含参数；

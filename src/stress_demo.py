@@ -1,4 +1,4 @@
-"""Run and explain the election-regime rate/mega-IPO proxy stress analysis."""
+"""Run the recent-parameter, rate and hypothetical common-equity stress analysis."""
 
 from math import log
 
@@ -34,14 +34,14 @@ def _print_current_state(result):
 
 def _print_regime_diagnostic(result):
     regime = result["regime"]
-    _section(2, "MIDTERM-ELECTION REGIME DIAGNOSTIC")
+    _section(2, "RECENT-MARKET DIAGNOSTIC WINDOW")
     print(f"Regime breakpoint           : {regime['break_date']}")
     print(f"Data as of                  : {regime['as_of']}")
-    print("Treatment                   : parameter breakpoint, not an additional spot-price shock")
+    print("Treatment                   : descriptive window boundary, not an identified event effect")
     print()
     print(
-        f"{'Symbol':<8} {'Pre return':>12} {'Post return':>12} "
-        f"{'Pre vol':>12} {'Post vol':>12} {'EWMA vol':>12}"
+        f"{'Symbol':<8} {'Before ret.':>12} {'After ret.':>12} "
+        f"{'Before vol.':>12} {'After vol.':>12} {'EWMA vol.':>12}"
     )
     print("-" * 76)
     for row in regime["comparison_rows"]:
@@ -82,10 +82,10 @@ def _print_forward_parameters(result):
 
 
 def _print_event_proxy(result):
-    _section(4, "MEGA-IPO PROXY EVENT STUDY")
+    _section(4, "HISTORICAL MAGNITUDE REFERENCE")
     print(f"Historical source event     : {result['event_shock_source']}")
-    print("Interpretation               : proxy for a future mega-IPO capital-reallocation shock")
-    print("Not assumed                  : SpaceX lists a second time or the event proves causality")
+    print("Interpretation               : one historical magnitude reference for a hypothetical shock")
+    print("Not assumed                  : direct comparability, causality or predictive significance")
     print()
     print(f"{'Symbol':<8} {'[-5,+5] CAR':>14} {'Approx. z':>14} {'Applied spot shock':>20}")
     print("-" * 62)
@@ -109,9 +109,16 @@ def _print_stress_results(result):
         f"{'Next call Q':>12} {'Principal loss Q':>18}"
     )
     print("-" * 84)
+    display_names = {
+        "legacy_current": "legacy_params",
+        "current_regime": "recent_params",
+        "rate_only": "rate_only",
+        "ipo_only": "common_shock",
+        "joint": "joint",
+    }
     for row in result["scenarios"]:
         print(
-            f"{row['scenario']:<16} {float(row['pv_usd']):>10.2f} "
+            f"{display_names[row['scenario']]:<16} {float(row['pv_usd']):>10.2f} "
             f"{float(row['mc_se_usd']):>9.2f} {float(row['autocall_Q']):>11.2%} "
             f"{float(row['next_autocall_Q']):>11.2%} "
             f"{float(row['principal_loss_Q']):>17.2%}"
@@ -127,16 +134,16 @@ def _print_effect_decomposition(result):
     ipo = by_name["ipo_only"]
     joint = by_name["joint"]
     print(
-        "Regime-parameter effect   : "
+        "Recent-parameter effect   : "
         f"USD {float(current['pv_usd']) - float(legacy['pv_usd']):+.2f} "
-        "(current_regime - legacy_current)"
+        "(recent parameters - legacy parameters)"
     )
     print(
         "Rate-curve effect         : "
         f"USD {float(rate['pv_usd']) - float(current['pv_usd']):+.2f}"
     )
     print(
-        "Mega-IPO proxy effect     : "
+        "Common-equity shock effect: "
         f"USD {float(ipo['pv_usd']) - float(current['pv_usd']):+.2f}"
     )
     print(
@@ -165,14 +172,14 @@ def _print_interpretation(result):
     rate_effect = float(by_name["rate_only"]["pv_usd"]) - float(current["pv_usd"])
     proxy_effect = float(by_name["ipo_only"]["pv_usd"]) - float(current["pv_usd"])
     _section(7, "KEY INTERPRETATION AND LIMITS")
-    dominant = "mega-IPO proxy" if abs(proxy_effect) > abs(rate_effect) else "rate curve"
-    update_driver = "regime parameters" if abs(regime_effect) > max(
+    dominant = "common-equity shock" if abs(proxy_effect) > abs(rate_effect) else "rate curve"
+    update_driver = "recent parameters" if abs(regime_effect) > max(
         abs(rate_effect), abs(proxy_effect)
     ) else dominant
     print(f"Largest current-value update : {update_driver}")
     print(f"Dominant added stress factor : {dominant}")
-    print("Election treatment           : updates volatility/correlation; does not hit current spots twice")
-    print("Event-study treatment        : historical stress proxy; not a causal estimate or forecast")
+    print("Break-date treatment         : descriptive parameter window; no political-event claim")
+    print("Historical-window treatment  : magnitude calibration only; no causal estimate or forecast")
     print("Probability interpretation   : all Q probabilities are risk-neutral valuation outputs")
     print("Model limits                 : historical parameters, GBM, no implied-volatility surface or jumps")
     print("Output tables                : output/stress/tables/")
@@ -227,7 +234,7 @@ def main():
     plot_interaction_effect(result["scenarios"])
 
     print("=" * WIDTH)
-    print("ELECTION-REGIME RATE / MEGA-IPO PROXY STRESS TEST")
+    print("RECENT-PARAMETER RATE / HYPOTHETICAL COMMON-EQUITY STRESS TEST")
     print("=" * WIDTH)
     _print_current_state(result)
     _print_regime_diagnostic(result)

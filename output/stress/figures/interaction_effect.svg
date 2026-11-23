@@ -12,7 +12,7 @@
 		<g transform="">
 			<rect x="0" y="0" width="900" height="455" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
 			<text x="60" y="417" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,834) scale(1,-1)">Nonlinear joint-effect diagnostic</text>
-			<text x="60" y="393" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,786) scale(1,-1)">Does the combined rate/mega-IPO proxy result equal the two standalone effects?</text>
+			<text x="60" y="393" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,786) scale(1,-1)">Does the combined rate/common-equity-shock result equal the two standalone effects?</text>
 			<rect x="177.0" y="115" width="112.66666666666663" height="163.4510172155674" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,47%,65%); fill-rule: evenodd;"/>
 			<text x="175.0" y="286.4510172155674" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,572) scale(1,-1)">USD 779.73</text>
 			<text x="159.0" y="93" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,186) scale(1,-1)">Base</text>
@@ -23,7 +23,7 @@
 			<text x="608.3333333333333" y="182.18845020600813" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,364) scale(1,-1)">USD 742.86</text>
 			<text x="592.3333333333333" y="93" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,186) scale(1,-1)">Actual joint</text>
 			<path d="M 125,115 L 775,115 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
-			<text x="60" y="50" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,100) scale(1,-1)">Rate effect -1.46  |  mega-IPO proxy effect -36.34  |  interaction +0.93 USD</text>
+			<text x="60" y="50" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,100) scale(1,-1)">Rate effect -1.46  |  common-equity shock effect -36.34  |  interaction +0.93 USD</text>
 		</g>
 	</g>
 </svg>

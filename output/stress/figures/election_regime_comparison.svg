@@ -11,7 +11,7 @@
 	<g id="group" transform="scale(1,-1) translate(0,-510)" style="clip-path: url(#clip)">
 		<g transform="">
 			<rect x="0" y="0" width="900" height="510" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
-			<text x="60" y="472" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,944) scale(1,-1)">Post-midterm-election regime update</text>
+			<text x="60" y="472" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,944) scale(1,-1)">Recent-window market-parameter update</text>
 			<text x="60" y="448" style="font-family: Times-Roman; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,896) scale(1,-1)">Equal-length realized windows for diagnosis; EWMA volatility for forward simulation</text>
 			<rect x="111.0" y="150" width="32.0" height="87.90726057566164" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(48%,54%,60%); fill-rule: evenodd;"/>
 			<text x="110.0" y="244.90726057566164" style="font-family: Times-Roman; font-size: 7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,489) scale(1,-1)">41.6%</text>
@@ -36,16 +36,16 @@
 			<text x="510.0" y="128" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,256) scale(1,-1)">PLTR</text>
 			<path d="M 75,150 L 615,150 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
 			<rect x="80" y="414" width="12" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(48%,54%,60%); fill-rule: evenodd;"/>
-			<text x="97" y="411" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,822) scale(1,-1)">Pre-election</text>
+			<text x="97" y="411" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,822) scale(1,-1)">Before split</text>
 			<rect x="215" y="414" width="12" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(70%,13%,9%); fill-rule: evenodd;"/>
-			<text x="232" y="411" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,822) scale(1,-1)">Post-election</text>
+			<text x="232" y="411" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,822) scale(1,-1)">After split</text>
 			<rect x="350" y="414" width="12" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(11%,43%,25%); fill-rule: evenodd;"/>
 			<text x="367" y="411" style="font-family: Times-Roman; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,822) scale(1,-1)">EWMA current</text>
 			<text x="660" y="350" style="font-family: Helvetica-Bold; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,700) scale(1,-1)">Current-value comparison</text>
 			<text x="660" y="318" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,636) scale(1,-1)">Legacy parameters: USD 874.71</text>
-			<text x="660" y="291" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,582) scale(1,-1)">Election regime:  USD 779.73</text>
+			<text x="660" y="291" style="font-family: Times-Roman; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,582) scale(1,-1)">Recent parameters: USD 779.73</text>
 			<text x="660" y="264" style="font-family: Times-Roman; font-size: 10px;fill: rgb(70%,13%,9%); stroke:none;" transform="translate(0,528) scale(1,-1)">Difference:       USD -94.98</text>
-			<text x="60" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">The election date is a regime breakpoint, not a second price shock; current spots are not adjusted again.</text>
+			<text x="60" y="55" style="font-family: Times-Roman; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">The selected date is a descriptive window boundary, not an identified event effect or a second price shock.</text>
 		</g>
 	</g>
 </svg>

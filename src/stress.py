@@ -86,7 +86,7 @@ def _scenario_row(name, result, *, apply_event_shock, event_shock_label,
 
 
 def run_stress_analysis(config_path=ROOT / "config/stress_scenarios.yaml"):
-    """Run the current-regime rate/mega-IPO factorial design."""
+    """Run the current-regime rate/common-equity-shock factorial design."""
     config = yaml.safe_load(config_path.read_text())
     terms = load_terms()
     inputs = yaml.safe_load((ROOT / "config/model_inputs.yaml").read_text())

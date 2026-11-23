@@ -80,7 +80,7 @@ def calibrate_election_regime(base_inputs, symbols, *, break_date, as_of,
     """Estimate EWMA volatility and a shrunk post-event dependence regime.
 
     The EWMA recursion uses the full available return history, but a short
-    half-life gives the post-election observations dominant weight. For the
+    half-life gives the most recent observations dominant weight. For the
     dependence matrix, the noisier EWMA estimate is shrunk toward the original
     long-run correlation matrix.
     """
