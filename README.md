@@ -39,6 +39,7 @@ python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python -m src.demo
 python -m src.stress_demo
+python -m src.model_robustness
 ```
 
 `python -m src.demo` validates the issue-date data, replays completed observations, runs the 100,000-path baseline valuation and ten sensitivity or counterfactual scenarios, and regenerates the main CSV and SVG outputs.
@@ -46,6 +47,8 @@ python -m src.stress_demo
 `python -m src.stress_demo` runs the separate conditional analysis as of 20 November 2026. It fixes the first three realised observations and studies the remaining cash flows under updated volatility and dependence, the current rate-curve proxy, a hypothetical common-equity shock, and their joint effect.
 
 The repository currently has **33 automated tests** covering contract boundaries, memory coupons, autocall, best-of protection, vectorised and pathwise engine consistency, calibration, correlation matrices, discounting, exit distributions, the rate curve, event-study calculations, recent-regime parameters, current-state valuation, the historical Close extension, and interaction decomposition.
+
+`python -m src.model_robustness` compares Gaussian and Student-t copulas (five degrees of freedom) at the original pricing date. Both models use standard-normal marginal shocks and the same pricing inputs. The group's comparison is saved to [model_robustness.csv](output/tables/model_robustness.csv), including the paired valuation difference and its Monte Carlo standard error.
 
 ---
 

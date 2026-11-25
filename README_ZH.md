@@ -35,6 +35,7 @@ python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python -m src.demo
 python -m src.stress_demo
+python -m src.model_robustness
 ```
 
 程序必须从项目根目录以模块方式运行。`python -m src.demo` 会重新验证数据、运行 100,000 条路径的基准估值与十组情景，并覆盖更新 `output/tables/` 和 `output/figures/` 中的结果。
@@ -44,6 +45,8 @@ python -m src.stress_demo
 当前共有 33 项自动测试，覆盖合约边界、Memory coupon、Autocall、Best-of 保护、相关矩阵、参数校准、折现、退出分布、利率曲线、历史窗口校准、当前状态估值、历史 Close 增量和联合互动分解。
 
 ### 1.1 Terminal 输出结构
+
+`python -m src.model_robustness` 在原定价日比较 Gaussian 与 Student-t copula（自由度 5）。两者共用合同、定价参数和单股正态边际，结果保存到 [model_robustness.csv](output/tables/model_robustness.csv)，包括配对估值差及其 Monte Carlo 标准误。
 
 `python -m src.demo` 输出发行日与合同层面的完整摘要：
 

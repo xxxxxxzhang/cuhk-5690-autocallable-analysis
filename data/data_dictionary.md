@@ -330,6 +330,7 @@ python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python -m src.demo
 python -m src.stress_demo
+python -m src.model_robustness
 ```
 
 依赖版本：
@@ -342,6 +343,17 @@ python -m src.stress_demo
 只要原始数据、配置、依赖和随机种子保持不变，主要表格、图形和终端摘要应可重复生成。
 
 ### 10.1 Terminal 摘要与底层表格的对应关系
+
+`output/tables/model_robustness.csv` 记录发行日 Gaussian 与 Student-t copula（自由度 5）对照。两组共用配置中的正态随机种子，卡方缩放使用种子 5691。每行对应一个模型。
+
+| 字段 | 说明 |
+|---|---|
+| `model` | 依赖结构 |
+| `pv`、`mc_se` | 单张票据估值及 Monte Carlo 标准误，单位 USD |
+| `call`、`loss` | 自动赎回和发生本金损失的风险中性路径比例 |
+| `worst5` | 总回报最差 5% 的路径平均累计名义回报 |
+| `joint_low` | 全部模拟路径和观察期中，三股冲击同季均处于各自最低 5% 的比例，包括票据赎回后的模拟股价 |
+| `paired_diff`、`paired_se`、`diff_low`、`diff_high` | 相对 Gaussian 的配对估值差、标准误及近似 95% 区间上下限，单位 USD |
 
 `python -m src.demo` 的发行日估值和敏感性摘要分别来自：
 
